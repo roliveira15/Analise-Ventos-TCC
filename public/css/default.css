@@ -1,0 +1,17 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+html{
+    font-size: 93.75%;
+}
+
+/* Sem ponto e sem # ele está acessando o elemento */
+body {
+    background: #FAF9F8;
+    font-family: 'Poppins', sans-serif;
+}

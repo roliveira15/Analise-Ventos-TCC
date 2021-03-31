@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CivilLearning</title>
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/public/css/default.css">
+        <link rel="stylesheet" href="/public/css/toolbar.css">
+        <link rel="stylesheet" href="/public/css/modal.css">
+        <link rel="stylesheet" href="/public/css/sidebar.css">
+        <link rel="stylesheet" href="/public/css/dimension.css">
+        <link rel="sortcut icon" href="../assets/engineer.svg">
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    </head>
+    <body>
+
+        <header>
+
+            <div class="header"> 
+                
+                    <div class="toolbar-title">
+                        <img class="icon-engineer"src="../assets/engineer.svg" alt="Notificação"></img>
+                        <label class="logo" id="logo">Civil Learning</label>
+                    </div>
+
+                    <div class="toolbar-letter">
+                        <nav class="nav-header">
+                            <ul>
+                                <li><a href="" class="btn-toolbar" id="Home" title="">Home</a></li>
+                                <li><a href="" class="btn-toolbar" id="Dashboard" title="">Dashboard</a></li>
+                                <li><a href="" class="btn-toolbar" id="Help" title="">Ajuda</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <div class="toolbar-btn">
+                        <button class="btn-notification auxiliar" title="Notificações">
+                            <img class="icon-notification"src="../assets/notification.svg" alt="Notificação"></img>
+                        </button>
+
+                        <button class="btn-profile auxiliar" title="Perfil">
+                            <img class="icon-profile"src="../assets/profile.svg" alt="Perfil"></img>
+                        </button>                        
+                    </div>
+
+            </div>
+            
+        </header>
+        
+        <main class="body">
+            <section class="sidebar">
+                    <nav id="id-sidebar" class="nav-sidebar">    
+                        <div class="title-menu">
+                            <div class="text-menu">Menu</div>
+
+
+                            <div class="btn-menu" id="menu-bar" onclick="SideBar.menu(this)">
+                                <span id="menu-teste" class="fas fa-bars"></span>
+                            </div>
+                        </div> 
+                        <hr>
+                        <ul>
+                            <li id="data-list">
+                                <a href="#" 
+                                    class="btn-wind" 
+                                    onclick="SideBar.open()">
+                                        Ventos
+                                        <span id="caret" class="fas fa-caret-down"></span>
+                                </a>
+                                <ul id="feat-show">
+                                    <li><a href="#">Dimensões</a></li>
+                                    <li><a href="#">Ventos</a></li>
+                                    <li><a href="#">Fator S1</a></li>
+                                    <li><a href="#">Fator S2</a></li>
+                                    <li><a href="#">Fator S3</a></li>
+                                    <li><a href="#">Cpe Parede</a></li>
+                                    <li><a href="#">Cpe Telhado</a></li>
+                                    <li><a href="#">Cpi</a></li>
+                                    <li><a href="#">Esforços</a></li>
+                                    <li><a href="#">Resumo</a></li>
+                                </ul>
+
+                                <a href="#">Lajes</a>
+                                <a href="#">Vigas</a>
+                                <a href="#">Pilares</a>
+                                <a href="#">Sapatas</a>
+                            </li>
+                        </ul>
+                    </nav>
+            </section>
+            <section class="content-dimension">
+
+            </section>
+            <script src="../controllers/Dimensions.js"></script>
+            <script src="/public/script/animation.js"></script>
+
+            <footer>
+                <a href="https://github.com/roliveira15/Analise-Ventos-TCC" target="_blank" class="github">
+                    <img src="../assets/github.svg" alt="">
+                </a>
+                <p>Civil Learning</p>
+            </footer>
+        </main>
+    </body>
+</html>
