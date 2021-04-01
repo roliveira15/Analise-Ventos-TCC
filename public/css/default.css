@@ -14,4 +14,13 @@ html{
 body {
     background: #FAF9F8;
     font-family: 'Poppins', sans-serif;
+    
+}
+
+#body{
+    display: flex
+}
+
+#content-dimension {
+    width:100%;
 }

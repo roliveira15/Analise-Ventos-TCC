@@ -99,25 +99,19 @@ nav.nav-header ul li a:hover{
         font-size: 0.8rem;
     }
 
+    header,nav.nav-header ul li,  nav.nav-header ul li a { 
+        height: 40px;
+        line-height: 40px;
+    }
+
+    img {
+        width: 1.8rem;
+        height: 1.8rem;
+    }
+
     #logo {
         display: none;
     } 
-
-    .icon-engineer {
-        width: 2.4rem;
-        height: 2.4rem;
-    }
-
-    .icon-notification,.icon-profile {
-        width: 2rem;
-        height: 2rem;
-    }
-
-    .toolbar-btn Button {
-        width: 2.3rem;
-        height: 2.3rem;
-        margin-left: 0.3rem;
-    }
 
 }
 
@@ -127,9 +121,15 @@ nav.nav-header ul li a:hover{
         font-size: 0.5rem;
     }
 
-    .icon-engineer {
-        width: 2.2rem;
-        height: 2.2rem;
+    header, nav.nav-header ul li,  nav.nav-header ul li a { 
+        height: 25px;
+        line-height: 25px;
     }
+
+    img {
+        width: 1.8rem;
+        height: 1.8rem;
+    }
+
 
 }

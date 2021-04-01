@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="/public/css/modal.css">
         <link rel="stylesheet" href="/public/css/sidebar.css">
         <link rel="stylesheet" href="/public/css/dimension.css">
-        <link rel="sortcut icon" href="../assets/engineer.svg">
+        <link rel="sortcut icon" href="/public/assets/engineer.svg">
         <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     </head>
@@ -23,7 +23,7 @@
             <div class="header"> 
                 
                     <div class="toolbar-title">
-                        <img class="icon-engineer"src="../assets/engineer.svg" alt="Notificação"></img>
+                        <img class="icon-engineer"src="/public/assets/engineer.svg" alt="Notificação"></img>
                         <label class="logo" id="logo">Civil Learning</label>
                     </div>
 
@@ -39,11 +39,11 @@
 
                     <div class="toolbar-btn">
                         <button class="btn-notification auxiliar" title="Notificações">
-                            <img class="icon-notification"src="../assets/notification.svg" alt="Notificação"></img>
+                            <img class="icon-notification"src="/public/assets/notification.svg" alt="Notificação"></img>
                         </button>
 
                         <button class="btn-profile auxiliar" title="Perfil">
-                            <img class="icon-profile"src="../assets/profile.svg" alt="Perfil"></img>
+                            <img class="icon-profile"src="/public/assets/profile.svg" alt="Perfil"></img>
                         </button>                        
                     </div>
 
@@ -51,59 +51,70 @@
             
         </header>
         
-        <main class="body">
-            <section class="sidebar">
+        <main id="body">
+            <section id="sidebar">
                     <nav id="id-sidebar" class="nav-sidebar">    
-                        <div class="title-menu">
-                            <div class="text-menu">Menu</div>
-
-
-                            <div class="btn-menu" id="menu-bar" onclick="SideBar.menu(this)">
-                                <span id="menu-teste" class="fas fa-bars"></span>
-                            </div>
-                        </div> 
-                        <hr>
                         <ul>
+                            
                             <li id="data-list">
+
+                                <div class="menu">
+                                    <img class="image-side" src="/public/assets/menu.svg" alt="Menu" onclick="SideBar.menu()">
+                                </div> 
+                                
                                 <a href="#" 
                                     class="btn-wind" 
                                     onclick="SideBar.open()">
-                                        Ventos
+                                        <img class="image-side" src="/public/assets/wind.svg" alt="wind">
+                                        <span class="list-iten">Ventos</span>
                                         <span id="caret" class="fas fa-caret-down"></span>
                                 </a>
                                 <ul id="feat-show">
-                                    <li><a href="#">Dimensões</a></li>
-                                    <li><a href="#">Ventos</a></li>
-                                    <li><a href="#">Fator S1</a></li>
-                                    <li><a href="#">Fator S2</a></li>
-                                    <li><a href="#">Fator S3</a></li>
-                                    <li><a href="#">Cpe Parede</a></li>
-                                    <li><a href="#">Cpe Telhado</a></li>
-                                    <li><a href="#">Cpi</a></li>
-                                    <li><a href="#">Esforços</a></li>
-                                    <li><a href="#">Resumo</a></li>
+                                    <li><a href="/">Dimensões</a></li>
+                                    <li><a href="/">Ventos</a></li>
+                                    <li><a href="/">Fator S1</a></li>
+                                    <li><a href="/">Fator S2</a></li>
+                                    <li><a href="/">Fator S3</a></li>
+                                    <li><a href="/">Cpe Parede</a></li>
+                                    <li><a href="/">Cpe Telhado</a></li>
+                                    <li><a href="/">Cpi</a></li>
+                                    <li><a href="/">Esforços</a></li>
+                                    <li><a href="/">Resumo</a></li>
                                 </ul>
 
-                                <a href="#">Lajes</a>
-                                <a href="#">Vigas</a>
-                                <a href="#">Pilares</a>
-                                <a href="#">Sapatas</a>
+                                <a href="#">
+                                    <img class="image-side" src="/public/assets/wind.svg" alt="Ventos">
+                                    <span class="list-iten">Lajes</span>
+                                </a>
+                                <a href="#">
+                                   <img class="image-side"src="/public/assets/slab.svg" alt="Vigas">
+                                   <span class="list-iten">Vigas</span>
+                                </a>
+                                <a href="#">
+                                    <img class="image-side" src="/public/assets/column.svg" alt="Pilares">
+                                    <span class="list-iten">Pilares</span>
+                                </a>
+                                <a href="#">
+                                    <img class="image-side" src="/public/assets/shoe.svg" alt="Sapatas">
+                                    <span class="list-iten">Sapatas</span>
+                                </a>
                             </li>
                         </ul>
                     </nav>
-            </section>
-            <section class="content-dimension">
 
             </section>
-            <script src="../controllers/Dimensions.js"></script>
-            <script src="/public/script/animation.js"></script>
-
-            <footer>
-                <a href="https://github.com/roliveira15/Analise-Ventos-TCC" target="_blank" class="github">
-                    <img src="../assets/github.svg" alt="">
-                </a>
-                <p>Civil Learning</p>
-            </footer>
+            <section id="content-dimension">
+                <script src="../controllers/Dimensions.js"></script>
+                <script src="/public/script/animation.js"></script>
+    
+                <footer>
+                    <a href="https://github.com/roliveira15/Analise-Ventos-TCC" target="_blank" class="github">
+                        <img src="/public/assets/github.svg" alt="">
+                    </a>
+                    <p>Civil Learning</p>
+                </footer>
+            </section>
+           
         </main>
     </body>
 </html>

@@ -1,127 +1,75 @@
 
-/* Label  do menu bar============== */
-/* .mode-off {
-    display:block;
-} */
-/* ------- sidebar */
-
-.nav-sidebar {
+#sidebar,#new {
     position: fixed;
-    width: 14rem;
+    width: 13rem;
     height: 100%;
     left: 0;
     background:#F3F2F1;
     border: 1px solid #E1DFDD;
     color: #000;
+    /* overflow-x: hidden; */
+    /* z-index: 1; */
 }
 
-
-
-
-
-
-
-.nav-sidebar .title-menu {
-    display: flex;
-    position: relative;
-    left:0px;
-    /* align-items: center; */
-    /* justify-content:space-between; */
-    margin: 1.5rem 2.2rem 1.5rem 2.2rem;
-    font-size:1rem;
-    line-height: 2.2rem;
-    letter-spacing: .10rem;
-    text-align: center;
+.image-side {
+    margin-right: 0.5rem;
+    width: 1rem;
+    height:1rem;
 }
 
-
-
-
-
-
-.btn-menu {
-    position:absolute;
-    cursor: pointer;
-    right:-0.4rem;
-    font-size: 1.5rem;
-    color: #3B3A39;
-}
-
-.btn-menu:hover {
-    color: #E36414;
-    transition: 0.4s;
-}
-
-.btn-menu span {
-    margin: 0.3rem;
-}
-
-
-.nav-sidebar .title-menu {  
-    color:#000;
-    font-size:1rem;
-    line-height: 2.2rem;
-    letter-spacing: .10rem;
-    text-align: center;
-}
 
 .sidebar hr{
-    margin: 0rem 1.8rem;
+    margin: 0rem 1rem;
     background:#E1DFDD;
     height:0.15rem;
     border: none;
 }
 
-.nav-sidebar ul {
+#sidebar ul {
     height:100%;
     width: 100%;
 }
 
-.nav-sidebar ul li {
+#sidebar ul li {
     font-size: 1rem;
     border-bottom: 1px solid rgba(255,255,255, 0.1);
 }
 
-.nav-sidebar ul li a{
+#sidebar ul li a,.menu {
     position: relative;
     color:#000;
     line-height: 3.4rem;
-    padding: 0  0  0 2rem;
+    padding: 0  0  0 1rem;
     display: block;
     width: 100%;
     border-left: 0.2rem solid transparent;
 }
 
-.nav-sidebar ul li a:hover{
+#sidebar ul li a:hover{
     background: #fff;
     transition: 0.4s;
     border-left-color: #E36414;
     color: #E36414;
 }
 
-.nav-sidebar ul ul{
+#sidebar ul ul{
     position: static;
     display:none; 
 
 }
 
-.nav-sidebar ul ul.active-ul{
-    display:block; 
-
-}
-
-.nav-sidebar ul ul li {
+#sidebar ul ul li {
     line-height: 2.6rem;
     border-bottom: none;  
 }
 
-.nav-sidebar ul ul li a {
+#sidebar ul ul li a {
     line-height: 2.6rem;
     font-size: 0.8rem;
     padding-left: 3.8rem;   
 }
 
-.nav-sidebar ul li a span{ 
+#caret{ 
     position: absolute;
     top: 50%;
     right: 2rem;
@@ -129,6 +77,32 @@
     transition: transform 0.4s;
 }
 
-.nav-sidebar ul li a span.rotate{ 
+#caret.rotate{ 
     transform: translateY(-50%) rotate(-180deg);
 }
+
+.menu {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.menu:hover {
+    opacity: 0.6;
+}
+
+.list-item  span{
+    display: none;
+    
+}
+
+#sidebar.active {
+    width: 3.5rem;
+
+}
+
+#sidebar ul ul.active-ul{
+    display:block; 
+
+}
+
+
