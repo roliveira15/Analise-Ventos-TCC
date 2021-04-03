@@ -4,10 +4,15 @@
 }
 
 header { 
+    position: fixed;
     background: #3B3A39;
-    height:60px;
+    height:4rem;
     width:100%;
+    
 }
+
+
+
 
 .header{
     display: flex;
@@ -26,40 +31,40 @@ header {
     position: absolute;
     display:flex;
     align-items: center;
-    left: 20px;
+    left: 2rem;
     color: #fff;
     font-size: 1.2rem;
 }
 
 #logo {
     display: flex;
-    margin-left:10px;
+    margin-left:1rem;
 }
 
 .toolbar-btn {
     position: absolute;
     display: flex;
     align-items: center;
-    right:20px;
+    right: 1.1rem;
 }
 
 /* Nav bar=============== */
-nav.nav-header ul{
+.nav-header ul{
     display:flex;
     justify-content: center;
-    margin-left: 20px;
+    /* margin-left: 0rem; */
 }
 
-nav.nav-header ul li{
+.nav-header ul li{
     display: inline-block;
-    line-height: 60px;
+    line-height:4rem;
     text-align: center;
 }
 
-nav.nav-header ul li a{
+.nav-header ul li a{
     color: #fff;
     font-size: 1rem;
-    line-height: 60px;
+    line-height:4rem;
     text-transform: uppercase;
     margin: 0 1rem 0rem 1rem;  
 }
@@ -69,7 +74,7 @@ button.auxiliar:hover {
     transition: 0.4s;
 }
 
-nav.nav-header ul li a:hover{
+.nav-header ul li a:hover{
     color: #E36414;
     transition: 0.4s;
 }
@@ -99,20 +104,20 @@ nav.nav-header ul li a:hover{
         font-size: 0.8rem;
     }
 
-    header,nav.nav-header ul li,  nav.nav-header ul li a { 
-        height: 40px;
-        line-height: 40px;
+    header,.nav-header ul li, .nav-header ul li a { 
+        height: 3rem;
+        line-height: 3rem;
     }
-
+    
     img {
-        width: 1.8rem;
-        height: 1.8rem;
+        width: 1.5rem;
+        height: 1.5rem;
     }
 
     #logo {
         display: none;
     } 
-
+    
 }
 
 @media (max-width: 460px) {
@@ -121,15 +126,14 @@ nav.nav-header ul li a:hover{
         font-size: 0.5rem;
     }
 
-    header, nav.nav-header ul li,  nav.nav-header ul li a { 
-        height: 25px;
-        line-height: 25px;
+    header, .nav-header ul li, .nav-header ul li a { 
+        height: 2.5rem;
+        line-height: 2.5rem;
     }
 
     img {
         width: 1.8rem;
         height: 1.8rem;
     }
-
 
 }

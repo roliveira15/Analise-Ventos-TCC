@@ -14,13 +14,16 @@ html{
 body {
     background: #FAF9F8;
     font-family: 'Poppins', sans-serif;
-    
 }
 
-#body{
-    display: flex
-}
-
-#content-dimension {
-    width:100%;
+footer {
+    display:flex;
+    text-align: center;
+    align-items: center;
+    position: absolute;
+    bottom: 10px;
+    margin-left: 13rem;
+    z-index: 1;
+    overflow: hidden;
+    /* width: 100%; */
 }

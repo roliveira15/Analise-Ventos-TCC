@@ -1,7 +1,7 @@
 // --------------------------------- Input do sistema ---------------------------------
 // Shed's Dimension 
 const h_heightShed = 6;
-const b_widthShed = 15;
+const b_widthShed = 20;
 const a_lengthShed = 10;
 
 // Open doors-windows

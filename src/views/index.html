@@ -9,13 +9,13 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="/public/css/default.css">
         <link rel="stylesheet" href="/public/css/toolbar.css">
-        <link rel="stylesheet" href="/public/css/modal.css">
+        <link rel="stylesheet" href="/public/css/form.css">
         <link rel="stylesheet" href="/public/css/sidebar.css">
-        <link rel="stylesheet" href="/public/css/dimension.css">
         <link rel="sortcut icon" href="/public/assets/engineer.svg">
         <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     </head>
+    
     <body>
 
         <header>
@@ -52,69 +52,174 @@
         </header>
         
         <main id="body">
-            <section id="sidebar">
+            <div id="sidebar">
                     <nav id="id-sidebar" class="nav-sidebar">    
                         <ul>
-                            
                             <li id="data-list">
 
                                 <div class="menu">
-                                    <img class="image-side" src="/public/assets/menu.svg" alt="Menu" onclick="SideBar.menu()">
+                                    
                                 </div> 
+                                <a class="step-dimension" href="#" onclick="SideBar.menu()">
+                                    <img class="image-side" src="/public/assets/menu.svg" alt="Menu" >
+                                        
+                                </a>
                                 
-                                <a href="#" 
-                                    class="btn-wind" 
-                                    onclick="SideBar.open()">
+                                <a class="step-dimension" href="#" 
+                                    onclick="SideBar.openClosed()">
                                         <img class="image-side" src="/public/assets/wind.svg" alt="wind">
                                         <span class="list-iten">Ventos</span>
                                         <span id="caret" class="fas fa-caret-down"></span>
                                 </a>
                                 <ul id="feat-show">
-                                    <li><a href="/">Dimensões</a></li>
-                                    <li><a href="/">Ventos</a></li>
-                                    <li><a href="/">Fator S1</a></li>
-                                    <li><a href="/">Fator S2</a></li>
-                                    <li><a href="/">Fator S3</a></li>
-                                    <li><a href="/">Cpe Parede</a></li>
-                                    <li><a href="/">Cpe Telhado</a></li>
-                                    <li><a href="/">Cpi</a></li>
-                                    <li><a href="/">Esforços</a></li>
-                                    <li><a href="/">Resumo</a></li>
+                                    <li>
+                                        <div class="step-name">
+                                            <span class="step"></span>
+                                            <span class="step-text">Dimensões</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="step-name">
+                                            <span class="step"></span>
+                                            <span class="step-text">Ventos</span>
+                                            
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="step-name">
+                                            <span class="step"></span>
+                                            <div class="step-text">Fator S1</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="step-name">
+                                            <span class="step"></span>
+                                            <div class="step-text">Fator S2</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="step-name">
+                                            <span class="step"></span>
+                                            <div class="step-text">Fator S3</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="step-name">
+                                            <span class="step"></span>
+                                            <div class="step-text">Cpe Paredes</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="step-name">
+                                            <span class="step"></span>
+                                            <div class="step-text">Cpe Telhado</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="step-name">
+                                            <span class="step"></span>
+                                            <div class="step-text">Cpi</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="step-name">
+                                            <span class="step"></span>
+                                            <div class="step-text">Esforços</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="step-name">
+                                            <span class="step"></span>
+                                            <div class="step-text">Resumo</div>
+                                        </div>
+                                    </li>
                                 </ul>
 
-                                <a href="#">
+                                <a class="step-dimension" href="#">
                                     <img class="image-side" src="/public/assets/wind.svg" alt="Ventos">
                                     <span class="list-iten">Lajes</span>
                                 </a>
-                                <a href="#">
+                                <a class="step-dimension" href="#">
                                    <img class="image-side"src="/public/assets/slab.svg" alt="Vigas">
                                    <span class="list-iten">Vigas</span>
                                 </a>
-                                <a href="#">
+                                <a class="step-dimension" href="#">
                                     <img class="image-side" src="/public/assets/column.svg" alt="Pilares">
                                     <span class="list-iten">Pilares</span>
                                 </a>
-                                <a href="#">
+                                <a class="step-dimension" href="#">
                                     <img class="image-side" src="/public/assets/shoe.svg" alt="Sapatas">
                                     <span class="list-iten">Sapatas</span>
                                 </a>
                             </li>
                         </ul>
                     </nav>
+            </div>
 
-            </section>
-            <section id="content-dimension">
-                <script src="../controllers/Dimensions.js"></script>
-                <script src="/public/script/animation.js"></script>
-    
-                <footer>
-                    <a href="https://github.com/roliveira15/Analise-Ventos-TCC" target="_blank" class="github">
-                        <img src="/public/assets/github.svg" alt="">
-                    </a>
-                    <p>Civil Learning</p>
-                </footer>
-            </section>
-           
+            <div id="container">
+                <div class="content-container">
+                    <form id="regForm" action="">
+
+                        <h1>Register:</h1>
+                        
+                        <!-- One "tab" for each step in the form: -->
+                        <div class="tab">Name:
+                          <p><input placeholder="First name..." oninput="this.className = ''"></p>
+                          <p><input placeholder="Last name..." oninput="this.className = ''"></p>
+                        </div>
+                        
+                        <div class="tab">Contact Info:
+                          <p><input placeholder="E-mail..." oninput="this.className = ''"></p>
+                          <p><input placeholder="Phone..." oninput="this.className = ''"></p>
+                        </div>
+                        
+                        <div class="tab">Birthday:
+                          <p><input placeholder="dd" oninput="this.className = ''"></p>
+                          <p><input placeholder="mm" oninput="this.className = ''"></p>
+                          <p><input placeholder="yyyy" oninput="this.className = ''"></p>
+                        </div>
+                        
+                        <div class="tab">Login Info:
+                          <p><input placeholder="Username..." oninput="this.className = ''"></p>
+                          <p><input placeholder="Password..." oninput="this.className = ''"></p>
+                        </div>
+                        
+                        <div >
+                          <div>
+                            <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                            <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                          </div>
+                        </div>
+                        
+                        <!-- Circles which indicates the steps of the form: -->
+                        <div>
+                          <span class="step"></span>
+                          <span class="step"></span>
+                          <span class="step"></span>
+                          <span class="step"></span>
+                        </div>
+                        
+                        </form>
+
+
+                </div>
+            </div>
         </main>
+
+
+
+
+        
+        <footer id="footer">
+            <a href="https://github.com/roliveira15/Analise-Ventos-TCC" target="_blank" class="github">
+                <img src="/public/assets/github.svg" alt="">
+            </a>
+            <p>Civil Learning</p>
+        </footer>
+    
+        <script src="/public/script/animation.js"></script>
+
     </body>
+
+   
 </html>
