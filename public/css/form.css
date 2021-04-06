@@ -1,51 +1,60 @@
-#body {
-    overflow: hidden;
-    
-}
 #container {
-    margin-left: 13rem;
+  position: relative;
+  top: 4rem;
+  margin-left: 13rem;
 }
 
+/* Responsive =============== */
+@media (max-width: 860px) {
+  #container {
+      top: 3rem;
+  }
+}
+
+@media (max-width: 460px) {
+  #container {
+      top: 2.5rem;
+  }
+}
 /* Style the form */
-#regForm {
+/* #regForm {
     background-color: #ffffff;
     margin: 100px auto;
     padding: 40px;
     width: 70%;
     min-width: 300px;
-  }
+  } */
   
   /* Style the input fields */
-  input {
+  /* input {
     padding: 10px;
     width: 100%;
     font-size: 17px;
     font-family: Raleway;
     border: 1px solid #aaaaaa;
   }
-  
+   */
   /* Mark input boxes that gets an error on validation: */
-  input.invalid {
+  /* input.invalid {
     background-color: #ffdddd;
-  }
+  } */
   
   /* Hide all steps by default: */
-  .tab {
+  /* .tab {
     display: none;
   }
-  
+   */
   /* Make circles that indicate the steps of the form: */
   
   /* Mark the active step: */
-  .step.active {
+  /* .step.active {
     opacity: 1;
-  }
+  } */
   
   /* Mark the steps that are finished and valid: */
-   .step.finish {
+   /* .step.finish {
     background-color: #4CAF50;
-  } 
-
+  }  */
 
 
 

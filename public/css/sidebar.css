@@ -39,8 +39,11 @@
     border-bottom: 1px solid #E1DFDD;
 }
 
+
 #sidebar .step-dimension:hover{
-    background: #fff;
+    background: 
+    linear-gradient(90deg, rgba(250, 156, 45, 0.1) 0.45%, rgba(252, 253, 255, 0.1) 31.4%),
+        white;
     transition: 0.4s;
     border-left-color: #E36414;
     color: #E36414;
@@ -89,14 +92,11 @@ ul li ul li::before{
     width: 2px;
     height: 2.6rem;
     background-color: #bbbbbb;
-    /* right:-10px; */
-    
 }
 
 ul li ul li:last-child::before{
     content:"";
-    left: 0;
-    background-color: #E1DFDD;
+    opacity: 0;
 } 
 
 #sidebar .step-name .step-text {

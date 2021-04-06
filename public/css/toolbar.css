@@ -8,11 +8,12 @@ header {
     background: #3B3A39;
     height:4rem;
     width:100%;
-    
 }
 
-
-
+#container {
+    position: relative;
+    top: 4rem;
+}
 
 .header{
     display: flex;
@@ -108,7 +109,11 @@ button.auxiliar:hover {
         height: 3rem;
         line-height: 3rem;
     }
-    
+
+    #container {
+        top: 3rem;
+    }
+
     img {
         width: 1.5rem;
         height: 1.5rem;
@@ -129,6 +134,9 @@ button.auxiliar:hover {
     header, .nav-header ul li, .nav-header ul li a { 
         height: 2.5rem;
         line-height: 2.5rem;
+    }
+    #container {
+        top: 2.5rem;
     }
 
     img {
