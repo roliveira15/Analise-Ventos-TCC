@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CivilLearning</title>
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/styles/default.css">
+        <link rel="stylesheet" href="/styles/toolbar.css">
+        <link rel="stylesheet" href="/styles/form.css">
+        <link rel="stylesheet" href="/styles/sidebar.css">
+        <link rel="sortcut icon" href="/assets/engineer.svg">
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    </head>
+    
+    <body>
+
+        <header>
+            <%- include('parts/header') %>
+        </header>
+        
+        <main id="body">
+
+            <%- include('parts/sidebar') %>
+
+            <div id="container">
+                <div class="content-container">
+                    <form id="regForm" action="">
+                        
+                        <%- include('parts/wind/dimension') %>
+
+                        <%- include('parts/wind/wind') %>
+
+                        <%- include('parts/wind/s1') %>
+
+                        <%- include('parts/wind/s2') %>
+
+                        <%- include('parts/wind/s3') %>
+
+                        <%- include('parts/wind/cpewall') %>
+                        
+                        <%- include('parts/wind/cperoof') %>
+
+                        <%- include('parts/wind/cpi') %>
+
+                        <%- include('parts/wind/effort') %>
+
+                        <%- include('parts/wind/summary') %>
+                        
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <!-- <%- include('parts/footer') %> -->
+    
+        <script src="/scripts/animation.js"></script>
+        
+    </body>
+
+   
+</html>

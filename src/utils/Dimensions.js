@@ -17,7 +17,7 @@ const faceC2 = 0;
 const faceD1 = 0;
 const faceD2 = 0;
 
-// Roughness of the terrain - FATOR S3
+// Roughness of the terrain 
 const RoughnessTerrain = 4;
 
 // Wind Speed - Vo (m/s)
@@ -101,6 +101,10 @@ const dimensionShed = {
 }
 
 console.log(dimensionShed.typeRoughnessTerrain(0))
+
+
+
+
 
    //Defining the height of the terrain (Fator S2)
     // typeclassBuilding (greaterLengthShed){

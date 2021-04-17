@@ -14,13 +14,13 @@ const SideBar = {
     if(classAtive) {
       expandlist.classList.remove("active-ul");
       container.style.marginLeft = widhtClose;
-      footer.style.marginLeft = widhtClose;
+      // footer.style.marginLeft = widhtClose;
       
     } else {
       expandlist.classList.toggle("active-ul");
       caret.classList.toggle("rotate");
       container.style.marginLeft = widhtOpen;
-      footer.style.marginLeft = widhtOpen;
+      // footer.style.marginLeft = widhtOpen;
     }
   },
 

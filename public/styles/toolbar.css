@@ -8,6 +8,7 @@ header {
     background: #3B3A39;
     height:4rem;
     width:100%;
+    z-index: 10;
 }
 
 #container {
