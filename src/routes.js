@@ -74,7 +74,6 @@ const interpolatorLinear = {
         return y1 + ((xa-x1)/(x2-x1)) * (y2-y1)
     }
 }
-
 //Fator S1
 const fatorTopography = {
 
@@ -347,96 +346,102 @@ const tableCoefficientsExternalWall = {
 const tableCoefficientsExternalRoof = {
 
         /*
+        
+        [
             0° :
-                 [E = - 0.8, F= - 0.8, G = - 0.5, H = - 0.5]
+                 {E = - 0.8, F= - 0.8, G = - 0.5, H = - 0.5}
             5º : .....
+        ]
             
         */
         
-    coefficients_0: [
+    coefficients_90: [
     
         [
-            [-0.8, -0.8, -0.4, -0.4],
-            [-0.9, -0.9, -0.4, -0.4],
-            [-1.2, -1.2, -0.4, -0.4],
-            [-1.0, -1.0, -0.4, -0.4],
-            [-0.4, -0.4, -0.4, -0.4],
-            [0.0, 0.0, -0.4, -0.4],
-            [+0.3, +0.3, -0.5, -0.5],
-            [+0.7, +0.7, -0.6, -0.6],
+            {'E': -0.8,'F': -0.8,'G': -0.4,'H': -0.4},
+            {'E': -0.9,'F': -0.9,'G': -0.4,'H': -0.4},
+            {'E': -1.2,'F': -1.2,'G': -0.4,'H': -0.4},
+            {'E': -1.0,'F': -1.0,'G': -0.4,'H': -0.4},
+            {'E': -0.4,'F': -0.4,'G': -0.4,'H': -0.4},
+            {'E':  0.0,'F':  0.0,'G': -0.4,'H': -0.4},            
+            {'E': +0.3,'F': +0.3,'G': -0.5,'H': -0.5},
+            {'E':+0.43,'F':+0.43,'G':-0.53,'H':-0.53}, //50º
+            {'E': +0.7,'F': +0.7,'G': -0.6,'H': -0.6},
         ],
 
         [
-            [-0.8, -0.8, -0.6, -0.6],
-            [-0.9, -0.9, -0.6, -0.6],
-            [-1.1, -1.1, -0.6, -0.6],
-            [-1.0, -1.0, -0.6, -0.6],
-            [-0.7, -0.7, -0.6, -0.6],
-            [0.2, 0.2, -0.6, -0.6],
-            [+0.2, +0.2, -0.6, -0.6],
-            [+0.6, +0.6, -0.6, -0.6],
+            {'E': -0.8,'F': -0.8,'G': -0.6,'H': -0.6},
+            {'E': -0.9,'F': -0.9,'G': -0.6,'H': -0.6},
+            {'E': -1.1,'F': -1.1,'G': -0.6,'H': -0.6},
+            {'E': -1.0,'F': -1.0,'G': -0.6,'H': -0.6},
+            {'E': -0.7,'F': -0.7,'G': -0.5,'H': -0.5},
+            {'E': -0.2,'F':  0.2,'G': -0.5,'H': -0.5},
+            {'E': +0.2,'F': +0.2,'G': -0.5,'H': -0.5},
+            {'E':+0.33,'F':+0.33,'G': -0.5,'H': -0.5},//50º
+            {'E': +0.6,'F': +0.6,'G': -0.5,'H': -0.5},
         ],
 
         [     
-            [-0.8,  -0.8,	-0.6, -0.6],
-            [-0.8,  -0.8,	-0.6, -0.6],
-            [-0.8,  -0.8,	-0.6, -0.6],
-            [-0.8,  -0.8,	-0.6, -0.6],
-            [-0.8,  -0.8,	-0.6, -0.6],
-            [-1.0,  -1.0,	-0.5, -0.5],
-            [-0.2,  -0.2,	-0.5, -0.5],
-            [+0.5,  +0.5,	-0.5, -0.5],
-            [+0.2,  +0.2,	-0.5, -0.5],
+            {'E': -0.8,'F': -0.8,'G': -0.6,'H': -0.6},
+            {'E': -0.8,'F': -0.8,'G': -0.6,'H': -0.6},
+            {'E': -0.8,'F': -0.8,'G': -0.6,'H': -0.6},
+            {'E': -0.8,'F': -0.8,'G': -0.6,'H': -0.6},
+            {'E': -0.8,'F': -0.8,'G': -0.6,'H': -0.6},
+            {'E': -1.0,'F': -1.0,'G': -0.5,'H': -0.5},
+            {'E': -0.2,'F': -0.2,'G': -0.5,'H': -0.5},
+            {'E': +0.2,'F': +0.2,'G': -0.5,'H': -0.5}, //50º
+            {'E': +0.5,'F': +0.5,'G': -0.5,'H': -0.5},
         ],
     ],
 
-    coefficients_90: [
+    coefficients_0: [
 
         [
-            [-0.8, -0.8, -0.4, -0.4],	
-            [-0.8, -0.8, -0.4, -0.4],
-            [-0.8, -0.8, -0.6, -0.6],
-            [-0.8, -0.8, -0.6, -0.6],
-            [-0.7, -0.7, -0.6, -0.6],
-            [-0.7, -0.7, -0.6, -0.6],
-            [-0.7, -0.7, -0.6, -0.6],
-            [-0.7, -0.7, -0.6, -0.6],
+            {'E': -0.8,'F': -0.4,'G': -0.8,'H': -0.4},	
+            {'E': -0.8,'F': -0.4,'G': -0.8,'H': -0.4},
+            {'E': -0.8,'F': -0.6,'G': -0.8,'H': -0.6},
+            {'E': -0.8,'F': -0.6,'G': -0.8,'H': -0.6},
+            {'E': -0.7,'F': -0.6,'G': -0.7,'H': -0.6},
+            {'E': -0.7,'F': -0.6,'G': -0.7,'H': -0.6},
+            {'E': -0.7,'F': -0.6,'G': -0.7,'H': -0.6},
+            {'E': -0.7,'F': -0.6,'G': -0.7,'H': -0.6},//50º
+            {'E': -0.7,'F': -0.6,'G': -0.7,'H': -0.6},
         ],
 
         [
-            [-1.0, -1.0, -0.6, -0.6],
-            [-0.9, -0.9, -0.6, -0.6],
-            [-0.8, -0.8, -0.6, -0.6],
-            [-0.8, -0.8, -0.6, -0.6],
-            [-0.8, -0.8, -0.6, -0.6],
-            [-0.8, -0.8, -0.8, -0.8],
-            [-0.8, -0.8, -0.8, -0.8],
-            [-0.8, -0.8, -0.8, -0.8],
+            {'E': -1.0,'F': -0.6,'G': -1.0,'H': -0.6},
+            {'E': -0.9,'F': -0.6,'G': -0.9,'H': -0.6},
+            {'E': -0.8,'F': -0.6,'G': -0.8,'H': -0.6},
+            {'E': -0.8,'F': -0.6,'G': -0.8,'H': -0.6},
+            {'E': -0.8,'F': -0.6,'G': -0.8,'H': -0.6},
+            {'E': -0.8,'F': -0.8,'G': -0.8,'H': -0.8},
+            {'E': -0.8,'F': -0.8,'G': -0.8,'H': -0.8},
+            {'E': -0.8,'F': -0.8,'G': -0.8,'H': -0.8},//50º
+            {'E': -0.8,'F': -0.8,'G': -0.8,'H': -0.8},
         ],
 
         [
-            [-0.9, -0.9, -0.7, -0.7],
-            [-0.8, -0.8, -0.8, -0.8],
-            [-0.8, -0.8, -0.8, -0.8],
-            [-0.8, -0.8, -0.8, -0.8],
-            [-0.8, -0.8, -0.8, -0.8],
-            [-0.8, -0.8, -0.7, -0.7],
-            [-0.8, -0.8, -0.7, -0.7],
-            [-0.8, -0.8, -0.7, -0.7],
-            [-0.8, -0.8, -0.7, -0.7],
+            {'E': -0.9,'F': -0.7,'G': -0.9,'H': -0.7},
+            {'E': -0.8,'F': -0.8,'G': -0.8,'H': -0.8},
+            {'E': -0.8,'F': -0.8,'G': -0.8,'H': -0.8},
+            {'E': -0.8,'F': -0.8,'G': -0.8,'H': -0.8},
+            {'E': -0.8,'F': -0.8,'G': -0.8,'H': -0.8},
+            {'E': -0.8,'F': -0.7,'G': -0.8,'H': -0.7},
+            {'E': -0.8,'F': -0.7,'G': -0.8,'H': -0.7},
+            {'E': -0.8,'F': -0.7,'G': -0.8,'H': -0.7},//50º
+            {'E': -0.8,'F': -0.7,'G': -0.8,'H': -0.7},
         ]      
     ]
 }
 
 //Coefficients wall
 const externalCoefficients = {
-
     // COEFFICIENT 0º
     //#1
-    hightRelativeHB(heightWidthShed){
-        let position
-
-        if(heightWidthShed < 1/2 ) {
+    hightRelativeHBWall(heightWidthShed){
+        let position 
+        
+        if(heightWidthShed <= 1/2 ) {
             position = 0
         
         } else if (heightWidthShed > 1/2 && heightWidthShed <= 3/2 ){
@@ -445,39 +450,19 @@ const externalCoefficients = {
         } else if (heightWidthShed > 3/2 && heightWidthShed <= 6){
             position = 4
         }
-
         return position
     },
     //#2
-    hightRelativeAB (lengthWidthShed){
-
-
-        return ((lengthWidthShed > 3/2 && lengthWidthShed < 2 ) ? 0 : 1);
-
+    hightRelativeABWall (lengthWidthShed){
+        return ((lengthWidthShed > 3/2 && lengthWidthShed < 2 ) ? true : false);
     },
     //#3
-    positionHightRelative(lengthWidthShed){
-
+    positionHightRelativeWall(lengthWidthShed){
         return ((lengthWidthShed >= 2 && lengthWidthShed <= 4 ) ? 1 : 0);
     },
     //#4
-    createdObjectInterpolation(valueMin, valueMax, lengthWidthShed){
-        let coefficientsWall = {}
-        let coefficientsWallAux = []
-        const lenghtTotal = Object.keys(valueMax).length
-        
-        for(let i = 0; i < lenghtTotal; i++){
-            const coefficientMin = Object.values(valueMin)[i]
-            const coefficientMax = Object.values(valueMax)[i]
-            
-            //interpolatorLinear.Interpolation(xa,y1,x1,y2,x2)
-            const newValueCoefficients = interpolatorLinear.Interpolation((lengthWidthShed),coefficientMin,3/2,coefficientMax,2).toFixed(2)
-            
-            coefficientsWallAux.push(Number(newValueCoefficients))
-            
-        }
- 
-        if (Object.keys(valueMin)[0] == 'A1') {
+    defineDescriptionCoefficient (coefficientsWall){
+        if (Object.keys(coefficientsWall)[0] == 'A1') {
             coefficientsWall = {...coefficientsWall,
                                     'A1': coefficientsWallAux[0], 
                                     'B1': coefficientsWallAux[1],
@@ -494,139 +479,209 @@ const externalCoefficients = {
                                     'D1':  coefficientsWallAux[4],
                                     'D2':  coefficientsWallAux[5]}
         }
-                              
-        
 
         return coefficientsWall
     },
     //#5
-    DefinitionCoefficientsWall(a_lengthShed,b_widthShed,h_heightShed, coefficients){
-        const heightWidthShed = h_heightShed / b_widthShed;
-        const lengthWidthShed = a_lengthShed / b_widthShed;
+    createdObjectInterpolation(valueMin, valueMax, lengthWidthShed){
+        let coefficientsWall = {}
+        let coefficientsWallAux = []
 
-        const HightRelativeHB = externalCoefficients.hightRelativeHB(heightWidthShed)
-        const HightRelativeAB = externalCoefficients.hightRelativeAB(lengthWidthShed)
-        const PositionHightRelative = externalCoefficients.positionHightRelative(lengthWidthShed)
+        const lenghtTotal = Object.values(valueMax).length
         
-        //if need the interpolation 
-        if (HightRelativeAB == 0) {
-            const valueMin = coefficients[HightRelativeHB]
-            const valueMax = coefficients[HightRelativeHB + 1]
-            coefficientsWall = externalCoefficients.createdObjectInterpolation(valueMin,valueMax,lengthWidthShed)
+        for(let i = 0; i < lenghtTotal; i++){
+            const coefficientMin = Object.values(valueMin)[i]
+            const coefficientMax = Object.values(valueMax)[i]
             
-        } else { 
-            coefficientsWall = tableCoefficientsExternalWall.coefficients_0[PositionHightRelative + HightRelativeHB]
+            //interpolatorLinear.Interpolation(xa,y1,x1,y2,x2)
+            const newValueCoefficients = interpolatorLinear.Interpolation((lengthWidthShed),coefficientMin,3/2,coefficientMax,2).toFixed(2)
+            
+            coefficientsWallAux.push(Number(newValueCoefficients))
+            
+        }
+        coefficientsWall = externalCoefficients.defineDescriptionCoefficient(coefficientsWallAux)
+        return coefficientsWall
+    },
+    //#5
+    includeA3B3(coefficientsWall,lengthWidthShed) {
+        let coefficientsA3
+    
+        if(lengthWidthShed == 1) {
+            coefficientsA3 = coefficientsWall.A2
+
+        } else if(lengthWidthShed >= 2) {
+            coefficientsA3 = -0.2
+
+        } else {
+            coefficientsA3  = Number(interpolatorLinear.Interpolation((lengthWidthShed),-0.2,2,coefficientsWall.A2,1).toFixed(2))
         }
 
+        coefficientsWall = {...coefficientsWall,
+                            'A3': coefficientsA3, 
+                            'B3': coefficientsA3}
+
+        return coefficientsWall
+
+    },
+    //#6
+    DefinitionCoefficientsWall(a_lengthShed,b_widthShed,h_heightShed, coefficients){
+        let coefficientsWall = new Object
+
+        const heightWidthShed = h_heightShed / b_widthShed;
+        const lengthWidthShed = a_lengthShed / b_widthShed;
+        
+        const HightRelativeHB = externalCoefficients.hightRelativeHBWall(heightWidthShed)
+        const HightRelativeAB = externalCoefficients.hightRelativeABWall(lengthWidthShed)
+        const PositionHightRelative = externalCoefficients.positionHightRelativeWall(lengthWidthShed)
+
+        //if need the interpolation 
+        if (HightRelativeAB == true) {
+            const valueMin = coefficients[HightRelativeHB]
+            const valueMax = coefficients[HightRelativeHB + 1]
+
+            coefficientsWall = externalCoefficients.createdObjectInterpolation(valueMin,valueMax,lengthWidthShed)
+        } else { 
+            coefficientsWall = coefficients[PositionHightRelative + HightRelativeHB]
+        }
+        
         return coefficientsWall
         
     },
     //iNPUT
     CoefficientsWall_0(a_lengthShed,b_widthShed,h_heightShed) {
+        let coefficientsWall
+        const lengthWidthShed = a_lengthShed / b_widthShed;
         const coefficients = tableCoefficientsExternalWall.coefficients_0
-        return externalCoefficients.DefinitionCoefficientsWall(a_lengthShed,b_widthShed,h_heightShed, coefficients)
-        
+        coefficientsWall = externalCoefficients.DefinitionCoefficientsWall(a_lengthShed,b_widthShed,h_heightShed, coefficients)
+        coefficientsWall = externalCoefficients.includeA3B3(coefficientsWall,lengthWidthShed)
+        return coefficientsWall
     },
     //iNPUT
     CoefficientsWall_90(a_lengthShed,b_widthShed,h_heightShed) {
         const coefficients = tableCoefficientsExternalWall.coefficients_90
         return externalCoefficients.DefinitionCoefficientsWall(a_lengthShed,b_widthShed,h_heightShed, coefficients)
-        
+       
     },
-
-
     // COEFFICIENT 00º
     //#1
-    hightRelativeHB(heightWidthShed){
+    hightRelativeHBRoof(heightWidthShed){
         let position
 
-        if(heightWidthShed < 1/2 ) {
+        if(heightWidthShed <= 1/2 ) {
             position = 0
         
         } else if (heightWidthShed > 1/2 && heightWidthShed <= 3/2 ){
-            position = 2
+            position = 1
 
         } else if (heightWidthShed > 3/2 && heightWidthShed <= 6){
-            position = 4
+            position = 2
         }
-
         return position
     },
+    //#2
+    includeIJ_0(coefficientsRoof,lengthWidthShed){
+        let coefficientsI,coefficientsJ
     
-    CoefficientsRoof(angleShed, positionArray){
-    
-        const AngleShed = [0,5,10,15,20,30,45,60,50]
-        const angle_shed = AngleShed.length
+        if(lengthWidthShed == 1) {
+            coefficientsI = coefficientsRoof.F
+            coefficientsJ = coefficientsRoof.H
 
-        let arrayMax, arrayMin, coefficientsRoof = [];
-        let positionArrayAngle, positionArrayAngleMin, positionArrayAngleMax = 0;
+        } else if(lengthWidthShed >= 2) {
+            coefficientsI = -0.2
+            coefficientsJ = -0.2
+
+        } else {
+            coefficientsI  = Number(interpolatorLinear.Interpolation((lengthWidthShed),-0.2,2,coefficientsRoof.F,1).toFixed(2))
+            coefficientsJ  = Number(interpolatorLinear.Interpolation((lengthWidthShed),-0.2,2,coefficientsRoof.H,1).toFixed(2))
+        }
+
+        coefficientsRoof = {...coefficientsRoof,
+                            'I': coefficientsI, 
+                            'J': coefficientsJ}
+
+        return coefficientsRoof
+    },
+    //#3
+    includeIJ_90(coefficientsRoof){
+
+    coefficientsRoof = {...coefficientsRoof,
+                        'I': coefficientsRoof.F, 
+                        'J': coefficientsRoof.H}
+
+    return coefficientsRoof
+},
+    DefinitionCoefficientsRoof(angleShed, b_widthShed,h_heightShed, coefficients){
+
+        let coefficientsRoof = {}
+        let coefficientsRoofAux = []
+
+        
+        const heightWidthShed = h_heightShed / b_widthShed;
+        const AngleShed = [0,5,10,15,20,30,45,50,60]
+        const angle_shed = AngleShed.length
+        const HightRelativeHB = externalCoefficients.hightRelativeHBRoof(heightWidthShed)
 
         for (let i = 0; i < angle_shed;  i++) {
 
             if (angleShed == AngleShed[i]) {
-                coefficientsRoof = [...tableCoefficientsExternalRoof.coefficients_0[positionArray][i], 
-                                    ...tableCoefficientsExternalRoof.coefficients_90[positionArray][i]]
+                coefficientsRoof = coefficients[HightRelativeHB][i]
                 break;
 
             } else if(angleShed < AngleShed[i]) {
-                const positionArrayAngleMin = i-1
-                const positionArrayAngleMax = i
+                const positionMin = i-1
+                const positionMax = i
 
-                arrayMin = [...tableCoefficientsExternalRoof.coefficients_0[positionArray][positionArrayAngleMin], 
-                            ...tableCoefficientsExternalRoof.coefficients_90[positionArray][positionArrayAngleMin]]
+                arrayMin = coefficients[HightRelativeHB][positionMin]
+                arrayMax = coefficients[HightRelativeHB][positionMax]
+                const lenghtTotal = Object.values(arrayMax).length
 
-
-                arrayMax = [...tableCoefficientsExternalRoof.coefficients_0[positionArray][positionArrayAngleMax], 
-                            ...tableCoefficientsExternalRoof.coefficients_90[positionArray][positionArrayAngleMax]]
-
-        
-                const arrayTotal = arrayMax.length
-
-                for(let ii = 0; ii < arrayTotal; ii++){
-                                const coefficientMin = arrayMin[ii]
-                                const coefficientMax = arrayMax[ii]
-
+                for(let ii = 0; ii < lenghtTotal; ii++){
+                                const coefficientMin = Object.values(arrayMin)[ii]
+                                const coefficientMax = Object.values(arrayMax)[ii]
+  
                                 //interpolatorLinear.Interpolation(xa,y1,x1,y2,x2)
                                 const newValueCoefficients = interpolatorLinear.Interpolation(angleShed,
                                                                                                 coefficientMin,
-                                                                                                AngleShed[positionArrayAngleMin],
+                                                                                                AngleShed[positionMin],
                                                                                                 coefficientMax,
-                                                                                                AngleShed[positionArrayAngleMax]).toFixed(2)
-                                coefficientsRoof.push(Number(newValueCoefficients))
+                                                                                                AngleShed[positionMax]).toFixed(2)
+
+                                coefficientsRoofAux.push(Number(newValueCoefficients))
                 }
 
+                coefficientsRoof = {...coefficientsRoof,
+                                        'E': coefficientsRoofAux[0], 
+                                        'F': coefficientsRoofAux[1],
+                                        'G': coefficientsRoofAux[2],
+                                        'H': coefficientsRoofAux[3]}
+                  
                 break;
             }
         }
 
         return coefficientsRoof
-
-    },
-
-    Roof(angleShed, b_widthShed,h_heightShed){
-
-        const heightWidthShed = h_heightShed / b_widthShed;
-
-        let positionArray = 0;
-
-        if(heightWidthShed < 1/2 ) {
-            positionArray = 0
         
-        } else if (heightWidthShed > 1/2 && heightWidthShed <= 3/2){
-            positionArray = 1
-
-        } else if (heightWidthShed > 3/2 && heightWidthShed <= 6){
-            positionArray = 2
-        }
-
-        const coefficientsRoof = externalCoefficients.CoefficientsRoof(Number(angleShed),positionArray)
-
+    },
+    //iNPUT
+    CoefficientsRoof_0(angleShed,a_widthShed, b_widthShed,h_heightShed) {
+        let coefficientsRoof
+        const lengthWidthShed = a_widthShed / b_widthShed;
+        const coefficients = tableCoefficientsExternalRoof.coefficients_0
+        coefficientsRoof = externalCoefficients.DefinitionCoefficientsRoof(angleShed, b_widthShed,h_heightShed, coefficients)
+        coefficientsRoof = externalCoefficients.includeIJ_0(coefficientsRoof,lengthWidthShed)
+        
         return coefficientsRoof
+        
+    },
+    //iNPUT
+    CoefficientsRoof_90(angleShed, b_widthShed,h_heightShed) {
+        let coefficientsRoof
+        const coefficients = tableCoefficientsExternalRoof.coefficients_90
+        coefficientsRoof = externalCoefficients.DefinitionCoefficientsRoof(angleShed, b_widthShed,h_heightShed, coefficients)
+        coefficientsRoof = externalCoefficients.includeIJ_90(coefficientsRoof)
+        return  coefficientsRoof
     }
-
 }
-
-console.log(externalCoefficients.CoefficientsWall_0(16,10,6))
 
 //Internal Coefficients
 const valuesWaterproof = [
@@ -757,15 +812,15 @@ const internalCoefficients = {
 //dimension of the shed
 const shed = {
 
-    dimensionWind_0(widthShed, lengthShed, heightShed){
-        let dimension = {}
-        let length_A1 = 0
+    dimensionWind_0(b_widthShed, a_lengthShed, h_heightShed){
+        let dimension = new Object
+        let length_A1
 
-        const comparete_1 = widthShed / 3
-        const comparete_2 = lengthShed / 4
-        const comparete_3 = heightShed * 2
-        const halfLenght = (lengthShed/ 2)
-        const halfWidth = (widthShed/ 2)
+        const comparete_1 = b_widthShed / 3
+        const comparete_2 = a_lengthShed / 4
+        const comparete_3 = h_heightShed * 2
+        const halfLenght = (a_lengthShed/ 2)
+        const halfWidth = (b_widthShed/ 2)
 
         if (comparete_1 > comparete_2) {
             length_A1 = comparete_1
@@ -774,14 +829,14 @@ const shed = {
         } else {
             length_A1 = comparete_3
         }
-
+        console.log(comparete_1,comparete_2,comparete_3)
         const length_A2 = halfLenght - length_A1
         const length_A3 = halfLenght
         const length_B1 = length_A1
         const length_B2 = length_A2
-        const length_B3 = halfLenght
-        const length_C = halfWidth
-        const length_D = halfWidth
+        const length_B3 = length_A3
+        const length_C = b_widthShed
+        const length_D = b_widthShed
 
             
         dimension = {
@@ -793,24 +848,21 @@ const shed = {
             'B3': length_B3, 
             'C': length_C,
             'D': length_D,
-
         }
 
         return dimension
     },
 
-    dimensionWind_90(widthShed, lengthShed, heightShed){
-        let dimension = {}
+    dimensionWind_90(b_widthShed, a_lengthShed, h_heightShed){
+        let dimension = new Object
    
-        const comparete_1 = widthShed / 2
-        const comparete_2 = heightShed * 2
-
-        const divisionLenght = (lengthShed / 3)
-
-        const length_A = divisionLenght
-        const length_B = divisionLenght
+        const comparete_1 = b_widthShed / 2
+        const comparete_2 = h_heightShed * 2
+     
+        const length_A = a_lengthShed
+        const length_B = a_lengthShed
         const length_C1 = (comparete_1 < comparete_2) ? comparete_1 : comparete_2
-        const length_C2 = widthShed - length_C1
+        const length_C2 = b_widthShed - length_C1
         const length_D1 = length_C1
         const length_D2 = length_C2
 
@@ -828,54 +880,54 @@ const shed = {
 
 }
 
-// const valuesWaterproofAreas = {
-//     WaterproofArea: {
-//         'A1': 0,
-//         'A2': 0,
-//         'A3': 0,
-//         'B1': 0,
-//         'B2': 0,
-//         'B3': 0, 
-//         'C1': 0,
-//         'C2': 0,
-//         'D1': 0,
-//         'D2': 0
-//     }
-// }
-
-
-//Comnation the faces with waterproof areas
-
 const combinationsCoefficients = {
 
-    combination_0 (lengthShed,widthShed,heightShed) {
-        const CoefficientsWall = externalCoefficients.Wall(lengthShed,widthShed,heightShed)
-        const Combination_0 = CoefficientsWall.map ( coef =>{
-
-            
-            console.log(coef)
-
-
-
-        })
-
+    definitionCoefficientes_0 (a_widthShed,b_widthShed,h_heightShed, angleShed) {   
+        const higherCoefficients = new Object
+        const coefficientsRoof_0 = externalCoefficients.CoefficientsRoof_0(angleShed,a_widthShed, b_widthShed,h_heightShed)
+        const coefficientsWall_0 = externalCoefficients.CoefficientsWall_0(a_widthShed, b_widthShed,h_heightShed)
+        
+        return {...higherCoefficients,
+                    'A1': coefficientsWall_0.A1,
+                    'B1': coefficientsWall_0.B1,
+                    'E': coefficientsRoof_0.E,
+                    'G': coefficientsRoof_0.G}
 
     },
-    combination_90 () {
 
 
+    definitionCoefficientes_90 (a_lengthShed,b_widthShed,h_heightShed, angleShed) {
+        const higherCoefficients = new Object
+        const coefficientsRoof_90 = externalCoefficients.CoefficientsRoof_90(angleShed, b_widthShed,h_heightShed)
+        const coefficientsWall_90 = externalCoefficients.CoefficientsWall_90(a_lengthShed,b_widthShed,h_heightShed)
+        
+        return {...higherCoefficients,
+                    'A': coefficientsWall_90.A,
+                    'B': coefficientsWall_90.B,
+                    'E': coefficientsRoof_90.E,
+                    'G': coefficientsRoof_90.G}
+    },
+
+
+
+
+
+    definitionCoefficientes_180(a_widthShed,b_widthShed,h_heightShed, angleShed,
+        faceA1,faceA2, faceA3, faceB1, faceB2, 
+        faceB3,faceC1, faceC2, faceD1, faceD2,
+        ) 
+    {
         
     },
-    combination_180 () {
 
+    definitionCoefficientes_270 (a_widthShed,b_widthShed,h_heightShed, angleShed,
+        faceA1,faceA2, faceA3, faceB1, faceB2, 
+        faceB3,faceC1, faceC2, faceD1, faceD2,
+        ) 
+    {
 
-        
     },
-    combination_270 () {
 
-
-        
-    },
     definitionsAngle(faceA1,faceA2, faceA3,
                     faceB1, faceB2, faceB3, faceC1, 
                     faceC2, faceD1, faceD2,
@@ -883,16 +935,15 @@ const combinationsCoefficients = {
 
         const Faces_0 = combinationsCoefficients.combination_0(widthShed, lengthShed, heightShed)
         
-
+               return Faces_0         
     }
 
 }
 
+console.log(combinationsCoefficients.definitionCoefficientes_90(20,10,6,5,0,0,0,0,0,0,0,0,0,0))
 
-
-// console.log(combinationsCoefficients.definitionsAngle(0,0,0,0,0,0,0,0,0,0,10,30,6))
 
 routes.get('/', (req,res) => res.render(basePath + 'index'))
-
+//
 
 module.exports = routes;
