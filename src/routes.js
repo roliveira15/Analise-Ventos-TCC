@@ -12,7 +12,6 @@ const h_heightShed = 6;
 const b_widthShed = 20;
 const a_lengthShed = 10;
 
-
 // Roughness of the terrain 
 const RoughnessTerrain = 4;
 
@@ -22,7 +21,6 @@ const windSpeed = 44;
 // --------------------------------- System length ---------------------------------
 // greater length
 const greaterLengthShed = (a_lengthShed > b_widthShed) ? a_lengthShed: b_widthShed;
-
 
 //Table 01 NBR6123/1988
 const tableParametersMetereological = [ 
@@ -75,10 +73,10 @@ const interpolatorLinear = {
     }
 }
 //Fator S1
+
 const fatorTopography = {
 
     equationBetween(angle, heightAboveTerrain,heightTerrain){
-
         return  (1 + (2.5 - (heightAboveTerrain/heightTerrain)) * Math.tan((angle - 3)*(Math.PI/180)))
     },
     
@@ -117,9 +115,9 @@ const fatorTopography = {
 
     //flat or slightly hilly terrain: S1 = 1,0;
     //Slopes e hills (Inclui interpolação)
-    FatorS1(value, angle,heightTerrain,heightAboveTerrain){
+    FatorS1(valuefator, angle,heightTerrain,heightAboveTerrain){
 
-        if (value == 1) {
+        if (valuefator == 1) {
                 return 1
             } else {
 
@@ -158,7 +156,7 @@ const fatorDimensionShed = {
                             Number(f_parameter) *
                             Math.pow((heightAboveTerrain / 10), (Number(p_parameter)))
 
-        console.log(f_parameter,b_parameter,p_parameter)
+        // console.log(f_parameter,b_parameter,p_parameter)
         return valueFatoS2.toFixed(2)
 
     }
@@ -461,8 +459,22 @@ const externalCoefficients = {
         return ((lengthWidthShed >= 2 && lengthWidthShed <= 4 ) ? 1 : 0);
     },
     //#4
-    defineDescriptionCoefficient (coefficientsWall){
-        if (Object.keys(coefficientsWall)[0] == 'A1') {
+    createdObjectInterpolation(valueMin, valueMax, lengthWidthShed){
+        let coefficientsWall = new Object
+        let coefficientsWallAux = new Array
+
+        const lenghtTotal = Object.values(valueMax).length
+        
+        for(let i = 0; i < lenghtTotal; i++){
+            const coefficientMin = Object.values(valueMin)[i]
+            const coefficientMax = Object.values(valueMax)[i]
+            
+            //interpolatorLinear.Interpolation(xa,y1,x1,y2,x2)
+            const newValueCoefficients = Number(interpolatorLinear.Interpolation((lengthWidthShed),coefficientMin,3/2,coefficientMax,2).toFixed(2))
+            coefficientsWallAux.push(Number(newValueCoefficients))
+        }
+
+        if (Object.keys(valueMax)[0] == 'A1') {
             coefficientsWall = {...coefficientsWall,
                                     'A1': coefficientsWallAux[0], 
                                     'B1': coefficientsWallAux[1],
@@ -480,26 +492,6 @@ const externalCoefficients = {
                                     'D2':  coefficientsWallAux[5]}
         }
 
-        return coefficientsWall
-    },
-    //#5
-    createdObjectInterpolation(valueMin, valueMax, lengthWidthShed){
-        let coefficientsWall = {}
-        let coefficientsWallAux = []
-
-        const lenghtTotal = Object.values(valueMax).length
-        
-        for(let i = 0; i < lenghtTotal; i++){
-            const coefficientMin = Object.values(valueMin)[i]
-            const coefficientMax = Object.values(valueMax)[i]
-            
-            //interpolatorLinear.Interpolation(xa,y1,x1,y2,x2)
-            const newValueCoefficients = interpolatorLinear.Interpolation((lengthWidthShed),coefficientMin,3/2,coefficientMax,2).toFixed(2)
-            
-            coefficientsWallAux.push(Number(newValueCoefficients))
-            
-        }
-        coefficientsWall = externalCoefficients.defineDescriptionCoefficient(coefficientsWallAux)
         return coefficientsWall
     },
     //#5
@@ -609,7 +601,8 @@ const externalCoefficients = {
                         'J': coefficientsRoof.H}
 
     return coefficientsRoof
-},
+    },
+
     DefinitionCoefficientsRoof(angleShed, b_widthShed,h_heightShed, coefficients){
 
         let coefficientsRoof = {}
@@ -805,8 +798,7 @@ const internalCoefficients = {
                 
             }
 
-        }
-    
+        }  
 }
 
 //dimension of the shed
@@ -882,21 +874,19 @@ const shed = {
 
 const combinationsCoefficients = {
 
-    definitionCoefficientes_0 (a_widthShed,b_widthShed,h_heightShed, angleShed) {   
+    definitionInternalCoefficientes_0 (a_lengthShed,b_widthShed,h_heightShed, angleShed) {   
         const higherCoefficients = new Object
-        const coefficientsRoof_0 = externalCoefficients.CoefficientsRoof_0(angleShed,a_widthShed, b_widthShed,h_heightShed)
-        const coefficientsWall_0 = externalCoefficients.CoefficientsWall_0(a_widthShed, b_widthShed,h_heightShed)
-        
+        const coefficientsRoof_0 = externalCoefficients.CoefficientsRoof_0(angleShed,a_lengthShed, b_widthShed,h_heightShed)
+        const coefficientsWall_0 = externalCoefficients.CoefficientsWall_0(a_lengthShed, b_widthShed,h_heightShed)
+    
         return {...higherCoefficients,
                     'A1': coefficientsWall_0.A1,
                     'B1': coefficientsWall_0.B1,
                     'E': coefficientsRoof_0.E,
                     'G': coefficientsRoof_0.G}
-
     },
 
-
-    definitionCoefficientes_90 (a_lengthShed,b_widthShed,h_heightShed, angleShed) {
+    definitionInternalCoefficientes_90 (a_lengthShed,b_widthShed,h_heightShed, angleShed) {
         const higherCoefficients = new Object
         const coefficientsRoof_90 = externalCoefficients.CoefficientsRoof_90(angleShed, b_widthShed,h_heightShed)
         const coefficientsWall_90 = externalCoefficients.CoefficientsWall_90(a_lengthShed,b_widthShed,h_heightShed)
@@ -908,39 +898,68 @@ const combinationsCoefficients = {
                     'G': coefficientsRoof_90.G}
     },
 
+    combinations_0(a_lengthShed,b_widthShed,h_heightShed, angleShed){
+        let valuesCoefficients= new Object
 
+        const externalCoefficients_0 = combinationsCoefficients.definitionInternalCoefficientes_0(a_lengthShed,b_widthShed,h_heightShed, angleShed)
+        const internalCoefficients_0 = internalCoefficients.PointReference()
 
-
-
-    definitionCoefficientes_180(a_widthShed,b_widthShed,h_heightShed, angleShed,
-        faceA1,faceA2, faceA3, faceB1, faceB2, 
-        faceB3,faceC1, faceC2, faceD1, faceD2,
-        ) 
-    {
+        valuesCoefficients = Object.values(externalCoefficients_0)
         
+        const Combinations = valuesCoefficients.map(item => {
+            return Number((item * internalCoefficients_0).toFixed(2));
+         });
+
+         return Combinations
     },
 
-    definitionCoefficientes_270 (a_widthShed,b_widthShed,h_heightShed, angleShed,
-        faceA1,faceA2, faceA3, faceB1, faceB2, 
-        faceB3,faceC1, faceC2, faceD1, faceD2,
-        ) 
-    {
+    combinations_90(a_lengthShed,b_widthShed,h_heightShed, angleShed){
+        let valuesCoefficients= new Object
 
+        const externalCoefficients_90 = combinationsCoefficients.definitionInternalCoefficientes_90(a_lengthShed,b_widthShed,h_heightShed, angleShed)
+        const internalCoefficients_90 = internalCoefficients.PointReference()
+
+        valuesCoefficients = Object.values(externalCoefficients_90)
+        
+        const Combinations = valuesCoefficients.map(item => {
+            return Number((item * internalCoefficients_90).toFixed(2));
+         });
+        //  console.log(externalCoefficients_0,internalCoefficients_0)
+         return Combinations
     },
 
-    definitionsAngle(faceA1,faceA2, faceA3,
-                    faceB1, faceB2, faceB3, faceC1, 
-                    faceC2, faceD1, faceD2,
-                    widthShed,lengthShed,heightShed) {
+    effort_0(valuefator, angle,heightTerrain,heightAboveTerrain, RoughnessTerrain, group, windSpeed, a_widthShed,b_widthShed,h_heightShed, angleShed){
+        let valuesCoefficients = new Object
 
-        const Faces_0 = combinationsCoefficients.combination_0(widthShed, lengthShed, heightShed)
-        
-               return Faces_0         
+        const fatorS1 = fatorTopography.FatorS1(valuefator, angle,heightTerrain,heightAboveTerrain)
+        const fatorS2 = fatorDimensionShed.FatorS2(RoughnessTerrain,heightAboveTerrain)
+        const fatorS3 = fatorStatistics.FatorS3 (group)
+
+        const valueEffort =  effort.dynamicWindPressure (windSpeed, fatorS1, fatorS2, fatorS3)
+        const coefficients = combinations_0(a_lengthShed,b_widthShed,h_heightShed, angleShed)
+
+
+
+        return 
+    },
+
+    effort_90(valuefator, angle,heightTerrain,heightAboveTerrain, RoughnessTerrain, group, windSpeed, a_widthShed,b_widthShed,h_heightShed, angleShed){
+        let valuesCoefficients = new Object
+
+        const fatorS1 = fatorTopography.FatorS1(valuefator, angle,heightTerrain,heightAboveTerrain)
+        const fatorS2 = fatorDimensionShed.FatorS2(RoughnessTerrain,heightAboveTerrain)
+        const fatorS3 = fatorStatistics.FatorS3 (group)
+
+        const Effort =  effort.dynamicWindPressure (windSpeed, fatorS1, fatorS2, fatorS3)
+
+
+
+
+        return 
     }
-
 }
 
-console.log(combinationsCoefficients.definitionCoefficientes_90(20,10,6,5,0,0,0,0,0,0,0,0,0,0))
+// console.log(combinationsCoefficients.effort_0(2,3,2,4,3,2,33,20,10,6,15))
 
 
 routes.get('/', (req,res) => res.render(basePath + 'index'))

@@ -84,7 +84,7 @@
     border-bottom: none;    
 }
 
-ul li ul li::before{
+ul li ul li.li-step::before{
     content:"";
     position: relative;
     top:1.3rem;
@@ -94,7 +94,7 @@ ul li ul li::before{
     background-color: #bbbbbb;
 }
 
-ul li ul li:last-child::before{
+ul li ul li.li-step:last-child::before{
     content:"";
     opacity: 0;
 } 

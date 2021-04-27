@@ -1,19 +1,71 @@
 #container {
-  position: relative;
-  top: 4rem;
+
+  display: flex;
+  justify-content: center;
+  top: 6rem;
   margin-left: 13rem;
 }
 
+.content-container {
+  width: 800px;
+  height:80vh;
+  background: #fff;
+  box-shadow: 7px 8px 6px rgba(0, 0, 0, 0.25);
+}
+
+.form-container{
+  margin:2rem;
+  /* height:50vh; */
+}
+
+.button-container{
+  /* position: absolute; */
+  bottom:10rem;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 3rem 0 3rem;
+  /* width: 100%; */
+  /* height:10%; */
+}
+
+.tab {
+  display: none;
+}
+
+.button-container {
+  bottom: 2rem;
+}
+
+.step.finish {
+  background-color: #4CAF50;
+}
+
+.step.active, .li-step.active {
+  background-color: #4c9c4f;
+}
+
 /* Responsive =============== */
+@media (max-width: 980px) {
+  .content-container {
+    width: 700px;
+  }
+}
+
 @media (max-width: 860px) {
   #container {
       top: 3rem;
+  }
+  .content-container {
+    width: 600px;
   }
 }
 
 @media (max-width: 460px) {
   #container {
       top: 2.5rem;
+  }
+  .content-container {
+    width: 500px;
   }
 }
 /* Style the form */
@@ -37,11 +89,6 @@
   /* Mark input boxes that gets an error on validation: */
   /* input.invalid {
     background-color: #ffdddd;
-  } */
-  
-  /* Hide all steps by default: */
-  /* .tab {
-    display: none;
   }
    */
   /* Make circles that indicate the steps of the form: */
@@ -51,10 +98,7 @@
     opacity: 1;
   } */
   
-  /* Mark the steps that are finished and valid: */
-   /* .step.finish {
-    background-color: #4CAF50;
-  }  */
+  
 
 
 
