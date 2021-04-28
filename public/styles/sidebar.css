@@ -77,14 +77,14 @@
     display: inline-block;
 }
   
-#sidebar ul ul li .step-name{
+#sidebar .step-name{
     line-height: 2.6rem;
     font-size: 0.8rem;
     padding-left: 2.3rem; 
     border-bottom: none;    
 }
 
-ul li ul li.li-step::before{
+.li-step::before{
     content:"";
     position: relative;
     top:1.3rem;
@@ -94,10 +94,24 @@ ul li ul li.li-step::before{
     background-color: #bbbbbb;
 }
 
-ul li ul li.li-step:last-child::before{
+.li-step:last-child::before{
     content:"";
     opacity: 0;
 } 
+
+/* .li-step.active::before{
+    background: #d43f8d;
+    transform: scaleX(0);
+    transform-origin: top;
+    animation: animate 2s linear top;
+  }
+
+  @keyframes animate {
+    100%{
+      transform: scaleX(1);
+    }
+  } */
+
 
 #sidebar .step-name .step-text {
     padding-left: 1rem; 

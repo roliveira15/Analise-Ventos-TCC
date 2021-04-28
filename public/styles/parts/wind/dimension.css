@@ -1,0 +1,89 @@
+.dimension-shed {
+    display: grid;
+    grid-template-columns:1fr 1fr;
+    gap: 2rem;
+}
+
+.floor-plan {
+    display: grid;
+    grid-template-columns:0.5fr 1fr 0.5fr;
+    grid-template-areas:
+    'D1 D2 D2'
+    'A imgS B1'
+    'A imgS B2'
+    'A imgS B3'
+    'B B B'
+}
+
+
+
+/* .dimension-shed {
+    display: grid;
+    grid-template-columns: 2fr;
+    grid-template-areas:
+    'A_Desc A'
+    'B_Desc B'
+    
+    
+        'B_Desc B B B B'
+    
+    ;
+
+} */
+
+.A:hover {
+    transition: 0.3s;
+    opacity:1;
+}
+input[type=number]::-webkit-inner-spin-button { 
+    -webkit-appearance: none;
+    
+}
+input.A, input.B{
+
+    text-align: center;
+    outline: none;
+    border-width: 2px;
+    border:none;
+    border-bottom: 2px solid #cf5d16;
+    border-radius: 10px;
+    
+    width: 4rem;
+    height: 2rem;
+    
+    background: 
+    linear-gradient(0deg, rgba(250, 156, 45, 0.1) 0.3%, rgba(252, 253, 255, 0.1) 31.4%),
+        white;
+    transition: 0.4s;
+    border-left-color: #E36414;
+}
+.A {
+    margin: auto 0 auto 0;
+    grid-area: A;
+
+}
+.B {
+    margin: 0 auto 0 auto;
+    grid-area: B;
+}
+.img-shed {
+    margin: 0 auto 0 auto;
+    grid-area: imgS;
+}
+.B1{
+    grid-area: B1;
+}
+.B2{
+    grid-area: B2;
+}
+.B3{
+    grid-area: B3;
+}
+.D1{
+    grid-area: D1;
+}
+.D2{
+    grid-area: D2;
+}
+
+

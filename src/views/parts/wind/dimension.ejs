@@ -1,166 +1,173 @@
 <div class="stage-Dimension tab" id="0">
 
-    <div class="dimension-shed">
-        <div class="input-shed">
+    <section class="dimension-shed">
 
-            <label for="name">b(m)</label>
-            <input 
-                    type="number" 
-                    step="0.1"
-                    placeholder="m"
-                    id="widthShed" 
-                    name="widthShed"
-                    value="10" />
+        <div class="floor-frontal">
+            <div class="input-shed floor-plan">
 
-            <label for="name">a(m)</label>
-            <input 
-                    type="number" 
-                    step="0.1"
-                    placeholder="m"
-                    id="lenghtShed"
-                    name="lenghtShed"
-                    value="20" />
+                <input 
+                        class="B"
+                        type="number" 
+                        step="0.1"
+                        placeholder="b(m)"
+                        id="widthShed" 
+                        name="widthShed"
+                        value="10" />
+                
+                <img class="img-shed" src="/assets/front.jpg" alt="">
+                <input 
+                        class="A"
+                        type="number" 
+                        step="0.1"
+                        placeholder="a(m)"
+                        id="lenghtShed"
+                        name="lenghtShed"
+                        value="20" />
 
+                
+                <label class="B1">3,33m</label>
+                <label class="B2">6,67m</label>
+                <label class="B3">10,00m</label>
+                <label class="D1">5m</label>
+                <label class="D2">5m</label>
+            </div>  
 
-            <label class="B1">3,33m</label>
-            <label class="B2">6,67m</label>
-            <label class="B3">10,00m</label>
-            <label class="D1">5m</label>
-            <label class="D1">5m</label>
-        </div>  
+            <div class="input-shed frontal-cut">
+                <label for="name">H(m)</label>
+                <input 
+                        type="number" 
+                        step="0.1"
+                        placeholder="m"
+                        id="heightShed" 
+                        name="heightShed"
+                        value="5" />
+
+                <label for="name">H1(m)</label>
+                <input 
+                        type="number" 
+                        step="0.1"
+                        placeholder="m"
+                        id="heightroof" 
+                        name="heightroof"
+                        value="1" />
+            
+            </div>  
+        </div>
+
+        <div class="waterproof-area">
+            <table id="table-waterproof">
+                <thead>
+                    <tr>
+                        <th>Descrição</th>
+                        <th>Área (m²)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>A1</td>
+                        <td> 
+                            <input 
+                            type="number" 
+                            id="Area-A1"
+                            name="Area-A1"
+                            value="2"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>A2</td>
+                        <td> 
+                            <input 
+                            type="number" 
+                            id="Area-A2"
+                            name="Area-A2"
+                            value="2"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>A3</td>
+                        <td> 
+                            <input 
+                            type="number" 
+                            id="Area-A3"
+                            name="Area-A3"
+                            value="2"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>B1</td>
+                        <td> 
+                            <input 
+                            type="number" 
+                            id="Area-B1"
+                            name="Area-B1"
+                            value="2"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>B2</td>
+                        <td> 
+                            <input 
+                            type="number" 
+                            id="Area-B2"
+                            name="Area-B2"
+                            value="2"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>B3</td>
+                        <td> 
+                            <input 
+                            type="number" 
+                            id="Area-B3"
+                            name="Area-B3"
+                            value="2"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>C1</td>
+                        <td> 
+                            <input 
+                            type="number" 
+                            id="Area-C1"
+                            name="Area-C1"
+                            value="2"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>C2</td>
+                        <td> 
+                            <input 
+                            type="number" 
+                            id="Area-C2"
+                            name="Area-C2"
+                            value="2"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>D1</td>
+                        <td> 
+                            <input 
+                            type="number" 
+                            id="Area-D1"
+                            name="Area-D1"
+                            value="2"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>D2</td>
+                        <td> 
+                            <input 
+                            type="number" 
+                            id="Area-D2"
+                            name="Area-D2"
+                            value="2"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         
-        <div class="input-shed">
-            <label for="name">H(m)</label>
-            <input 
-                    type="number" 
-                    step="0.1"
-                    placeholder="m"
-                    id="heightShed" 
-                    name="heightShed"
-                    value="5" />
+    </section>
 
-            <label for="name">H1(m)</label>
-            <input 
-                    type="number" 
-                    step="0.1"
-                    placeholder="m"
-                    id="heightroof" 
-                    name="heightroof"
-                    value="1" />
-        
-        </div>  
-    </div>
-
-    <div class="waterproof-area">
-        <table id="table-waterproof">
-            <thead>
-                <tr>
-                    <th>Descrição</th>
-                    <th>Área (m²)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>A1</td>
-                    <td> 
-                        <input 
-                        type="number" 
-                        id="Area-A1"
-                        name="Area-A1"
-                        value="2"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>A2</td>
-                    <td> 
-                        <input 
-                        type="number" 
-                        id="Area-A2"
-                        name="Area-A2"
-                        value="2"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>A3</td>
-                    <td> 
-                        <input 
-                        type="number" 
-                        id="Area-A3"
-                        name="Area-A3"
-                        value="2"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>B1</td>
-                    <td> 
-                        <input 
-                        type="number" 
-                        id="Area-B1"
-                        name="Area-B1"
-                        value="2"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>B2</td>
-                    <td> 
-                        <input 
-                        type="number" 
-                        id="Area-B2"
-                        name="Area-B2"
-                        value="2"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>B3</td>
-                    <td> 
-                        <input 
-                        type="number" 
-                        id="Area-B3"
-                        name="Area-B3"
-                        value="2"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>C1</td>
-                    <td> 
-                        <input 
-                        type="number" 
-                        id="Area-C1"
-                        name="Area-C1"
-                        value="2"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>C2</td>
-                    <td> 
-                        <input 
-                        type="number" 
-                        id="Area-C2"
-                        name="Area-C2"
-                        value="2"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>D1</td>
-                    <td> 
-                        <input 
-                        type="number" 
-                        id="Area-D1"
-                        name="Area-D1"
-                        value="2"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>D2</td>
-                    <td> 
-                        <input 
-                        type="number" 
-                        id="Area-D2"
-                        name="Area-D2"
-                        value="2"/>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    
 </div>

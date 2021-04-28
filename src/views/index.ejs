@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="/styles/default.css">
         <link rel="stylesheet" href="/styles/toolbar.css">
         <link rel="stylesheet" href="/styles/form.css">
+        <link rel="stylesheet" href="/styles/parts/wind/dimension.css">
         <link rel="stylesheet" href="/styles/sidebar.css">
         <link rel="sortcut icon" href="/assets/engineer.svg">
         <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -28,6 +29,9 @@
 
             <div id="container">
                 <div class="content-container">
+                    <div class="header-container">
+                        <h2 class="tittle">Ventos</h2>
+                    </div>
                     
                     <div class="form-container">
                         <form id="Form-wind" action="" method="post">
@@ -54,6 +58,7 @@
                             
                         </form>
                     </div>
+
                     <div class="button-container">
                         <button form="Form-wind" type="button" id="prevBtn" onclick="stepForm.nextPrev(-1)">Voltar</button>
                         <button form="Form-wind" type="button" id="nextBtn" onclick="stepForm.nextPrev(1)">Avançar</button>
