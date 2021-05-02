@@ -99,20 +99,6 @@
     opacity: 0;
 } 
 
-/* .li-step.active::before{
-    background: #d43f8d;
-    transform: scaleX(0);
-    transform-origin: top;
-    animation: animate 2s linear top;
-  }
-
-  @keyframes animate {
-    100%{
-      transform: scaleX(1);
-    }
-  } */
-
-
 #sidebar .step-name .step-text {
     padding-left: 1rem; 
 }

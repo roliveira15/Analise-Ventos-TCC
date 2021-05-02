@@ -102,14 +102,14 @@ const stepForm = {
   fixStepIndicator(n) {
     // This function removes the "active" class of all steps...
     let i, x = document.getElementsByClassName("step");
-    let z = document.getElementsByClassName("li-step::before");
+    // let z = document.getElementsByClassName("li-step::before");
     for (i = 0; i < x.length; i++) {
       x[i].className = x[i].className.replace(" active", "");
-      z[i].className = z[i].className.replace(" active", "");
+      // z[i].className = z[i].className.replace(" active", "");
     }
     //... and adds the "active" class to the current step:
     x[n].className += " active";
-    z[n].className += " active";
+    // z[n].className += " active";
   }
 }
 

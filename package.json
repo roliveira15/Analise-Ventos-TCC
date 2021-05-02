@@ -4,7 +4,8 @@
   "description": "Trabalho de conclusão do curso de engenharia civil",
   "main": "src/server.js",
   "scripts": {
-    "dev": "nodemon ."
+    "dev": "nodemon .",
+    "start": "node ."
   },
   "repository": {
     "type": "git",
