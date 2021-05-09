@@ -32,9 +32,9 @@
                     <div class="header-container">
                         <h2 class="tittle">Ventos</h2>
                     </div>
-                    
+                    </hr>
                     <div class="form-container">
-                        <form id="Form-wind" action="" method="post">
+                        <form id="form-wind" action="" method="post">
                             
                             <%- include('parts/wind/dimension') %>
 
@@ -58,12 +58,12 @@
                             
                         </form>
                     </div>
-
-                    <div class="button-container">
-                        <button form="Form-wind" type="button" id="prevBtn" onclick="stepForm.nextPrev(-1)">Voltar</button>
-                        <button form="Form-wind" type="button" id="nextBtn" onclick="stepForm.nextPrev(1)">Avançar</button>
+                    <div class="btn-container">
+                        <div class="btn-from">
+                            <button form="Form-wind" type="button" id="prevBtn">Voltar</button>
+                            <button form="Form-wind" type="button" id="nextBtn">Avançar</button>
+                        </div>
                     </div>
-                    
                 </div>
                 
             </div>
@@ -71,8 +71,8 @@
 
         <!-- <%- include('parts/footer') %> -->
     
-        <script src="/scripts/animation.js"></script>
-        <!-- <script type="module" src="/scripts/Wind.js"></script> -->
+        <script src="/scripts/sideBar.js"></script>
+        <!-- <script type="module" src="/scripts/form.js"></script> -->
         <script type="module" src="/scripts/index.js"></script>
 
     </body>

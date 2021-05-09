@@ -1,89 +1,183 @@
-.dimension-shed {
-    display: grid;
-    grid-template-columns:1fr 1fr;
-    gap: 2rem;
+/* --------------------------------- Floor Plan and Frontal Cut*/
+#form-wind,.stage-Dimension,.shed,.container-shed {
+    height: 100%;
 }
 
-.floor-plan {
+.container-shed{
     display: grid;
-    grid-template-columns:0.5fr 1fr 0.5fr;
-    grid-template-areas:
-    'D1 D2 D2'
-    'A imgS B1'
-    'A imgS B2'
-    'A imgS B3'
-    'B B B'
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
 }
 
 
-
-/* .dimension-shed {
-    display: grid;
-    grid-template-columns: 2fr;
-    grid-template-areas:
-    'A_Desc A'
-    'B_Desc B'
-    
-    
-        'B_Desc B B B B'
-    
-    ;
-
-} */
-
-.A:hover {
-    transition: 0.3s;
-    opacity:1;
+.floorPlan,.frontalcut,.waterproof{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
 }
+
+.btn-calculate{
+    margin-top:20px;
+    width: 70px;
+    height: 30px;
+}
+
+/* --------------------------------- Inputs */
+.input-shed{
+    width: 40px;
+    height: 20px;
+    text-align: center;
+    border-width: 0;
+
+}
+
 input[type=number]::-webkit-inner-spin-button { 
     -webkit-appearance: none;
-    
 }
-input.A, input.B{
 
+/* -------------------------------- Floor Plan*/
+.template-floor-plan {
+    display: grid;
+    grid-template:
+        "lenght plan plan "
+        "- width width " 
+}
+
+.plan,.width,.lenght{
     text-align: center;
-    outline: none;
-    border-width: 2px;
-    border:none;
-    border-bottom: 2px solid #cf5d16;
-    border-radius: 10px;
-    
-    width: 4rem;
-    height: 2rem;
-    
-    background: 
-    linear-gradient(0deg, rgba(250, 156, 45, 0.1) 0.3%, rgba(252, 253, 255, 0.1) 31.4%),
-        white;
-    transition: 0.4s;
-    border-left-color: #E36414;
+    justify-self: center;
+    align-self: center;
 }
-.A {
-    margin: auto 0 auto 0;
-    grid-area: A;
+
+.width {
+    grid-area: width;
+}
+
+.plan {
+    grid-area: plan;
+}
+
+.lenght {
+    grid-area: lenght;
+}
+
+/* -------------------------------- Frontal Cut */
+.template-frontal-cut {
+    display: grid;
+    grid-template:
+        "height-Roof img-frontalCut img-frontalCut angle-Roof" 58px
+        "height-shed img-frontalCut img-frontalCut angle-Roof" 123px
 
 }
-.B {
-    margin: 0 auto 0 auto;
-    grid-area: B;
+
+.height-Roof,.height-shed{
+    text-align: center;
+    justify-self: center;
+    align-self: center;
 }
-.img-shed {
-    margin: 0 auto 0 auto;
-    grid-area: imgS;
+
+.img-floorPlan{
+     position: relative;
 }
-.B1{
-    grid-area: B1;
+
+.angle-Roof {
+    position: absolute;
+    top: 62%;
+    left: 25%;
 }
-.B2{
-    grid-area: B2;
+
+.height-Roof {
+    grid-area: height-Roof;
 }
-.B3{
-    grid-area: B3;
+
+.height-shed {
+    grid-area: height-shed;
+} 
+
+.angle-Roof {
+    grid-area: angle-Roof;
 }
-.D1{
-    grid-area: D1;
+
+.img-frontalCut {
+
+    grid-area: img-frontalCut;
 }
-.D2{
-    grid-area: D2;
+
+/* ------------------------------- Áreas Waterproof */
+.template-waterproof {
+    position: relative;
+    top:-10px;
+    display: grid;
+    grid-template:
+        "blank-0 area-c1 area-c2 blank-2" 20px 
+        "area-a1 planwater planwater area-b1" 75px
+        "area-a2 planwater planwater area-b2" 80px
+        "area-a3 planwater planwater area-b3" 
+        "blank-1 area-d1 area-d2 blank-3"
 }
+
+.a1 {
+    grid-area: area-a1;
+}
+
+.a2 {
+    grid-area: area-a2;
+}
+
+.a3 {
+    grid-area: area-a3;
+}
+
+.b1 {
+    grid-area: area-b1;
+}
+
+.b2 {
+    grid-area: area-b2;
+}
+
+.b3 {
+    grid-area: area-b3;
+}
+
+.d1 {
+    grid-area: area-d1;
+}
+
+.d2 {
+    grid-area: area-d2;
+}
+
+.c1 {
+    grid-area: area-c1;
+}
+
+.c2 {
+    grid-area: area-c2;
+} 
+
+.planwater {
+    grid-area: planwater;
+}
+
+.a1,.a2,.a3,.b1,.b2,.b3,.c1,.c2,.d1,.d2,.planwater{
+    text-align: center;
+    justify-self: center;
+    align-self: center;
+}
+
+.floor-plan, .frontal-cut, .input-waterproof {
+    text-align: center;
+}
+
+.hover-image:hover{
+    fill: #E36414;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+
+
 
 

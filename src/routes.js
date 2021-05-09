@@ -1,8 +1,9 @@
 const express = require('express');
 const routes = express.Router();
-const DimensionController = require('./controllers/Wind')
+const WindController = require('./controllers/WindController')
 
-routes.get('/', DimensionController.Wind)
-routes.get('/api', (req, res) => { return res.json({ resposta: "resposta" })})
+routes.get('/', WindController.indexWind)
+routes.get('/dimensionShed', WindController.SeparetedDimensional)
+routes.get('/calculate', WindController.DimensionAngleHeight)
 
 module.exports = routes;
