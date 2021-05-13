@@ -1,14 +1,24 @@
-import {Angle_Roof,Height_Roof} from './wind/Dimension.js'
-
-
-var currentTab = 0
 const $nextBtn = document.getElementById('nextBtn');
 const $prevBtn = document.getElementById('prevBtn');
 const $heightRoof = document.getElementById('heightRoof');
 const $angleRoof = document.getElementById('angleRoof');
 const $widthShed = document.getElementById('widthShed');
 const $btnCalc_Shed = document.getElementById("calculate");
+let $loadSVG = document.getElementById('img-waterproof');
 
+
+const $a1 = document.getElementById('area-a1');
+const $a2 = document.getElementById('area-a2');
+const $a3 = document.getElementById('area-a3');
+const $b1 = document.getElementById('area-b1');
+const $b2 = document.getElementById('area-b2');
+const $b3 = document.getElementById('area-b3');
+const $c1 = document.getElementById('area-c1');
+const $c2 = document.getElementById('area-c2');
+const $d1 = document.getElementById('area-d1');
+const $d2 = document.getElementById('area-d2');
+
+var currentTab = 0
 
 
 const view = {
@@ -20,39 +30,47 @@ const view = {
         }
     },
 
-    setCoeficients(dimension) {
-        // $heightRoof.innerText = dimension.angleRoof;
-        // $angleRoof.innerText = dimension.hightRoof;
+    setAngle(angle) {
+        $angleRoof.innerText = angle;
+    },
+
+    setHeight(height) {
+        $heightRoof.innerText = height;
+    },
+
+    setWidth(Width) {
+        $widthShed.innerText = Width;
+    },
+
+    setLength(length) {
+        $heightRoof.innerText = length;
     }
+
 }
 
 const services = {
 
-    async get(route) {
-
+    async getRequest(route, dimension) {
+        
         try {
-            const response = await fetch(route)
-            const data = await response.json()
-            console.log(data)
-            return data
+            const url = route;
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dimension)
+            }
+
+            const response = await fetch(url,options);
+            const json = await response.json()
+            
+            return json
     
         }catch(error){
             console.log('erro')
         }
-    },
-
-    heightRoof() {
-        const {width, angle} = view.getDimensionsRoof();
-        const dimension = Height_Roof(width, angle);   
-        console.log(dimension)   
-    },
-
-    angleRoof() {
-        const {width, height} = view.getDimensionsRoof();
-        const dimension = Angle_Roof(width, height);      
     }
-
-
 }
 
 const controller = {
@@ -60,26 +78,92 @@ const controller = {
         $nextBtn.addEventListener('click', (evt) => {
             formStep.nextPrev(1)
         });
+
         $prevBtn.addEventListener('click', (evt) => {
             formStep.nextPrev(-1)
         });
+
         $btnCalc_Shed.addEventListener('click', (evt) => {
-            
-            
-            
-            console.log(services.get('/dimensionShed'))
-
+            const dimensionRoof = view.getDimensionsRoof()
+            services.getRequest('/dimensionShed',dimensionRoof)
+            .then((resp) => {
+                view.setAngle(resp.angleRoof)
+            })
         });
-        // $heightRoof.addEventListener('keyup', (evt) => {
-        //     services.angleRoof();
-        // });
 
-        // $angleRoof.addEventListener('keyup', (evt) => {
-        //     services.heightRoof();
-        // });
+        window.addEventListener('load', (evt) => {
+            fetch( $loadSVG.src)
+                .then((response) => response.text())
+                .then((response) => {
+                    const span = document.createElement('span');
+                    span.innerHTML = response;
+                    const inlineSvg = span.getElementsByTagName('svg')[0];
+                    $loadSVG.parentNode.replaceChild(inlineSvg, $loadSVG);
+                    
+                })            
+        });
 
+        this.initializeImageWaterproof()
 
     },
+
+    initializeImageWaterproof(){
+        $a1.addEventListener('change', (evt) => {
+            const classAdd = document.querySelectorAll('.a1')[0]
+            const ValueZero = $a1.value > 0 ? classAdd.classList.add('wall-active') : classAdd.classList.remove('wall-active');
+        });
+
+        $a2.addEventListener('change', (evt) => {
+            const classAdd = document.querySelectorAll('.a2')[0]
+            const ValueZero = $a2.value > 0 ? classAdd.classList.add('wall-active') : classAdd.classList.remove('wall-active');
+        });
+
+        $a3.addEventListener('change', (evt) => {
+            const classAdd = document.querySelectorAll('.a3')[0]
+            const ValueZero = $a3.value > 0 ? classAdd.classList.add('wall-active') : classAdd.classList.remove('wall-active');
+        });
+
+        $b1.addEventListener('change', (evt) => {
+            const classAdd = document.querySelectorAll('.b1')[0]
+            const ValueZero = $b1.value > 0 ? classAdd.classList.add('wall-active') : classAdd.classList.remove('wall-active');
+        });
+
+        $b2.addEventListener('change', (evt) => {
+            const classAdd = document.querySelectorAll('.b2')[0]
+            const ValueZero = $b2.value > 0 ? classAdd.classList.add('wall-active') : classAdd.classList.remove('wall-active');
+
+        });
+
+        $b3.addEventListener('change', (evt) => {
+            const classAdd = document.querySelectorAll('.b3')[0]
+            const ValueZero = $b3.value > 0 ? classAdd.classList.add('wall-active') : classAdd.classList.remove('wall-active');
+
+        });
+
+        $c1.addEventListener('change', (evt) => {
+            const classAdd = document.querySelectorAll('.c1')[0]
+            const ValueZero = $c1.value > 0 ? classAdd.classList.add('wall-active') : classAdd.classList.remove('wall-active');
+
+        });
+
+        $c2.addEventListener('change', (evt) => {
+            const classAdd = document.querySelectorAll('.c2')[0]
+            const ValueZero = $c2.value > 0 ? classAdd.classList.add('wall-active') : classAdd.classList.remove('wall-active');
+
+        });
+
+        $d1.addEventListener('change', (evt) => {
+            const classAdd = document.querySelectorAll('.d1')[0]
+            const ValueZero = $d1.value > 0 ? classAdd.classList.add('wall-active') : classAdd.classList.remove('wall-active');
+
+        });
+        
+        $d2.addEventListener('change', (evt) => {
+            const classAdd = document.querySelectorAll('.d2')[0]
+            const ValueZero = $d2.value > 0 ? classAdd.classList.add('wall-active') : classAdd.classList.remove('wall-active');
+
+        });
+    }
 }
 
 const formStep = {
@@ -152,55 +236,5 @@ const formStep = {
     },
 }
 
-
 controller.initialize()
 formStep.showTab(currentTab); 
-  
-
-
-// const fetchSvg = (image) => {
-//     fetch(image.src)
-//         .then((response) => response.text())
-//         .then((response) => {
-//             const span = document.createElement('span');
-//             span.innerHTML = response;
-//             const inlineSvg = span.getElementsByTagName('svg')[0];
-//             // image.parentNode.replaceChild(inlineSvg, image);
-//             console.log(span)
-//             return true;
-//         })
-//         // .then(() => { getActions(); });
-// };
-
-// const getActions = () => {
-//     const states = document.getElementsByClassName('estado');
-//     for(let i = 0; i < states.length; i++) {
-//         states[i].onclick = () => { stateClicked(states[i]); };
-//     }
-//     getEstados();
-// };
-
-// const getEstados = () => {
-//     fetch('estados.json')
-//         .then((response) => response.text())
-//         .then((response) => {
-//             estados.push(...JSON.parse(response));
-//         });
-// };
-
-// const stateClicked = (state) => {
-//     const code = state.getAttribute('code');
-//     const uf = estados.find(estado => estado.code === code);
-//     if (!uf) return;
-//     fillContent(uf);
-// };
-
-// const fillContent = ({ nome, sigla, populacao, descricao }) => {
-//     const name = document.getElementById('stateName');
-//     const population = document.getElementById('statePop');
-//     const description = document.getElementById('stateDesc');
-
-//     name.innerText = `${nome} (${sigla})`;
-//     population.innerText = `População: ${populacao}`;
-//     description.innerText = descricao;
-// };

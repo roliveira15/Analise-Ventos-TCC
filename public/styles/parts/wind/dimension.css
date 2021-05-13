@@ -171,13 +171,11 @@ input[type=number]::-webkit-inner-spin-button {
     text-align: center;
 }
 
-.hover-image:hover{
+.wall-active{
     fill: #E36414;
     transition: 0.2s;
     cursor: pointer;
 }
-
-
 
 
 
