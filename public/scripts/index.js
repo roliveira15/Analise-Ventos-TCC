@@ -3,9 +3,14 @@ const $prevBtn = document.getElementById('prevBtn');
 const $heightRoof = document.getElementById('heightRoof');
 const $angleRoof = document.getElementById('angleRoof');
 const $widthShed = document.getElementById('widthShed');
-const $btnCalc_Shed = document.getElementById("calculate");
-let $loadSVG = document.getElementById('img-waterproof');
+const $lenghtShed = document.getElementById('lenghtShed');
+const $btnCalc_Shed = document.getElementById("calculateAngle");
+const $btnCalc_Dim = document.getElementById("calculateDimension");
+const $btnClose = document.getElementById("btn-close");
 
+
+
+let $loadSVG = document.getElementById('img-waterproof');
 
 const $a1 = document.getElementById('area-a1');
 const $a2 = document.getElementById('area-a2');
@@ -27,6 +32,7 @@ const view = {
             height: $heightRoof.value,
             angle: $angleRoof.value,
             width: $widthShed.value,
+            length: $lenghtShed.value
         }
     },
 
@@ -43,7 +49,7 @@ const view = {
     },
 
     setLength(length) {
-        $heightRoof.innerText = length;
+        $lenghtShed.innerText = length;
     }
 
 }
@@ -70,6 +76,33 @@ const services = {
         }catch(error){
             console.log('erro')
         }
+    },
+
+    validationDimension({length,width,height,angle}){
+        let verification,messageInform
+
+        if(width> length ){
+            verification  = false;
+            messageInform = 'O valor de a(m) deverá obrigatoriamente maior que o b(m)'
+            
+        }else if(length == ''){
+            verification  = false;
+            messageInform = 'Favor informar o comprimento a(m) do pavilhão'
+            
+        } else if(width == ''){
+            verification  = false;
+            messageInform = 'Favor informar o largura b(m) do pavilhão'
+            
+        } else if(height == ''){
+            verification  = false;
+            messageInform = 'Favor informar o altura h(m) do pavilhão'
+
+        } else {
+            verification  = true; 
+        }
+
+        return {'verification': verification, 
+                'messageInform' : messageInform}
     }
 }
 
@@ -85,10 +118,17 @@ const controller = {
 
         $btnCalc_Shed.addEventListener('click', (evt) => {
             const dimensionRoof = view.getDimensionsRoof()
-            services.getRequest('/dimensionShed',dimensionRoof)
-            .then((resp) => {
-                view.setAngle(resp.angleRoof)
-            })
+            const {verification, messageInform} = services.validationDimension(dimensionRoof)
+            
+            if (verification) {
+                services.getRequest('/dimensionShed',dimensionRoof)
+                            .then((resp) => {
+                                view.setAngle(resp.angleRoof)
+                            })
+            } else {
+                alert(messageInform)
+            }
+
         });
 
         window.addEventListener('load', (evt) => {
@@ -103,7 +143,18 @@ const controller = {
                 })            
         });
 
-        this.initializeImageWaterproof()
+        this.initializeImageWaterproof();
+
+        $btnCalc_Dim.addEventListener('click', (evt) => {
+            document.getElementById('modal-wrapper').classList.toggle('on');
+
+        });
+
+        $btnClose.addEventListener('click', (evt) => {
+            document.getElementById('modal-wrapper').classList.toggle('on');
+
+        });
+
 
     },
 

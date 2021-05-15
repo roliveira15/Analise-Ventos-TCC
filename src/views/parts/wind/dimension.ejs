@@ -1,4 +1,4 @@
-<div class="stage-Dimension tab" id="dimension">
+<div class="stage-Dimension tab on" id="dimension">
     <div class="shed">
         <div class="container-shed">
             <div class="floorPlan">
@@ -51,7 +51,7 @@
                             placeholder="m²"
                             id="area-a1" 
                             name="area-a1"
-                            value="0" />
+                            value="" />
                         <input
                             class="a2 input-shed" 
                             type="number" 
@@ -59,7 +59,7 @@
                             placeholder="m²"
                             id="area-a2" 
                             name="area-a2"
-                            value="0" />
+                            value="" />
                         <input
                             class="a3 input-shed" 
                             type="number" 
@@ -67,7 +67,7 @@
                             placeholder="m²"
                             id="area-a3" 
                             name="area-a3"
-                            value="0" />
+                            value="" />
                         <input
                             class="b1 input-shed" 
                             type="number" 
@@ -75,7 +75,7 @@
                             placeholder="m²"
                             id="area-b1" 
                             name="area-b1"
-                            value="0" />
+                            value="" />
                         <input
                             class="b2 input-shed" 
                             type="number" 
@@ -83,7 +83,7 @@
                             placeholder="m²"
                             id="area-b2" 
                             name="area-b2"
-                            value="0" />
+                            value="" />
                         <input
                             class="b3 input-shed" 
                             type="number" 
@@ -91,7 +91,7 @@
                             placeholder="m²"
                             id="area-b3" 
                             name="area-b3"
-                            value="0" />
+                            value="" />
                         <input
                             class="c1 input-shed" 
                             type="number" 
@@ -99,7 +99,7 @@
                             placeholder="m²"
                             id="area-c1" 
                             name="area-c1"
-                            value="0" />
+                            value="" />
                         <input
                             class="c2 input-shed" 
                             type="number" 
@@ -107,7 +107,7 @@
                             placeholder="m²"
                             id="area-c2" 
                             name="area-c2"
-                            value="0" />
+                            value="" />
                         <input
                             class="d1 input-shed" 
                             type="number" 
@@ -115,7 +115,7 @@
                             placeholder="m²"
                             id="area-d1" 
                             name="area-d1"
-                            value="0" />
+                            value="" />
                         <input
                             class="d2 input-shed" 
                             type="number" 
@@ -123,7 +123,7 @@
                             placeholder="m²"
                             id="area-d2" 
                             name="area-d2"
-                            value="0" />
+                            value="" />
                     </section>  
                 </div>
             </div>
@@ -176,11 +176,47 @@
             </div>
 
             <div class="container-calculate">
-                <button method="POST" form="" class="btn-calculate" id="calculate">
+                <button method="POST" form="" class="btn-calculate" id="calculateAngle">
                     Calcular
                 </button>
+                <button form="" class="btn-calculate" id="calculateDimension">
+                    Divisão dos Ventos
+                </button>
             </div>
+
+            
         </div>
+
+        <div id="modal-wrapper" class="modal-wrapper on">
+            <div class="modal">
+
+                <h3>Comprimento de influência do Wind</h3>
+                <div class="WindDirection">
+                    <section class="grid-wind-0 template-wind-0">
+                        <img id="wind-0" class="img-wind-0" src="/assets/wind0.svg"> 
+                        <span class="a1-0">1</span>
+                        <span class="a2-0">1</span>
+                        <span class="a3-0">1</span>
+                        <span class="d-0">1</span>
+                    </section>
+                    <section class="grid-wind-90 template-wind-90">
+                        <img id="img-wind-90" src="/assets/wind90.svg"> 
+                        <span class="a-0">2</span>
+                        <span class="b-0">2</span>
+                        <span class="c1-0">2</span>
+                        <span class="c2-0">2</span>
+                        <span class="d1-0">2</span>
+                        <span class="d2-0">2</span>
+                    </section>
+                    
+                </div>
+              <footer>
+                <button form="" class="btn-close" id="btn-close">
+                   Fechar
+                </button>
+              </footer>
+        </div>
+
     </div>
    
   

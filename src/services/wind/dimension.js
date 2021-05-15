@@ -1,5 +1,5 @@
 
-// const dimensionWind_0 = ((widthShed, lenghtShed, heightShed) => {
+// const getDimensionWind90 = ((widthShed, lenghtShed, heightShed) => {
 //     let dimension = new Object
 //     let length_A1
 
@@ -40,7 +40,7 @@
 //     return dimension
 // });
 
-// const dimensionWind_90 =((widthShed, lenghtShed, heightShed) => {
+// const getDimensionWind90 =((widthShed, lenghtShed, heightShed) => {
 //     let dimension = new Object
 
 //     const comparete_1 = widthShed / 2
@@ -65,24 +65,21 @@
 //     return dimension
 // });
 
-
-// const teste = ((widthShed, lenghtShed, heightShed) => {
-//     return [{nome:'Ronaldo'},{Sobrenome:'Oliveira'}]
-// })
-
-// const Height_Roof = ((widthShed, angleRoof) => {
-//     const teste =widthShed/2 //180/Math.PI
-//     const oi = (Math.tan(angleRoof) / (teste))
-//     console.log(teste,oi)
-//     return {'hightRoof': (oi).toFixed(2)}
-// });
-
 const Angle_Roof = ((widthShed, heightRoof) => {
     return {'angleRoof': (Math.atan(heightRoof/(widthShed/2))*(180/Math.PI)).toFixed(2)}
 });
 
 module.exports = {
-    get(widthShed,heightRoof) {
+    getAngle(widthShed,heightRoof) {
         return Angle_Roof(widthShed,heightRoof)
     }
+
+    // getDimensionsShed(){
+    //     const Wind_0 = getDimensionWind0()
+    //     const Wind_90 = getDimensionWind90()
+
+    //     return {
+
+    //     }
+    // }
 }

@@ -4,19 +4,19 @@ const indexWind = ((req, res) => {
     return res.render('index')
 });
 
-// const SeparetedDimensional = ((req, res) => {
-    // const oi= 'oi'
-    // const Dimension = dimensionWind_0.teste(20,10,5)
-    // console.log(Dimension)
-    // return res.json(Dimension)
-// });
-
 const DimensionAngle = ((req, res) => {
     const {width, height} = req.body
-    const GetDimension = Dimension.get(width, height)
+    const GetDimension = Dimension.getAngle(width, height)
     return res.json(GetDimension)
 
 })
+
+
+// const DimensionShedWind = ((req, res) => {
+
+//     const GetDimension = Dimension.getDimensionsShed(width, height)
+
+// })
 
 module.exports = {
     indexWind,

@@ -1,9 +1,15 @@
-#container {
 
+#body,#home-container {
+  height: 100vh;
+
+}
+
+#container {
   display: flex;
   justify-content: center;
   top: 7rem;
   margin-left: 13rem;
+  /* height: 100%; */
 }
 
 .content-container {

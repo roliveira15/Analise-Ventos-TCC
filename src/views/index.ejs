@@ -26,47 +26,49 @@
         <main id="body">
 
             <%- include('parts/sidebar') %>
+                <div id="home-container">
+                    <div id="container">
+                        <div class="content-container">
+                            <div class="header-container">
+                                <h2 class="tittle">Ventos</h2>
+                            </div>
+                            </hr>
+                                <div class="form-container">
+                                    <form id="form-wind" action="" method="post">
+                                        
+                                        <%- include('parts/wind/dimension') %>
 
-            <div id="container">
-                <div class="content-container">
-                    <div class="header-container">
-                        <h2 class="tittle">Ventos</h2>
-                    </div>
-                    </hr>
-                    <div class="form-container">
-                        <form id="form-wind" action="" method="post">
-                            
-                            <%- include('parts/wind/dimension') %>
+                                        <%- include('parts/wind/wind') %>
 
-                            <%- include('parts/wind/wind') %>
+                                        <%- include('parts/wind/s1') %>
 
-                            <%- include('parts/wind/s1') %>
+                                        <%- include('parts/wind/s2') %>
 
-                            <%- include('parts/wind/s2') %>
+                                        <%- include('parts/wind/s3') %>
 
-                            <%- include('parts/wind/s3') %>
+                                        <%- include('parts/wind/cpewall') %>
+                                        
+                                        <%- include('parts/wind/cperoof') %>
 
-                            <%- include('parts/wind/cpewall') %>
-                            
-                            <%- include('parts/wind/cperoof') %>
+                                        <%- include('parts/wind/cpi') %>
 
-                            <%- include('parts/wind/cpi') %>
+                                        <%- include('parts/wind/effort') %>
 
-                            <%- include('parts/wind/effort') %>
+                                        <%- include('parts/wind/summary') %>
+                                        
+                                    </form>
+                                </div>
 
-                            <%- include('parts/wind/summary') %>
-                            
-                        </form>
-                    </div>
-                    <div class="btn-container">
-                        <div class="btn-from">
-                            <button form="Form-wind" type="button" id="prevBtn">Voltar</button>
-                            <button form="Form-wind" type="button" id="nextBtn">Avançar</button>
+                            <div class="btn-container">
+                                <div class="btn-from">
+                                    <button form="Form-wind" type="button" id="prevBtn">Voltar</button>
+                                    <button form="Form-wind" type="button" id="nextBtn">Avançar</button>
+                                </div>
+                            </div>
                         </div>
+                        
                     </div>
-                </div>
-                
-            </div>
+                </div>  
         </main>
 
         <!-- <%- include('parts/footer') %> -->
