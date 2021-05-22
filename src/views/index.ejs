@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="/styles/toolbar.css">
         <link rel="stylesheet" href="/styles/form.css">
         <link rel="stylesheet" href="/styles/parts/wind/dimension.css">
+        <link rel="stylesheet" href="/styles/parts/wind/wind.css">
         <link rel="stylesheet" href="/styles/sidebar.css">
         <link rel="sortcut icon" href="/assets/engineer.svg">
         <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -26,12 +27,21 @@
         <main id="body">
 
             <%- include('parts/sidebar') %>
+
                 <div id="home-container">
+
+                    <div id="messageError" class="messageError">
+                        <img id="img-warning" src="/assets/warning.svg"> 
+                        <span id="messageText"></span>
+                    </div>
+                    
                     <div id="container">
                         <div class="content-container">
+                            
                             <div class="header-container">
                                 <h2 class="tittle">Ventos</h2>
                             </div>
+
                             </hr>
                                 <div class="form-container">
                                     <form id="form-wind" action="" method="post">

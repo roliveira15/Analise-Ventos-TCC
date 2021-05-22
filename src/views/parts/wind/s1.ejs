@@ -1,40 +1,65 @@
-<div class="stage-S1 tab" id="2">
+<div class="stage-S1 tab">
+    <div class="container-s1">
+        <div class="s1-dimension">
 
-    <input 
-            type="checkbox" 
-            id="s1-1"
-            name="s1-1"/>
-    <label for="s1-1">Terreno plano ou fracamento acidentado</label>
-                               
-            <input 
-            type="checkbox" 
-            id="s1-2"
-            name="s1-2"/>
-    <label for="s1-2">Vales profundos protegidos de morro em qualquer direção</label>
-    
-    
-    <input 
-            type="checkbox" 
-            id="s1-3"
-            name="s1-3"/>
-    <label for="s1-3">Taludes e morros</label>
+            <div class="s1-radio">
+                <div class="s1-1">
+                    <input 
+                            type="radio" 
+                            id="s1-1"
+                            name="s1-1"/>
+                    <label for="s1-1">Terreno plano ou fracamento acidentado</label>
+                </div> 
 
-    <div class="dimension-">
-        <label for="widthShed">θ</label>
-        <input 
-            type="number" 
-            id="slopesHillsAng"
-            name="slopesHillsAng"/>
-        <label for="slopesHillsAng">d</label>
-        <input 
-            type="number" 
-            id="widthShed"
-            name="widthShed"/>
-        <label for="widthShed">Z</label>
-        <input 
-            type="number" 
-            id="widthShed"
-            name="widthShed"/>
-        
+                <div class="s1-2">               
+                    <input 
+                            type="radio" 
+                            id="s1-2"
+                            name="s1-1"/>
+                    <label for="s1-2">Vales profundos protegidos de morro em qualquer direção</label>
+                </div> 
+
+                <div class="s1-3">   
+                    <input 
+                            type="radio" 
+                            id="s1-3"
+                            name="s1-1"/>
+                    <label for="s1-3">Taludes e morros</label>
+                </div> 
+            </div>
+
+            <div class="dimension-Hills" id="dimension-Hills">
+                <div class="dim-slopesHillsAng">
+                    <label for="slopesHillsAng">θ</label>
+                    <input 
+                        type="number" 
+                        id="slopesHillsAng"
+                        name="slopesHillsAng"/>
+                </div> 
+
+                <div class="dim-distanceHills">
+                    <label for="distanceHills">d</label>
+                    <input 
+                        type="number" 
+                        id="distanceHills"
+                        name="distanceHills"/>
+                
+                </div> 
+
+                <div class="dim-heightHills">
+                    <label for="heightHills">Z</label>
+                    <input 
+                        type="number" 
+                        id="heightHills"
+                        name="heightHills"/>
+
+                </div> 
+                
+            </div>
+        </div>
+
+        <div class="s1-img">
+            <img src="/assets/Slope-Topographic-Factor.svg" alt="">
+        </div>
     </div>
 </div>

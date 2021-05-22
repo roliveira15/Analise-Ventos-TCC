@@ -22,7 +22,7 @@
                                     placeholder="b(m)"
                                     id="widthShed" 
                                     name="widthShed"
-                                    value="" />
+                                    value="10" />
 
                             <input 
                                     class="input-shed lenght"
@@ -31,7 +31,7 @@
                                     placeholder="a(m)"
                                     id="lenghtShed"
                                     name="lenghtShed"
-                                    value="" />
+                                    value="20" />
                         </section>
                     </div>
                 </div>
@@ -141,7 +141,7 @@
                                     <path class = "hover-image" d="M200.881 63.5203L102.5 6.71159L102.5 3.50014L102.5 0.866781L203.381 59.19L200.881 63.5203Z" fill="#C4C4C4" stroke="black"/>
                                     <rect class = "hover-image" x="14.5" y="176.498" width="177" height="5" fill="#C4C4C4" stroke="black"/>
                                 </svg>
-                                <span id="angleRoof" class="input-shed angle-Roof" > 0 </span>
+                                <span id="angleRoof" class="input-shed angle-Roof" >0</span>
                                 <!-- <input 
                                     class="input-shed angle-Roof"
                                     type="number" 
@@ -159,7 +159,7 @@
                                     placeholder="h(m)"
                                     id="heightRoof" 
                                     name="heightRoof"
-                                    value="" />
+                                    value="1.4" />
                             
                             <input 
                                     class="input-shed height-shed"
@@ -168,7 +168,7 @@
                                     placeholder="h(m)"
                                     id="heightShed" 
                                     name="heightShed"
-                                    value="" /> 
+                                    value="5" /> 
 
                         </section>
                     </div>
@@ -176,9 +176,9 @@
             </div>
 
             <div class="container-calculate">
-                <button method="POST" form="" class="btn-calculate" id="calculateAngle">
+                <!-- <button method="POST" form="" class="btn-calculate" id="calculateAngle">
                     Calcular
-                </button>
+                </button> -->
                 <button form="" class="btn-calculate" id="calculateDimension">
                     Divisão dos Ventos
                 </button>
@@ -186,39 +186,33 @@
 
             
         </div>
-
-        <div id="modal-wrapper" class="modal-wrapper on">
-            <div class="modal">
-
-                <h3>Comprimento de influência do Wind</h3>
-                <div class="WindDirection">
-                    <section class="grid-wind-0 template-wind-0">
-                        <img id="wind-0" class="img-wind-0" src="/assets/wind0.svg"> 
-                        <span class="a1-0">1</span>
-                        <span class="a2-0">1</span>
-                        <span class="a3-0">1</span>
-                        <span class="d-0">1</span>
-                    </section>
-                    <section class="grid-wind-90 template-wind-90">
-                        <img id="img-wind-90" src="/assets/wind90.svg"> 
-                        <span class="a-0">2</span>
-                        <span class="b-0">2</span>
-                        <span class="c1-0">2</span>
-                        <span class="c2-0">2</span>
-                        <span class="d1-0">2</span>
-                        <span class="d2-0">2</span>
-                    </section>
-                    
-                </div>
-              <footer>
-                <button form="" class="btn-close" id="btn-close">
-                   Fechar
-                </button>
-              </footer>
+        <div id="container-modal" class="container-modal">
+            <div id="modal-wrapper" class="modal-wrapper">
+                <div class="modal">
+                    <h3>Comprimento de influência do Vento</h3>
+                    <div class="WindDirection">
+                        <section class="grid-wind-0 template-wind-0">
+                            <img id="wind-0" class="img-wind-0" src="/assets/wind0.svg"> 
+                            <span id="a1-0" class="a1-0">1</span>
+                            <span id="a2-0" class="a2-0">1</span>
+                            <span id="a3-0" class="a3-0">1</span>
+                            <span id="d-0" class="d-0">1</span>
+                        </section>
+                        <section class="grid-wind-90 template-wind-90">
+                            <img id="wind-90" class="img-wind-90" src="/assets/wind90.svg"> 
+                            <span id="b-90" class="b-90">2</span>
+                            <span id="d1-90" class="d1-90">2</span>
+                            <span id="d2-90" class="d2-90">2</span>
+                        </section>
+                        
+                    </div>
+                <footer>
+                    <button form="" class="btn-close" id="btn-close">
+                    Fechar
+                    </button>
+                </footer>
+            </div>
         </div>
-
+        </div>
     </div>
-   
-  
-    
 </div>

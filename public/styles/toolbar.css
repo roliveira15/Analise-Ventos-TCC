@@ -99,7 +99,7 @@ button.auxiliar:hover {
 }
 
 /* Responsive =============== */
-@media (max-width: 860px) {
+/* @media (max-width: 860px) {
     
     html{
         font-size: 0.8rem;
@@ -144,4 +144,4 @@ button.auxiliar:hover {
         height: 1.8rem;
     }
 
-}
+} */

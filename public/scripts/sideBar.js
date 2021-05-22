@@ -1,11 +1,12 @@
 const SideBar = {
 
+
   openClosed(){
     const widhtOpen = "13rem";
     const widhtClose = "3.5rem";
     const sideProprietary = document.getElementById('sidebar');
     const container = document.getElementById('container');
-    const footer = document.getElementById('footer');
+    const modal = document.getElementById('modal-wrapper');
 
     const expandlist = document.getElementById('feat-show');
     const caret = document.getElementById('caret');
@@ -14,13 +15,13 @@ const SideBar = {
     if(classAtive) {
       expandlist.classList.remove("active-ul");
       container.style.marginLeft = widhtClose;
-      // footer.style.marginLeft = widhtClose;
+      modal.style.marginLeft = widhtClose;
       
     } else {
       expandlist.classList.toggle("active-ul");
       caret.classList.toggle("rotate");
       container.style.marginLeft = widhtOpen;
-      // footer.style.marginLeft = widhtOpen;
+      modal.style.marginLeft = widhtOpen;
     }
   },
 
@@ -30,7 +31,6 @@ const SideBar = {
     document.getElementById('data-list').classList.toggle('list-item');
 
     SideBar.openClosed()
-
   }
 }
 

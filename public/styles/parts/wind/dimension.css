@@ -2,7 +2,9 @@
 #form-wind,.stage-Dimension,.shed,.container-shed {
     height: 100%;
 }
-
+#home-container {
+    overflow: hidden;
+}
 .container-shed{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -184,12 +186,12 @@ input[type=number]::-webkit-inner-spin-button {
     opacity: 0;
   }
   
-  .modal-wrapper.on {
+.modal-wrapper.on {
     height: 100vh;
-    width: 100vw;
+    width: 100%;
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 4rem;
+    left: 0rem;
     background: rgba(0, 0, 0, 0.1);  
     display: flex;
     justify-content: center;
@@ -197,7 +199,7 @@ input[type=number]::-webkit-inner-spin-button {
     visibility: visible;
     opacity: 1;
     z-index: 20;
-  }
+}
   
 .modal {
     background: #fff;
@@ -208,11 +210,10 @@ input[type=number]::-webkit-inner-spin-button {
 }
 
 .modal h3 {
+    font-size: 1rem;
+    line-height: 2.625rem;
+    margin-bottom: .2rem;
 
-font-size: 1rem;
-line-height: 2.625rem;
-
-margin-bottom: .2rem;
 }
 
 .WindDirection{
@@ -220,6 +221,9 @@ margin-bottom: .2rem;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
 }
+
+
+/* -----------------------------Wind 0 */
 
 .template-wind-0 {
     display: grid;
@@ -238,7 +242,6 @@ margin-bottom: .2rem;
 .a1-0,.a2-0 {
     display:flex;
     justify-content: center;
-
 }
 
 .a2-0 {
@@ -258,6 +261,40 @@ margin-bottom: .2rem;
 
 .d-0 {
     grid-area: d-0;
+}
+
+/* -----------------------------Wind 90 */
+
+.template-wind-90 {
+    display: grid;
+    grid-template:
+        "img-wind-90 img-wind-90 img-wind-90 b-90" 
+        "img-wind-90 img-wind-90 img-wind-90 b-90" 
+        "d1-90 d1-90 d2-90 d2-90" 
+}
+
+.b-90 {
+    display:flex;
+    align-items: center;
+    grid-area: b-90;
+}
+
+.d1-90 {
+    position: relative;
+    left: -30px;
+    text-align:right;
+    grid-area: d1-90;
+}
+
+.d2-90 {
+    position: relative;
+    left: 10px;
+    text-align:left;
+    grid-area: d2-90;
+}
+
+.img-wind-90 {
+    grid-area: img-wind-90;
 }
 
 

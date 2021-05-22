@@ -7,11 +7,12 @@ const $lenghtShed = document.getElementById('lenghtShed');
 const $btnCalc_Shed = document.getElementById("calculateAngle");
 const $btnCalc_Dim = document.getElementById("calculateDimension");
 const $btnClose = document.getElementById("btn-close");
-
-
+const $messageError = document.getElementById("messageError");
+const $messageText = document.getElementById("messageText");
 
 let $loadSVG = document.getElementById('img-waterproof');
 
+// Waterproof
 const $a1 = document.getElementById('area-a1');
 const $a2 = document.getElementById('area-a2');
 const $a3 = document.getElementById('area-a3');
@@ -23,8 +24,22 @@ const $c2 = document.getElementById('area-c2');
 const $d1 = document.getElementById('area-d1');
 const $d2 = document.getElementById('area-d2');
 
+// Wind Dimension
+const $dimension_wind_a1 = document.getElementById('a1-0');
+const $dimension_wind_a2 = document.getElementById('a2-0');
+const $dimension_wind_a3 = document.getElementById('a3-0');
+const $dimension_wind_b = document.getElementById('b-90');
+const $dimension_wind_d = document.getElementById('d-0');
+const $dimension_wind_d1 = document.getElementById('d1-90');
+const $dimension_wind_d2 = document.getElementById('d2-90');
 var currentTab = 0
 
+const $s1_slopes_hill_3 = document.getElementById('s1-3')
+const $s1_slopes_hill_1 = document.getElementById('s1-1')
+const $s1_slopes_hill_2 = document.getElementById('s1-2')
+const $slopesHillsAng = document.getElementById('slopesHillsAng')
+const $heightHills = document.getElementById('heightHills')
+const $distanceHills = document.getElementById('distanceHills')
 
 const view = {
     getDimensionsRoof() {
@@ -36,6 +51,14 @@ const view = {
         }
     },
 
+    getSlopesHills(){
+        return {
+            angle: $slopesHillsAng.value,
+            height: $heightHills.value,
+            distance: $distanceHills.value
+        }
+    },
+    
     setAngle(angle) {
         $angleRoof.innerText = angle;
     },
@@ -50,8 +73,29 @@ const view = {
 
     setLength(length) {
         $lenghtShed.innerText = length;
-    }
+    },
 
+    dimensionWind({A1, A2, A3, D, B, D1, D2}){
+        $dimension_wind_a1.innerText = `${A1}m`;
+        $dimension_wind_a2.innerText = `${A2}m`;
+        $dimension_wind_a3.innerText = `${A3}m`;
+        $dimension_wind_b.innerText = `${B}m`;
+        $dimension_wind_d.innerText = `${D}m`;
+        $dimension_wind_d1.innerText = `${D1}m`;
+        $dimension_wind_d2.innerText = `${D2}m`;
+    },
+
+    updateSlopesHills(angle,height,distance) {
+ 
+        $slopesHillsAng.value = angle;
+        $heightHills.value = height;
+        $distanceHills.value = distance;
+ 
+    },
+
+    setMessageInform(message){
+        $messageText.innerText = message;
+    }
 }
 
 const services = {
@@ -78,25 +122,23 @@ const services = {
         }
     },
 
-    validationDimension({length,width,height,angle}){
-        let verification,messageInform
+    validationDimension({width, height, length}){
 
-        if(width> length ){
-            verification  = false;
-            messageInform = 'O valor de a(m) deverá obrigatoriamente maior que o b(m)'
+        let verification  = false
+        let messageInform = ''
+
             
-        }else if(length == ''){
-            verification  = false;
+        if(length == ''){
             messageInform = 'Favor informar o comprimento a(m) do pavilhão'
             
         } else if(width == ''){
-            verification  = false;
             messageInform = 'Favor informar o largura b(m) do pavilhão'
             
         } else if(height == ''){
-            verification  = false;
             messageInform = 'Favor informar o altura h(m) do pavilhão'
 
+        } else if((Number(width) > Number(length))){
+                messageInform = 'O valor de a(m) deverá ser obrigatoriamente maior que o b(m)'
         } else {
             verification  = true; 
         }
@@ -107,7 +149,17 @@ const services = {
 }
 
 const controller = {
-    initialize() {         
+
+    calulateAngle(dimensionRoof){
+        
+        services.getRequest('/dimensionShed',dimensionRoof)
+                        .then((resp) => {
+                            view.setAngle(resp.angleRoof)
+                        })
+    },
+
+    initialize() {  
+
         $nextBtn.addEventListener('click', (evt) => {
             formStep.nextPrev(1)
         });
@@ -116,18 +168,10 @@ const controller = {
             formStep.nextPrev(-1)
         });
 
-        $btnCalc_Shed.addEventListener('click', (evt) => {
+        $heightRoof.addEventListener('change', (evt) => {
             const dimensionRoof = view.getDimensionsRoof()
-            const {verification, messageInform} = services.validationDimension(dimensionRoof)
-            
-            if (verification) {
-                services.getRequest('/dimensionShed',dimensionRoof)
-                            .then((resp) => {
-                                view.setAngle(resp.angleRoof)
-                            })
-            } else {
-                alert(messageInform)
-            }
+            this.calulateAngle(dimensionRoof)
+
 
         });
 
@@ -143,10 +187,26 @@ const controller = {
                 })            
         });
 
-        this.initializeImageWaterproof();
-
         $btnCalc_Dim.addEventListener('click', (evt) => {
-            document.getElementById('modal-wrapper').classList.toggle('on');
+
+            const dimensionRoof = view.getDimensionsRoof()
+            const {verification, messageInform} = services.validationDimension(dimensionRoof)
+        
+            if (verification) {
+                document.getElementById('modal-wrapper').classList.toggle('on');
+                
+                services.getRequest('/dimensionWind',dimensionRoof)
+                            .then((resp) => {
+                                view.dimensionWind(resp)
+                            })
+                
+                this.calulateAngle(dimensionRoof)
+                $messageError.classList.remove("messageError-on")
+                
+            } else {
+                $messageError.classList.add("messageError-on")
+                view.setMessageInform(messageInform)
+            }
 
         });
 
@@ -155,7 +215,47 @@ const controller = {
 
         });
 
+        $s1_slopes_hill_3.addEventListener('click', (evt) => {
 
+            const dimensioHills = document.getElementById('dimension-Hills')
+            dimensioHills.classList.add('on-dimension-Hills');
+
+        });
+
+        $s1_slopes_hill_1.addEventListener('click', (evt) => {
+            view.updateSlopesHills('','','')
+            const dimensioHills = document.getElementById('dimension-Hills')
+            dimensioHills.classList.remove('on-dimension-Hills');
+
+        });
+
+        $s1_slopes_hill_2.addEventListener('click', (evt) => {
+            view.updateSlopesHills('','','')
+            const dimensioHills = document.getElementById('dimension-Hills')
+            dimensioHills.classList.remove('on-dimension-Hills');
+
+        });
+
+        this.initializeImageWaterproof();
+
+        this.sizeModal();
+
+    },
+
+    sizeModal(){
+        const widhtOpen = "13rem";
+        const widhtClose = "3.5rem";
+        const sideProprietary = document.getElementById('sidebar');
+        const modal = document.getElementById('modal-wrapper');
+        const classAtive = (sideProprietary.classList == 'active')
+    
+        if(classAtive) {
+            modal.style.marginLeft = widhtClose;
+            
+        } else {
+            modal.style.marginLeft = widhtOpen;
+        }
+    
     },
 
     initializeImageWaterproof(){
@@ -218,6 +318,39 @@ const controller = {
 }
 
 const formStep = {
+
+    validateForm(n) {
+        let verification = true;
+        let messageInform = '';
+
+        if(n==1) {
+            const dimensionRoof = view.getDimensionsRoof()
+            const {verification, messageInform} = services.validationDimension(dimensionRoof)
+        } else if(n==2) {
+
+        } else if(n==3) {
+
+        } else if(n==4) {
+
+        } else if(n==5) {
+
+        } else if(n==6) {
+
+        } else if(n==7) {
+
+        } else if(n==8) {
+
+        } else if(n==9) {
+
+        }
+
+        if (verification) {
+            document.getElementsByClassName("step")[currentTab].className += " finish";
+        }
+
+        return {verification, messageInform}
+    },
+
     showTab(n) {
 
         let tab = document.getElementsByClassName("tab");
@@ -242,37 +375,28 @@ const formStep = {
     nextPrev(n) {
 
         let tab = document.getElementsByClassName("tab");
-        if (n == 1 && !this.validateForm()) return false;
-        tab[currentTab].style.display = "none";
-        currentTab = currentTab + n;
 
-        if (currentTab >= tab.length) {
-            document.getElementById("Form-wind").submit();
-            return false;
-        }
+        const {verification, messageInform} = this.validateForm(n) 
 
-        this.showTab(currentTab);
+        console.log(verification, messageInform, 'oi')
 
-    },
+        if (verification) {
+           
+            tab[currentTab].style.display = "none";
+            currentTab = currentTab + n;
 
-    validateForm() {
-
-        let i, valid = true;
-        let tab = document.getElementsByClassName("tab");
-        let input = tab[currentTab].getElementsByTagName("input");
-
-        for (i = 0; i < input.length; i++) {
-
-            if (input[i].value == "") {
-                input[i].className += " invalid";
-                valid = false;
+            if (currentTab >= tab.length) {
+                document.getElementById("Form-wind").submit();
+                return false;
             }
+
+            this.showTab(currentTab);
+
+        } else {
+            alert(messageInform)
         }
 
-        if (valid) {
-            document.getElementsByClassName("step")[currentTab].className += " finish";
-        }
-        return valid;
+
     },
 
     fixStepIndicator(n) {

@@ -1,10 +1,38 @@
-/* .isopletas {
+.content-wind {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wind-value {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#speedWind {
+    text-align: center;
+    margin-left: 8px;
+    width: 50px;
+}
+
+/* ---------- taludes e morros */
+.container-s1{
     display: flex;
     justify-content: center;
     align-items: center;
+    
+}
+.dimension-Hills{
+    display: none;
 }
 
-.img-isopletas {
-    width: 330px;
-    height:450px;
-} */
+.on-dimension-Hills {
+    display: block;
+}
+
+.s1-1,.s1-2,.s1-3 {
+    margin-top: 2rem;
+}
+
+/* ---------- S*/
