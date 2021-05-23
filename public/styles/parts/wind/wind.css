@@ -35,4 +35,39 @@
     margin-top: 2rem;
 }
 
-/* ---------- S*/
+/* ---------- S2*/
+.table-category {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.85em;
+    font-family: sans-serif;
+    min-width: 400px;
+    border-radius: 10px;
+    /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.15); */
+}
+
+.table-category thead tr {
+    background-color: #adb5bd;
+    color: #ffffff;
+    text-align: center;
+}
+.table-category th,
+.table-category td {
+    padding: 7px 8px;
+}
+
+.table-category tbody tr {
+    border-bottom: 1px solid #ced4da;
+}
+
+.table-category tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.table-category tbody tr:last-of-type {
+    border-bottom: 2px solid #ced4da;
+}
+.table-category  tbody tr.active-row {
+    font-weight: bold;
+    color: #adb5bd;
+}

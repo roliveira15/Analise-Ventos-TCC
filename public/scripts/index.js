@@ -1,6 +1,8 @@
 const $nextBtn = document.getElementById('nextBtn');
 const $prevBtn = document.getElementById('prevBtn');
 const $heightRoof = document.getElementById('heightRoof');
+const $heightShed = document.getElementById('heightShed');
+
 const $angleRoof = document.getElementById('angleRoof');
 const $widthShed = document.getElementById('widthShed');
 const $lenghtShed = document.getElementById('lenghtShed');
@@ -32,7 +34,7 @@ const $dimension_wind_b = document.getElementById('b-90');
 const $dimension_wind_d = document.getElementById('d-0');
 const $dimension_wind_d1 = document.getElementById('d1-90');
 const $dimension_wind_d2 = document.getElementById('d2-90');
-var currentTab = 0
+var currentTab =5
 
 const $s1_slopes_hill_3 = document.getElementById('s1-3')
 const $s1_slopes_hill_1 = document.getElementById('s1-1')
@@ -42,12 +44,13 @@ const $heightHills = document.getElementById('heightHills')
 const $distanceHills = document.getElementById('distanceHills')
 
 const view = {
-    getDimensionsRoof() {
+    getDimensionsShed() {
         return {
-            height: $heightRoof.value,
+            heightRoof: $heightRoof.value,
             angle: $angleRoof.value,
             width: $widthShed.value,
-            length: $lenghtShed.value
+            length: $lenghtShed.value,
+            height: $heightShed.value,
         }
     },
 
@@ -58,7 +61,15 @@ const view = {
             distance: $distanceHills.value
         }
     },
-    
+
+    getValueS1(){
+        return {
+            flatTerrain: $s1_slopes_hill_1.checked,
+            deepValleys: $s1_slopes_hill_2.checked,
+            slopeshill: $s1_slopes_hill_3.checked
+        }
+    },
+
     setAngle(angle) {
         $angleRoof.innerText = angle;
     },
@@ -122,33 +133,110 @@ const services = {
         }
     },
 
-    validationDimension({width, height, length}){
-
+    validationDimension({width, height, length, heightRoof}){
         let verification  = false
-        let messageInform = ''
 
-            
-        if(length == ''){
-            messageInform = 'Favor informar o comprimento a(m) do pavilhão'
-            
-        } else if(width == ''){
-            messageInform = 'Favor informar o largura b(m) do pavilhão'
-            
-        } else if(height == ''){
-            messageInform = 'Favor informar o altura h(m) do pavilhão'
+        try{
+            if(length == ''){
+                throw 'Favor informar o comprimento a(m) do pavilhão'
+                
+            } else if(width == ''){
+                throw 'Favor informar o largura b(m) do pavilhão'
+                
+            } else if(height == ''){
+                throw 'Favor informar o altura h(m) do pavilhão'
 
-        } else if((Number(width) > Number(length))){
-                messageInform = 'O valor de a(m) deverá ser obrigatoriamente maior que o b(m)'
-        } else {
-            verification  = true; 
+            } else if(heightRoof == ''){
+                throw 'Favor informar o altura do h(m) do pavilhão'
+
+            } else if((Number(width) > Number(length))){
+
+                throw 'O valor de a(m) deverá ser obrigatoriamente maior que o b(m)'
+            } else {
+                verification  = true; 
+            }
+            $messageError.classList.remove("messageError-on")
+        
+        }catch(e){
+                   
+            $messageError.classList.add("messageError-on")
+            view.setMessageInform(e)
         }
 
-        return {'verification': verification, 
-                'messageInform' : messageInform}
+        return verification
+                
+    },
+
+    validationFatorS1({angle, height, distance}){
+        let verification  = false
+
+        try{
+            if(angle == ''){
+                throw 'Favor informar o ângulo (θ) de inclinação do terreno'
+                
+            } else if(distance == ''){
+                throw 'Favor informar a diferença de nível entre a base e o topo de morro ou talude (d)'
+                
+            } else if(height == ''){
+                throw 'Favor informar a cota acima do terreno (Z)'
+
+            } else {
+                verification  = true; 
+            }
+
+            $messageError.classList.remove("messageError-on")
+        
+        }catch(e){
+    
+            $messageError.classList.add("messageError-on")
+            view.setMessageInform(e)
+        }
+        return verification 
+    },
+
+    validationFatorS2(){        
+    },
+    
+    validationCpeWall(){     
+    },
+    
+    validationCpeRoof(){         
+    },
+
+    validationCpi(){         
     }
+
 }
 
 const controller = {
+
+    wallCoefficients(){
+        const dimensionShed = view.getDimensionsShed()
+        services.getRequest('/wallCoefficients',dimensionShed)
+                    .then((resp) => {
+                        console.log(resp)
+                    })
+    },
+
+
+    ErrorDimension (){
+        const dimensionRoof = view.getDimensionsShed()
+        const verification = services.validationDimension(dimensionRoof)
+        return verification
+    },
+
+    ErrorFatorS1 (){
+        let verification = true
+        const SlopesHills = view.getSlopesHills()
+        const {slopeshill} = view.getValueS1()
+
+        if(slopeshill == true){
+            verification = services.validationFatorS1(SlopesHills)
+        }
+
+        return verification
+        
+    },
 
     calulateAngle(dimensionRoof){
         
@@ -169,7 +257,7 @@ const controller = {
         });
 
         $heightRoof.addEventListener('change', (evt) => {
-            const dimensionRoof = view.getDimensionsRoof()
+            const dimensionRoof = view.getDimensionsShed()
             this.calulateAngle(dimensionRoof)
 
 
@@ -189,9 +277,9 @@ const controller = {
 
         $btnCalc_Dim.addEventListener('click', (evt) => {
 
-            const dimensionRoof = view.getDimensionsRoof()
-            const {verification, messageInform} = services.validationDimension(dimensionRoof)
-        
+            const dimensionRoof = view.getDimensionsShed()
+            const verification = controller.ErrorDimension ()
+
             if (verification) {
                 document.getElementById('modal-wrapper').classList.toggle('on');
                 
@@ -201,11 +289,6 @@ const controller = {
                             })
                 
                 this.calulateAngle(dimensionRoof)
-                $messageError.classList.remove("messageError-on")
-                
-            } else {
-                $messageError.classList.add("messageError-on")
-                view.setMessageInform(messageInform)
             }
 
         });
@@ -226,6 +309,7 @@ const controller = {
             view.updateSlopesHills('','','')
             const dimensioHills = document.getElementById('dimension-Hills')
             dimensioHills.classList.remove('on-dimension-Hills');
+            $messageError.classList.remove("messageError-on")
 
         });
 
@@ -233,6 +317,8 @@ const controller = {
             view.updateSlopesHills('','','')
             const dimensioHills = document.getElementById('dimension-Hills')
             dimensioHills.classList.remove('on-dimension-Hills');
+            $messageError.classList.remove("messageError-on")
+
 
         });
 
@@ -318,37 +404,36 @@ const controller = {
 }
 
 const formStep = {
+    
+    validateForm(valuePage,n) {
+        console.log(valuePage,n)
+        let validation = true
 
-    validateForm(n) {
-        let verification = true;
-        let messageInform = '';
+        if(valuePage==0 && n != -1) {
+            validation = controller.ErrorDimension ()
+        } else if(valuePage==1 && n != -1) {
 
-        if(n==1) {
-            const dimensionRoof = view.getDimensionsRoof()
-            const {verification, messageInform} = services.validationDimension(dimensionRoof)
-        } else if(n==2) {
+        } else if(valuePage==2 && n != -1) {
+           
+            validation = controller.ErrorFatorS1()
+        } else if(valuePage==3 && n != -1) {
+            
+        } else if(valuePage==4 && n != -1) {
+            controller.wallCoefficients()
+        } else if(valuePage==5 && n != -1) {
+            
+        } else if(valuePage==6 && n != -1) {
+            
 
-        } else if(n==3) {
+        } else if(valuePage==7 && n != -1) {
 
-        } else if(n==4) {
+        } else if(valuePage==8 && n != -1) {
 
-        } else if(n==5) {
-
-        } else if(n==6) {
-
-        } else if(n==7) {
-
-        } else if(n==8) {
-
-        } else if(n==9) {
+        } else if(valuePage==9 && n != -1) {
 
         }
-
-        if (verification) {
-            document.getElementsByClassName("step")[currentTab].className += " finish";
-        }
-
-        return {verification, messageInform}
+        
+        return validation
     },
 
     showTab(n) {
@@ -376,12 +461,9 @@ const formStep = {
 
         let tab = document.getElementsByClassName("tab");
 
-        const {verification, messageInform} = this.validateForm(n) 
-
-        console.log(verification, messageInform, 'oi')
+        const verification = this.validateForm(currentTab,n) 
 
         if (verification) {
-           
             tab[currentTab].style.display = "none";
             currentTab = currentTab + n;
 
@@ -390,13 +472,10 @@ const formStep = {
                 return false;
             }
 
+            document.getElementsByClassName("step")[currentTab].className += " finish"; 
             this.showTab(currentTab);
 
-        } else {
-            alert(messageInform)
         }
-
-
     },
 
     fixStepIndicator(n) {
