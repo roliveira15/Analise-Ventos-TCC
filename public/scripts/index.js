@@ -36,12 +36,26 @@ const $dimension_wind_d1 = document.getElementById('d1-90');
 const $dimension_wind_d2 = document.getElementById('d2-90');
 var currentTab =5
 
+// Taludes e morros
 const $s1_slopes_hill_3 = document.getElementById('s1-3')
 const $s1_slopes_hill_1 = document.getElementById('s1-1')
 const $s1_slopes_hill_2 = document.getElementById('s1-2')
 const $slopesHillsAng = document.getElementById('slopesHillsAng')
 const $heightHills = document.getElementById('heightHills')
 const $distanceHills = document.getElementById('distanceHills')
+
+// Coefficientes Wall
+const $cpe_a1_0 = document.getElementById('cpe-a1-0')
+const $cpe_a2_0 = document.getElementById('cpe-a2-0')
+const $cpe_a3_0 = document.getElementById('cpe-a3-0')
+const $cpe_c_0  = document.getElementById('cpe-c-0')
+const $cpe_d_0  = document.getElementById('cpe-d-0')
+
+const $cpe_a_90 = document.getElementById('cpe-a-90')
+const $cpe_b_90 = document.getElementById('cpe-b-90')
+const $cpe_d1_90 = document.getElementById('cpe-d1-90')
+const $cpe_d2_90  = document.getElementById('cpe-d2-90')
+
 
 const view = {
     getDimensionsShed() {
@@ -68,6 +82,20 @@ const view = {
             deepValleys: $s1_slopes_hill_2.checked,
             slopeshill: $s1_slopes_hill_3.checked
         }
+    },
+
+    setCoefficientsWall({A1, A2, A3, C, D, A, B , D1, D2}){
+
+        $cpe_a1_0.innerText = A1;
+        $cpe_a2_0.innerText = A2;
+        $cpe_a3_0.innerText = A3;
+        $cpe_c_0.innerText = C;
+        $cpe_d_0.innerText = D;
+        $cpe_a_90.innerText = A;
+        $cpe_b_90.innerText = B;
+        $cpe_d1_90.innerText = D1;
+        $cpe_d2_90.innerText = D2
+
     },
 
     setAngle(angle) {
@@ -215,7 +243,9 @@ const controller = {
         services.getRequest('/wallCoefficients',dimensionShed)
                     .then((resp) => {
                         console.log(resp)
+                        view.setCoefficientsWall(resp)
                     })
+        
     },
 
 
@@ -411,15 +441,19 @@ const formStep = {
 
         if(valuePage==0 && n != -1) {
             validation = controller.ErrorDimension ()
+
         } else if(valuePage==1 && n != -1) {
 
         } else if(valuePage==2 && n != -1) {
-           
             validation = controller.ErrorFatorS1()
+
         } else if(valuePage==3 && n != -1) {
             
         } else if(valuePage==4 && n != -1) {
+
             controller.wallCoefficients()
+
+
         } else if(valuePage==5 && n != -1) {
             
         } else if(valuePage==6 && n != -1) {

@@ -71,3 +71,125 @@
     font-weight: bold;
     color: #adb5bd;
 }
+
+/* ------------CpeWall */
+.WindDirection-cpewall{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    height: 100%;
+}
+
+.WindDirection-cpewall section,.modal-cpewall{
+    /* height: 100%; */
+}
+
+.stage-Wall{
+    height:100%
+}
+
+#table-cpeWall-0 {
+    text-align: center;
+    width: 300px;
+}
+
+.cpewall{
+    height:100%;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    font-size: 85%;
+}
+
+/* -----------------------------Wind 0 */
+
+.a1-b1{
+    height: 60px;
+    width: 6px
+}
+
+.a3-b3{
+    height: 95px;
+}
+
+.img-cpeWall-0 {
+    position: relative;
+    width: 90px;
+}
+
+#cpe-wind-0 {
+    position: absolute;
+    top: -42px;
+    left: -30px;
+}
+
+.c-header {
+    height: 70px;
+    position: relative;
+    top: -20px;
+    left: 22px;
+}
+
+.d-footer{
+    height: 30px;
+    position: relative;
+    top: 15px;
+    left: 22px;
+}
+
+#cpe-a1-0 {
+    position: relative;
+    left: -10px;
+}
+#cpe-a3-0 {
+    position: relative;
+    left: 10px;
+}
+
+/* -----------------------------Wind 90 */
+/* #cpe-wind-90 {
+    position: relative;
+    top: +10px;
+} */
+
+.cpeWall-0-section,.cpeWall-90-section {
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
+
+.a-a{
+    height:300px;
+}
+
+
+#table-cpeWall-90 {
+    text-align: center;
+    width: 250px;
+    height: 250px;
+}
+.img-cpeWall-90 {
+    position: relative;
+    width: 200px;
+}
+
+#cpe-wind-90 {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.a-a{
+    position: relative;
+    top: 29px;
+}
+
+.cpe-d1-90{
+    position: relative;
+    left: 90px;
+}
+
+.cpe-d2-90{
+    position: relative;
+    left: -75px;
+}
