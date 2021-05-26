@@ -73,15 +73,11 @@
 }
 
 /* ------------CpeWall */
-.WindDirection-cpewall{
+.WindDirection-cpewall {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 50px;
     height: 100%;
-}
-
-.WindDirection-cpewall section,.modal-cpewall{
-    /* height: 100%; */
 }
 
 .stage-Wall{
@@ -102,6 +98,10 @@
 }
 
 /* -----------------------------Wind 0 */
+.title-cpeWall{
+    position: relative;
+    left: 25px;
+}
 
 .a1-b1{
     height: 60px;
@@ -147,11 +147,6 @@
 }
 
 /* -----------------------------Wind 90 */
-/* #cpe-wind-90 {
-    position: relative;
-    top: +10px;
-} */
-
 .cpeWall-0-section,.cpeWall-90-section {
     display: flex;
     align-items: center;
@@ -161,7 +156,6 @@
 .a-a{
     height:300px;
 }
-
 
 #table-cpeWall-90 {
     text-align: center;
@@ -192,4 +186,92 @@
 .cpe-d2-90{
     position: relative;
     left: -75px;
+}
+
+
+
+
+/* -----------------------------Wind 0 */
+
+.WindDirection-cperoof {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    height: 100%;
+}
+
+.stage-Roof{
+    height:100%
+}
+
+#table-cpeRoof-0 {
+    text-align: center;
+    width: 300px;
+}
+
+.cperoof{
+    height:100%;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    font-size: 85%;
+}
+
+#table-cperoof-0{
+    position: relative;
+    top: 40px;
+    text-align: center;
+}
+
+.e-e{
+    height: 55px;
+}
+
+.e-g{
+    height: 50px;
+    width: 45px;
+}
+
+.f-h{
+    height: 77px;
+}
+
+.i-j{
+    height:  88px;
+}
+
+
+.img-cpeRoof-0{
+    position: relative;
+    width: 150px;
+    height: 90px;
+}
+
+
+#cpe-Roof-0{
+    position: absolute;
+    top: -40px;
+    left: 17px;
+}
+
+.title-cpeRoof{
+    position: relative;
+    top: -90px;
+}
+/* -----------------------------Wind 90 */
+
+.e-g.nin, .f-h.nin,.i-j.nin{
+    position: relative;
+    left: 25px
+}
+
+.cpe-img-Roof-90{
+    position: relative;
+    top: -6px;
+}
+
+.WindDirection-cperoof{
+    position: relative;
+    top: -15px;
+    left: 10px;
 }

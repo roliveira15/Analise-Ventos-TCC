@@ -19,17 +19,25 @@ const DimensionShedWind = ((req, res) => {
 
 const WallCoefficients = ((req, res) => {
 
-    const {heightRoof, height, width, length } = req.body
+    const {height, width, length } = req.body
     
     const GetWallCoefficients = Dimension.getWallCoefficients(width,length, height)
     return res.json(GetWallCoefficients)
 })
 
+const roofCoefficients = ((req, res) => {
+
+    const {heightRoof, height, width, length } = req.body
+    
+    const GetWallCoefficients = Dimension.getRoofCoefficients(heightRoof, width,length, height)
+    return res.json(GetWallCoefficients)
+})
 
 module.exports = {
     indexWind,
     DimensionAngle,
     DimensionShedWind,
-    WallCoefficients
+    WallCoefficients,
+    roofCoefficients
 }
 

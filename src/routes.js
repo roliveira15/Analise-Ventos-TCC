@@ -7,5 +7,6 @@ routes.get('/', WindController.indexWind)
 routes.post('/dimensionShed',WindController.DimensionAngle)
 routes.post('/dimensionWind',WindController.DimensionShedWind)
 routes.post('/wallCoefficients',WindController.WallCoefficients)
+routes.post('/roofCoefficients',WindController.roofCoefficients)
 
 module.exports = routes;

@@ -34,7 +34,7 @@ const $dimension_wind_b = document.getElementById('b-90');
 const $dimension_wind_d = document.getElementById('d-0');
 const $dimension_wind_d1 = document.getElementById('d1-90');
 const $dimension_wind_d2 = document.getElementById('d2-90');
-var currentTab =5
+var currentTab = 5
 
 // Taludes e morros
 const $s1_slopes_hill_3 = document.getElementById('s1-3')
@@ -55,6 +55,21 @@ const $cpe_a_90 = document.getElementById('cpe-a-90')
 const $cpe_b_90 = document.getElementById('cpe-b-90')
 const $cpe_d1_90 = document.getElementById('cpe-d1-90')
 const $cpe_d2_90  = document.getElementById('cpe-d2-90')
+
+// Coefficientes Roof
+const $cpe_e_0 = document.getElementById('E_0')
+const $cpe_f_0 = document.getElementById('F_0')
+const $cpe_i_0 = document.getElementById('I_0')
+const $cpe_g_0  = document.getElementById('G_0')
+const $cpe_h_0  = document.getElementById('H_0')
+const $cpe_j_0  = document.getElementById('J_0')
+
+const $cpe_e_90 = document.getElementById('E_90')
+const $cpe_f_90 = document.getElementById('F_90')
+const $cpe_i_90 = document.getElementById('I_90')
+const $cpe_g_90  = document.getElementById('G_90')
+const $cpe_h_90  = document.getElementById('H_90')
+const $cpe_j_90  = document.getElementById('J_90')
 
 
 const view = {
@@ -95,6 +110,26 @@ const view = {
         $cpe_b_90.innerText = B;
         $cpe_d1_90.innerText = D1;
         $cpe_d2_90.innerText = D2
+
+    },
+
+    setCoefficientsRoof({E_0, F_0, I_0, G_0, H_0, J_0, 
+                        E_90, F_90, I_90, G_90, H_90, J_90}){
+
+        $cpe_e_0.innerText = E_0;
+        $cpe_f_0.innerText = F_0;
+        $cpe_i_0.innerText = I_0;
+        $cpe_g_0.innerText = G_0;
+        $cpe_h_0.innerText = H_0;
+        $cpe_i_0.innerText = I_0;
+        $cpe_j_0.innerText = J_0;
+        $cpe_e_90.innerText = E_90;
+        $cpe_f_90.innerText = F_90;
+        $cpe_i_90.innerText = I_90;
+        $cpe_g_90.innerText = G_90;
+        $cpe_h_90.innerText = H_90;
+        $cpe_i_90.innerText = I_90;
+        $cpe_j_90.innerText = J_90;
 
     },
 
@@ -237,6 +272,15 @@ const services = {
 }
 
 const controller = {
+    roofCoefficients(){
+        const dimensionShed = view.getDimensionsShed()
+        services.getRequest('/roofCoefficients',dimensionShed)
+                    .then((resp) => {
+                        console.log(resp)
+                        view.setCoefficientsRoof(resp)
+                    })
+        
+    },
 
     wallCoefficients(){
         const dimensionShed = view.getDimensionsShed()
@@ -444,20 +488,20 @@ const formStep = {
 
         } else if(valuePage==1 && n != -1) {
 
+
         } else if(valuePage==2 && n != -1) {
             validation = controller.ErrorFatorS1()
 
         } else if(valuePage==3 && n != -1) {
             
-        } else if(valuePage==4 && n != -1) {
 
+        } else if(valuePage==4 && n != -1) {
             controller.wallCoefficients()
 
-
         } else if(valuePage==5 && n != -1) {
-            
+            controller.roofCoefficients()
+
         } else if(valuePage==6 && n != -1) {
-            
 
         } else if(valuePage==7 && n != -1) {
 
