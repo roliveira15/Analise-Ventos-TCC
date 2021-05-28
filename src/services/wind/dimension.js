@@ -581,6 +581,7 @@ const CoefficientsRoof_0 = ((angleShed,a_widthShed, b_lenghtShed,h_heightShed) =
     return coefficientsRoof
     
 })
+
 //iNPUT
 const CoefficientsRoof_90 = ((angleShed, b_lenghtShed,h_heightShed) => {
     let coefficientsRoof
@@ -589,6 +590,79 @@ const CoefficientsRoof_90 = ((angleShed, b_lenghtShed,h_heightShed) => {
     coefficientsRoof = externalCoefficientsRoof.includeIJ_90(coefficientsRoof)
     return  coefficientsRoof
 })
+
+
+
+const internalCoefficients = {
+    
+    goal(ci_firts,cpe_waterproof){
+
+        const ci = ci_firts;
+        let acumulado = 0;
+        
+        const Acumulado = cpe_waterproof.map(proof => {
+
+            const face = proof.face
+            const ce = proof.cpe
+            
+            const ce_ci =  ce - ci == 0 ? 0.0001 : ce - ci;
+            
+            const Absolute_CeCi = Math.abs(ce_ci)
+            const valueCalculate =  (Absolute_CeCi / ce_ci) *
+                            (face*Math.sqrt(Absolute_CeCi))
+            acumulado += valueCalculate
+            return ({...proof,
+                valueCalculate,
+                acumulado
+            })
+        })  
+    
+        return Acumulado
+    },
+}
+
+const PointReference = ((cpe_waterproof)=>{
+
+    let value, valuePointReference,accumulatedValue,Coefficient,CoefficientLast  = 0
+    value = 1;
+    const lowestValue = internalCoefficients.goal(value,cpe_waterproof)
+    valuePointReference = Number(lowestValue[lowestValue.length-1]['acumulado'])
+    
+    let Signal = ""
+    const signal = Number(value) < 0 ? "-" : ""
+    let SignalLast = signal
+
+
+    for (let i = 0; i < 100; i = i + Number(signal + 0.1)) {
+
+        Coefficient =  (valuePointReference + i)
+        const newValue = internalCoefficients.goal(Coefficient,cpe_waterproof)
+
+        accumulatedValue = Number(newValue[newValue.length-1]['acumulado'])
+        const verificationZero = Math.floor(accumulatedValue)
+  
+        Signal = accumulatedValue < 1 ? "-" : ""
+        
+        if(SignalLast != Signal || verificationZero == 0) {
+                
+                for (let ii = 0; ii < 100; ii = ii + Number(signal + 0.0001) ) {
+
+                    Coefficient =  (CoefficientLast + ii)
+                    const newValue = internalCoefficients.goal(Coefficient,cpe_waterproof)
+                    accumulatedValue = Number(newValue[newValue.length-1]['acumulado'])
+                    console.log(accumulatedValue)
+                    if(Math.abs(accumulatedValue) < 0.1) {
+                        break;
+                    }
+                }
+                return Coefficient.toFixed(3)
+        }              
+
+        SignalLast = Signal
+        CoefficientLast = Coefficient
+    }
+
+} )
 
 module.exports = {
     getAngle(width,heightRoof) {
@@ -607,10 +681,16 @@ module.exports = {
         return {...Wind_0, ...Wind_90}
     },
 
-    getRoofCoefficients(angle, width,lenght, height){
-        
+    getRoofCoefficients(angle, width,lenght, height){  
         const Wind_0 = CoefficientsRoof_0(angle,width,lenght, height)
         const Wind_90 = CoefficientsRoof_90(angle, lenght, height)
         return {...Wind_0, ...Wind_90}
+    },
+
+    getCpiCoefficients(cpe_waterproof) {
+        const cpi = PointReference(cpe_waterproof)
+        
+        return cpi
     }
+
 }

@@ -181,15 +181,14 @@
 .cpe-d1-90{
     position: relative;
     left: 90px;
+    top: 50px;
 }
 
 .cpe-d2-90{
     position: relative;
-    left: -75px;
+    left: -65px;
+    top: 30px;
 }
-
-
-
 
 /* -----------------------------Wind 0 */
 
@@ -256,6 +255,7 @@
 
 .title-cpeRoof{
     position: relative;
+    left: 12px;
     top: -90px;
 }
 /* -----------------------------Wind 90 */

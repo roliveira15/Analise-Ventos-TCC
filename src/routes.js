@@ -8,5 +8,9 @@ routes.post('/dimensionShed',WindController.DimensionAngle)
 routes.post('/dimensionWind',WindController.DimensionShedWind)
 routes.post('/wallCoefficients',WindController.WallCoefficients)
 routes.post('/roofCoefficients',WindController.roofCoefficients)
+routes.post('/cpiCoefficients',WindController.cpiCoefficients)
+
+
+
 
 module.exports = routes;

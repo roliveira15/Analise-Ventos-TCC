@@ -34,7 +34,7 @@ const $dimension_wind_b = document.getElementById('b-90');
 const $dimension_wind_d = document.getElementById('d-0');
 const $dimension_wind_d1 = document.getElementById('d1-90');
 const $dimension_wind_d2 = document.getElementById('d2-90');
-var currentTab = 5
+var currentTab = 0
 
 // Taludes e morros
 const $s1_slopes_hill_3 = document.getElementById('s1-3')
@@ -73,6 +73,35 @@ const $cpe_j_90  = document.getElementById('J_90')
 
 
 const view = {
+
+    getCoefficientsWall() {
+        return {
+            cpe_a1: $cpe_a1_0.innerText,
+            cpe_a2: $cpe_a2_0.innerText,
+            cpe_a3: $cpe_a3_0.innerText,
+            cpe_b1: $cpe_a1_0.innerText,
+            cpe_b2: $cpe_a2_0.innerText,
+            cpe_b3: $cpe_a3_0.innerText,
+            cpe_c: $cpe_c_0.innerText,
+            cpe_d: $cpe_d_0.innerText,
+            cpe_a: $cpe_a_90.innerText,
+            cpe_b: $cpe_b_90.innerText,
+            cpe_d1: $cpe_d1_90.innerText,
+            cpe_d2: $cpe_d2_90.innerText,
+            cpe_c1: $cpe_d1_90.innerText,
+            cpe_c2: $cpe_d2_90.innerText,
+        }
+    },
+
+    getAreaWaterproof(){
+        return {
+            A1: $a1.value, A2: $a2.value, A3: $a3.value,
+            B1: $b1.value, B2: $b2.value, B3: $b3.value,
+            C1: $c1.value, C2: $c2.value,
+            D1: $d1.value, D2: $d2.value,
+        }
+    },
+
     getDimensionsShed() {
         return {
             heightRoof: $heightRoof.value,
@@ -272,11 +301,56 @@ const services = {
 }
 
 const controller = {
+    cpiCoefficients(){
+        const areaWaterproof = view.getAreaWaterproof()
+        const CoefficientsWall = view.getCoefficientsWall()
+        console.log(Number(areaWaterproof.D1) +  Number(areaWaterproof.D2))
+        const dimension_0 = [
+            {
+                face: Number(areaWaterproof.A1),
+                cpe: Number(CoefficientsWall.cpe_a1),
+            },
+            {
+                face: Number(areaWaterproof.A2),
+                cpe: Number(CoefficientsWall.cpe_a2),
+            },
+            {
+                face: Number(areaWaterproof.A3),
+                cpe: Number(CoefficientsWall.cpe_a3),
+            },
+            {
+                face: Number(areaWaterproof.B1),
+                cpe: Number(CoefficientsWall.cpe_b1),
+            },
+            {
+                face: Number(areaWaterproof.B2),
+                cpe: Number(CoefficientsWall.cpe_b2),
+            },
+            {
+                face: Number(areaWaterproof.B3),
+                cpe: Number(CoefficientsWall.cpe_b3),
+            },
+            {
+                face: Number(areaWaterproof.C1) +  Number(areaWaterproof.C2),
+                cpe: Number(CoefficientsWall.cpe_c),
+            },
+            {
+                face: Number(areaWaterproof.D1) + Number(areaWaterproof.D2),
+                cpe: Number(CoefficientsWall.cpe_d),
+            },
+        ]
+
+        services.getRequest('/cpiCoefficients',dimension_0)
+                    .then((resp) => {
+                        console.log(resp)
+                        // view.setCoefficientsRoof(resp)
+                    })
+    },
+
     roofCoefficients(){
         const dimensionShed = view.getDimensionsShed()
         services.getRequest('/roofCoefficients',dimensionShed)
                     .then((resp) => {
-                        console.log(resp)
                         view.setCoefficientsRoof(resp)
                     })
         
@@ -291,7 +365,6 @@ const controller = {
                     })
         
     },
-
 
     ErrorDimension (){
         const dimensionRoof = view.getDimensionsShed()
@@ -480,7 +553,7 @@ const controller = {
 const formStep = {
     
     validateForm(valuePage,n) {
-        console.log(valuePage,n)
+
         let validation = true
 
         if(valuePage==0 && n != -1) {
@@ -502,6 +575,7 @@ const formStep = {
             controller.roofCoefficients()
 
         } else if(valuePage==6 && n != -1) {
+            controller.cpiCoefficients()
 
         } else if(valuePage==7 && n != -1) {
 
