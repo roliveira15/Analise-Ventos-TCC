@@ -1,6 +1,5 @@
 const express = require('express');
 const server = express();
-const PORT = 5050;
 const routes = require('./routes')
 const path = require('path')
 // const cors = require('cors')
@@ -18,4 +17,4 @@ server.use(express.json())
 
 server.use(routes)
 
-server.listen(PORT, () => console.log('rodando'))
+server.listen(process.env.PORT || 5050);
