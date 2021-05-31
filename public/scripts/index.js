@@ -130,7 +130,7 @@ const $effort_180  = document.getElementById('effort-180')
 const $effort_270  = document.getElementById('effort-270')
 
 
-var currentTab = 8
+var currentTab = 0
 
 const view = {
 
