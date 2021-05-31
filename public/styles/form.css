@@ -23,18 +23,68 @@
    box-shadow: 0px 2px 8px 0px rgb(0 0 0 / 20%) !important
    
 }
-.tittle {
-  text-align: center;
+/* .header-container */
+#value-wind ul{
+  display:flex;
+  justify-content: center;
+  margin-top: 12px
+
 }
 
-.tittle::after{
+.style-text-header,.style-content{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  width:100%;
+}
+
+.style-content{
+
+  /* font-weight: 300;
+  color: #ff8800; */
+  font-size:1rem;
+}
+
+.style-information{
+  margin: 0 10px 0 0;
+  padding: .2rem;
+  align-items: center;
+}
+
+
+.style-header {
+  display: flex;
+  width: 110px;
+  border: 0.6px solid #d6d6d6;
+  background: #fff;
+  font-size:.70rem;
+  color: #555;
+  margin: 0 10px 0 0;
+  padding: .2rem;
+  border-radius: .5rem;
+
+}
+
+
+.style-header .active-value {
+  
+  background: #E36414;
+  color: #fff;
+  /* border: 0.6px solid #d6d6d6;
+  background: #555; */
+
+}
+
+
+#value-wind::after{
   display: block;
   content:"";
   width: 90%;
-  height:1.5px;
+  height:1px;
   background-color : #C4C4C4;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 10px;
 }
 
 .form-container{
@@ -42,13 +92,7 @@
   height:80%;
 }
 
-#form-wind{
-  /* height:80%; */
-  
-}
-
 .btn-from{
-  /* display: flex; */
   position: absolute;
   bottom:10rem;
   width: 100%;
@@ -56,18 +100,6 @@
   justify-content: space-between;
   padding: 0 3rem 0 3rem;
 }
-/* 
-.btn-container::before{
-  display: block;
-  position: relative;
-  content:"";
-  width: 90%;
-  height:1px;
-  background-color : #C4C4C4;
-  top: -10px;
-  margin-left: auto;
-  margin-right: auto;
-} */
 
 
 .tab {

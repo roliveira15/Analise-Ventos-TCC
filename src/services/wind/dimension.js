@@ -622,36 +622,39 @@ const internalCoefficients = {
 }
 
 const PointReference = ((cpe_waterproof)=>{
-
+    
     let value, valuePointReference,accumulatedValue,Coefficient,CoefficientLast  = 0
+    let Signal = ""
     value = 1;
+
     const lowestValue = internalCoefficients.goal(value,cpe_waterproof)
     valuePointReference = Number(lowestValue[lowestValue.length-1]['acumulado'])
     
-    let Signal = ""
     const signal = Number(value) < 0 ? "-" : ""
     let SignalLast = signal
-
-
-    for (let i = 0; i < 100; i = i + Number(signal + 0.1)) {
-
+    
+    
+    
+    for (let i = 0; i < 200; i = i + Number(signal + 0.1)) {
+        
         Coefficient =  (valuePointReference + i)
         const newValue = internalCoefficients.goal(Coefficient,cpe_waterproof)
-
         accumulatedValue = Number(newValue[newValue.length-1]['acumulado'])
         const verificationZero = Math.floor(accumulatedValue)
-  
+        
         Signal = accumulatedValue < 1 ? "-" : ""
+
+        // console.log(accumulatedValue, '<<<', i, verificationZero)
         
         if(SignalLast != Signal || verificationZero == 0) {
-                
+               
                 for (let ii = 0; ii < 100; ii = ii + Number(signal + 0.0001) ) {
 
                     Coefficient =  (CoefficientLast + ii)
                     const newValue = internalCoefficients.goal(Coefficient,cpe_waterproof)
                     accumulatedValue = Number(newValue[newValue.length-1]['acumulado'])
-                    console.log(accumulatedValue)
-                    if(Math.abs(accumulatedValue) < 0.1) {
+
+                    if(accumulatedValue < (Number(signal +  0.001)*-1)) {
                         break;
                     }
                 }
@@ -663,6 +666,225 @@ const PointReference = ((cpe_waterproof)=>{
     }
 
 } )
+
+
+
+const equationBetween = ((angle, heightAboveTerrain,heightTerrain) => {
+    return  (1 + (2.5 - (heightAboveTerrain/heightTerrain)) * Math.tan((angle - 3)*(Math.PI/180)))
+});
+
+const equationBigger = ((heightAboveTerrain,heightTerrain) => {
+    return  (1 + (2.5 - (heightAboveTerrain/heightTerrain)) * 0.31)
+});
+
+const typeTerrain = ((angle, heightTerrain, heightAboveTerrain) => {
+    
+    let fatorS1;
+    
+    if((angle > 3 && angle < 6)){
+        const angle_3 = 3;
+        const angle_6 = 6;
+        const fatorS1_3 = equationBetween(angle_3, heightAboveTerrain,heightTerrain);
+        const fatorS1_6 = equationBetween(angle_6, heightAboveTerrain,heightTerrain);
+        fatorS1 = Interpolation(angle,fatorS1_3,angle_3,fatorS1_6,angle_6)
+        
+    }else if((angle > 17 && angle < 45)){
+        const angle_17 = 17;
+        const angle_45 = 45;
+        const fatorS1_17 = equationBetween(angle_17, heightAboveTerrain,heightTerrain);
+        const fatorS1_45 = equationBetween(angle_45, heightAboveTerrain,heightTerrain);
+        fatorS1 = Interpolation(angle,fatorS1_17,angle_17,fatorS1_45,angle_45)
+
+    } else if(angle >= 6 && angle <= 17) {
+        fatorS1 = equationBetween(angle,heightAboveTerrain,heightTerrain)
+
+    } else if(angle >= 45){
+        fatorS1 = equationBigger(heightAboveTerrain,heightTerrain)
+
+    }
+    
+    return fatorS1.toFixed(2)
+});
+
+//flat or slightly hilly terrain: S1 = 1,0;
+//Slopes e hills (Inclui interpolação)
+const FatorS1 = ((valuefator, angle,heightTerrain,heightAboveTerrain) => {
+    console.log(   valuefator, angle,heightTerrain,heightAboveTerrain )
+    if (valuefator == 1) {
+            return 1
+        } else if (valuefator == 2) {
+            return 0.9
+        } else {
+            return typeTerrain(angle,heightTerrain,heightAboveTerrain)
+    }
+
+});
+
+
+
+const tableParametersMetereological = [ 
+    [
+        {
+            bcategory: [ 1.10, 1.11, 1.12],
+            pcategory: [ 0.06, 0.065, 0.07]
+        }
+    ],
+
+    [
+        {
+            bcategory: [1.00 , 1.00 , 1.00],
+            fcategory: [1.00 , 0.98 , 0.95],
+            pcategory: [0.085 , 0.09 , 0.10]
+        
+        }
+    ]
+    ,
+
+    [
+        {
+            bcategory: [ 0.94, 0.94, 0.93],
+            pcategory: [0.10, 0.105, 0.115]
+        }
+    ],
+
+    [
+        
+        {
+            bcategory: [0.86, 0.85, 0.84],
+            pcategory: [0.12, 0.125, 0.135]
+        }
+    ],
+
+    [
+        
+        {
+            bcategory: [0.74, 0.73, 0.71],
+            pcategory: [0.15, 0.16, 0.175]
+        }
+    ]
+     
+];
+
+const typeClassBuilding = ((greaterLengthShed) => {
+
+    const classA = 20;
+    const classB = 50;
+
+    if (greaterLengthShed <= classA) {
+        return 0; 
+    } else if (greaterLengthShed <= classB) {
+        return 1;
+    } else {
+        return 2;
+    }
+});
+
+const FatorS2 = ((RoughnessTerrain,heightAboveTerrain,lengthShed,widthShed) => {
+    const greaterLengthShed = (lengthShed > widthShed) ? lengthShed: widthShed;
+    const classes = typeClassBuilding(greaterLengthShed)
+    const parameter = tableParametersMetereological[RoughnessTerrain][0];
+    const f_parameter = tableParametersMetereological[1][0].fcategory[classes]
+    const b_parameter = parameter.bcategory[classes]
+    const p_parameter = parameter.pcategory[classes]
+
+    const valueFatorS2 = Number(b_parameter) * 
+                        Number(f_parameter) *
+                        Math.pow((heightAboveTerrain / 10), (Number(p_parameter)))
+
+    // console.log(f_parameter,b_parameter,p_parameter)
+    return valueFatorS2.toFixed(2)
+
+});
+
+const FatorS3 = ((group) => {
+
+    let fatorS3;
+
+    switch (group){
+        case 0:
+            fatorS3 = 1.10;
+            break;
+
+        case 1:
+            fatorS3 = 1.00;
+            break;
+
+        case 2:
+            fatorS3 = 0.95;
+            break;
+
+        case 3:
+            fatorS3 = 0.88;
+            break;
+
+        default:
+            fatorS3 = 0.83;
+    }
+    return fatorS3
+
+});
+
+
+const vkWind = ((windSpeed, fatorS1, fatorS2, fatorS3) => {
+    const characteristicWindSpeed = windSpeed * fatorS1 * fatorS2 * fatorS3;
+    return {'vk': Number(characteristicWindSpeed.toFixed(2))}
+})
+
+const dynamicWindPressure =(({vk}) => {
+    
+    const Effort = 0.613 * Math.pow(vk,2) / 1000
+    return {'dynamicPressure': Number(Effort.toFixed(2))}
+})
+
+const calculateEffort = ((cpe_a, cpe_b, cpe_a1, cpe_b1, cpe_e_0, cpe_g_0, cpe_e_90, cpe_g_90, cpi_0, cpi_90, cpi_180, cpi_270, dinamicPressure) => {
+    
+    const eff_e_0 = ((cpe_e_0 - cpi_0) * dinamicPressure).toFixed(2)
+    const eff_g_0 = ((cpe_g_0 - cpi_0) * dinamicPressure).toFixed(2)
+    const eff_a1_0 = ((cpe_a1 - cpi_0) * dinamicPressure).toFixed(2)
+    const eff_b1_0 = ((cpe_b1 - cpi_0) * dinamicPressure).toFixed(2)
+
+    const eff_e_90 = ((cpe_e_90 - cpi_90) * dinamicPressure).toFixed(2)
+    const eff_g_90 = ((cpe_g_90 - cpi_90) * dinamicPressure).toFixed(2)
+    const eff_a_90 = ((cpe_a - cpi_90) * dinamicPressure).toFixed(2)
+    const eff_b_90 = ((cpe_b - cpi_90) * dinamicPressure).toFixed(2)
+
+    const eff_e_180 = ((cpe_e_0 - cpi_180) * dinamicPressure).toFixed(2)
+    const eff_g_180 = ((cpe_g_0 - cpi_180) * dinamicPressure).toFixed(2)
+    const eff_a1_180 = ((cpe_a1 - cpi_180) * dinamicPressure).toFixed(2)
+    const eff_b1_180 = ((cpe_b1 - cpi_180) * dinamicPressure).toFixed(2)
+
+    const eff_e_270 = ((cpe_e_90 - cpi_270) * dinamicPressure).toFixed(2)
+    const eff_g_270 = ((cpe_g_90 - cpi_270) * dinamicPressure).toFixed(2)
+    const eff_a_270 = ((cpe_a - cpi_270) * dinamicPressure).toFixed(2)
+    const eff_b_270 = ((cpe_b - cpi_270) * dinamicPressure).toFixed(2)
+
+
+
+    return {
+
+        'effort_e_0':eff_e_0,
+        'effort_g_0':eff_g_0,
+        'effort_a1_0':eff_a1_0,
+        'effort_b1_0':eff_b1_0,
+
+        'effort_e_90':eff_e_90,
+        'effort_g_90':eff_g_90,
+        'effort_a_90':eff_a_90,
+        'effort_b_90':eff_b_90,
+
+        'effort_e_180':eff_e_180,
+        'effort_g_180':eff_g_180,
+        'effort_a1_180':eff_a1_180,
+        'effort_b1_180':eff_b1_180,
+
+        'effort_e_270':eff_e_270,
+        'effort_g_270':eff_g_270,
+        'effort_a_270':eff_a_270,
+        'effort_b_270':eff_b_270,
+    }
+
+    
+})
 
 module.exports = {
     getAngle(width,heightRoof) {
@@ -689,8 +911,48 @@ module.exports = {
 
     getCpiCoefficients(cpe_waterproof) {
         const cpi = PointReference(cpe_waterproof)
-        
+        console.log(cpi)
         return cpi
+    },
+
+    getfatorS1({valuefator, angle,height,distance}) {
+        const fatorS1 = FatorS1(valuefator, angle,height,distance)
+
+        return fatorS1
+
+    },
+    
+    getfatorS2({RoughnessTerrain,height,length,width}) {
+        const fatorS2 = FatorS2(RoughnessTerrain,height,length,width)
+
+        return fatorS2
+
+    },
+    
+    getfatorS3({group}) {
+        const fatorS3 = FatorS3(group)
+
+        return fatorS3
+
+    },
+
+    getDynamicWindPressure({windSpeed, fatorS1, fatorS2, fatorS3}) {
+        
+        const VkWind =vkWind(windSpeed, fatorS1, fatorS2, fatorS3)
+        
+        const DynamicWindPressure = dynamicWindPressure(VkWind)
+        
+        return {...VkWind,...DynamicWindPressure}
+
+    },
+
+    getEffort({cpe_a, cpe_b, cpe_a1, cpe_b1, cpe_e_0, cpe_g_0, cpe_e_90, cpe_g_90, cpi_0, cpi_90, cpi_180, cpi_270,dinamicPressure}) {
+
+        const efforts = calculateEffort(cpe_a, cpe_b, cpe_a1, cpe_b1, cpe_e_0, cpe_g_0, cpe_e_90, cpe_g_90, cpi_0, cpi_90, cpi_180, cpi_270,dinamicPressure)
+        
+        return efforts
+
     }
 
 }
+

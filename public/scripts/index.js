@@ -34,7 +34,7 @@ const $dimension_wind_b = document.getElementById('b-90');
 const $dimension_wind_d = document.getElementById('d-0');
 const $dimension_wind_d1 = document.getElementById('d1-90');
 const $dimension_wind_d2 = document.getElementById('d2-90');
-var currentTab = 0
+
 
 // Taludes e morros
 const $s1_slopes_hill_3 = document.getElementById('s1-3')
@@ -71,8 +71,109 @@ const $cpe_g_90  = document.getElementById('G_90')
 const $cpe_h_90  = document.getElementById('H_90')
 const $cpe_j_90  = document.getElementById('J_90')
 
+const $cpi_0  = document.getElementById('cpi-0')
+const $cpi_90  = document.getElementById('cpi-90')
+const $cpi_180  = document.getElementById('cpi-180')
+const $cpi_270  = document.getElementById('cpi-270')
+
+const $cpe_a1_left_0  = document.getElementById('cpe-a1-left-0')
+const $cpe_e_left_0  = document.getElementById('cpe-e-left-0')
+const $cpe_b1_right_0  = document.getElementById('cpe-b1-right-0')
+const $cpe_g_right_0  = document.getElementById('cpe-g-right-0')
+
+const $cpe_a_left_90  = document.getElementById('cpe-a-left-90')
+const $cpe_e_left_90  = document.getElementById('cpe-e-left-90')
+const $cpe_b_right_90  = document.getElementById('cpe-b-right-90')
+const $cpe_g_right_90  = document.getElementById('cpe-g-right-90')
+
+const $cpe_a1_left_180  = document.getElementById('cpe-a1-left-180')
+const $cpe_e_left_180  = document.getElementById('cpe-e-left-180')
+const $cpe_b1_right_180  = document.getElementById('cpe-b1-right-180')
+const $cpe_g_right_180  = document.getElementById('cpe-g-right-180')
+
+const $cpe_a_left_270 = document.getElementById('cpe-a-left-270')
+const $cpe_e_left_270 = document.getElementById('cpe-e-left-270')
+const $cpe_b_right_270 = document.getElementById('cpe-b-right-270')
+const $cpe_g_right_270 = document.getElementById('cpe-g-right-270')
+
+const $fator_s1 = document.getElementById('fator_s1')
+const $fator_s2 = document.getElementById('fator_s2')
+const $fator_s3 = document.getElementById('fator_s3')
+const $windSpeed = document.getElementById('speedWind')
+
+const $vk_wind = document.getElementById('vk-wind')
+const $pressure_wind = document.getElementById('pressure-wind')
+
+const $effort_a1_left_0  = document.getElementById('effort-a1-left-0')
+const $effort_e_left_0  = document.getElementById('effort-e-left-0')
+const $effort_b1_right_0  = document.getElementById('effort-b1-right-0')
+const $effort_g_right_0  = document.getElementById('effort-g-right-0')
+
+const $effort_a_left_90  = document.getElementById('effort-a-left-90')
+const $effort_e_left_90  = document.getElementById('effort-e-left-90')
+const $effort_b_right_90  = document.getElementById('effort-b-right-90')
+const $effort_g_right_90  = document.getElementById('effort-g-right-90')
+
+const $effort_a1_left_180  = document.getElementById('effort-a1-left-180')
+const $effort_e_left_180  = document.getElementById('effort-e-left-180')
+const $effort_b1_right_180  = document.getElementById('effort-b1-right-180')
+const $effort_g_right_180  = document.getElementById('effort-g-right-180')
+
+const $effort_a_left_270 = document.getElementById('effort-a-left-270')
+const $effort_e_left_270 = document.getElementById('effort-e-left-270')
+const $effort_b_right_270 = document.getElementById('effort-b-right-270')
+const $effort_g_right_270 = document.getElementById('effort-g-right-270')
+
+const $effort_0  = document.getElementById('effort-0')
+const $effort_90  = document.getElementById('effort-90')
+const $effort_180  = document.getElementById('effort-180')
+const $effort_270  = document.getElementById('effort-270')
+
+
+var currentTab = 8
 
 const view = {
+
+    setEffort({effort_e_0, effort_g_0,effort_a1_0,effort_b1_0,effort_e_90,effort_g_90,
+        effort_a_90,effort_b_90,effort_e_180,effort_g_180,effort_a1_180,effort_b1_180,
+        effort_e_270,effort_g_270,effort_a_270,effort_b_270}){
+
+        $effort_a1_left_0.innerText = effort_a1_0;
+        $effort_e_left_0.innerText = effort_e_0;
+        $effort_b1_right_0.innerText = effort_b1_0;
+        $effort_g_right_0.innerText = effort_g_0;
+
+        $effort_a_left_90.innerText = effort_a_90;
+        $effort_e_left_90.innerText = effort_e_90;
+        $effort_b_right_90.innerText = effort_b_90;
+        $effort_g_right_90.innerText = effort_g_90;
+
+        $effort_a1_left_180.innerText = effort_a1_180;
+        $effort_e_left_180.innerText = effort_e_180;
+        $effort_b1_right_180.innerText = effort_b1_180;
+        $effort_g_right_180.innerText = effort_g_180;
+
+        $effort_a_left_270.innerText = effort_a_270;
+        $effort_e_left_270.innerText = effort_e_270;
+        $effort_b_right_270.innerText = effort_b_270;
+        $effort_g_right_270.innerText = effort_g_270;
+            
+    },
+
+    getWindFactores(){
+        return {
+            windSpeed: $windSpeed.value,
+            fatorS1: $fator_s1.innerText,
+            fatorS2: $fator_s2.innerText,
+            fatorS3: $fator_s3.innerText
+        }
+    },
+
+    getDinamicPressure() {
+        return {
+            dinamicPressure: $pressure_wind.innerText,
+        }
+    },
 
     getCoefficientsWall() {
         return {
@@ -90,6 +191,27 @@ const view = {
             cpe_d2: $cpe_d2_90.innerText,
             cpe_c1: $cpe_d1_90.innerText,
             cpe_c2: $cpe_d2_90.innerText,
+            
+        }
+    },
+
+    getCoefficientsRoof() {
+        return {
+            cpe_e_0: $cpe_e_0.innerText,
+            cpe_g_0: $cpe_g_0.innerText,
+
+            cpe_e_90: $cpe_e_90.innerText,
+            cpe_g_90: $cpe_g_90.innerText,
+            
+        }
+    },
+
+    getCoefficientsCpi() {
+        return {
+            cpi_0: $cpi_0.innerText,
+            cpi_90: $cpi_90.innerText,
+            cpi_180: $cpi_180.innerText,
+            cpi_270: $cpi_270.innerText,
         }
     },
 
@@ -110,6 +232,7 @@ const view = {
             length: $lenghtShed.value,
             height: $heightShed.value,
         }
+        
     },
 
     getSlopesHills(){
@@ -117,6 +240,7 @@ const view = {
             angle: $slopesHillsAng.value,
             height: $heightHills.value,
             distance: $distanceHills.value
+            
         }
     },
 
@@ -126,6 +250,46 @@ const view = {
             deepValleys: $s1_slopes_hill_2.checked,
             slopeshill: $s1_slopes_hill_3.checked
         }
+    },
+
+    setVk(vk){
+        $vk_wind.innerText = vk
+    },
+
+    setDynamicPressure(pressure){
+        $pressure_wind.innerText = pressure
+    },
+
+    setFatorS3(s3){
+        $fator_s3.innerText = s3
+    },
+
+    setFatorS2(s2){
+        $fator_s2.innerText = s2
+    },
+
+    setFatorS1(s1){
+        $fator_s1.innerText = s1
+    },
+
+    setCoefficientsCpi_0(cpi){
+        $cpi_0.innerText = cpi
+        $effort_0.innerText = 'Cpi: ' + cpi
+    },
+
+    setCoefficientsCpi_90(cpi){
+        $cpi_90.innerText = cpi
+        $effort_90.innerText ='Cpi: ' +  cpi
+    },
+
+    setCoefficientsCpi_180(cpi){
+        $cpi_180.innerText = cpi
+        $effort_180.innerText ='Cpi: ' +  cpi
+    },
+
+    setCoefficientsCpi_270(cpi){
+        $cpi_270.innerText = cpi
+        $effort_270.innerText ='Cpi: ' +  cpi
     },
 
     setCoefficientsWall({A1, A2, A3, C, D, A, B , D1, D2}){
@@ -138,8 +302,17 @@ const view = {
         $cpe_a_90.innerText = A;
         $cpe_b_90.innerText = B;
         $cpe_d1_90.innerText = D1;
-        $cpe_d2_90.innerText = D2
+        $cpe_d2_90.innerText = D2;
 
+        $cpe_a1_left_0.innerText = A1;
+        $cpe_b1_right_0.innerText = A1;
+        $cpe_a_left_90.innerText = A;
+        $cpe_b_right_90.innerText = B;
+
+        $cpe_a1_left_180.innerText = A1;
+        $cpe_b1_right_180.innerText = A1;
+        $cpe_a_left_270.innerText = A;
+        $cpe_b_right_270.innerText = B;
     },
 
     setCoefficientsRoof({E_0, F_0, I_0, G_0, H_0, J_0, 
@@ -159,7 +332,17 @@ const view = {
         $cpe_h_90.innerText = H_90;
         $cpe_i_90.innerText = I_90;
         $cpe_j_90.innerText = J_90;
+        
+        $cpe_e_left_0.innerText = E_90;
+        $cpe_g_right_0.innerText = G_90;
+        $cpe_e_left_90.innerText = E_90;
+        $cpe_g_right_90.innerText = G_90;
 
+        $cpe_e_left_180.innerText = E_90;
+        $cpe_g_right_180.innerText = G_90;
+        $cpe_e_left_270.innerText = E_90;
+        $cpe_g_right_270.innerText = G_90;
+        
     },
 
     setAngle(angle) {
@@ -275,7 +458,7 @@ const services = {
             } else {
                 verification  = true; 
             }
-
+            
             $messageError.classList.remove("messageError-on")
         
         }catch(e){
@@ -285,26 +468,81 @@ const services = {
         }
         return verification 
     },
-
-    validationFatorS2(){        
-    },
     
-    validationCpeWall(){     
-    },
-    
-    validationCpeRoof(){         
-    },
-
-    validationCpi(){         
-    }
-
 }
 
 const controller = {
+
+    definitionEffort(){
+        const coefficientsCpeWall = view.getCoefficientsWall()
+        const coefficientsCpeRoof = view.getCoefficientsRoof()
+        const coefficientsCpi = view.getCoefficientsCpi()
+        const dinamicPressure = view.getDinamicPressure()
+        const coefficients = {...coefficientsCpeWall,...coefficientsCpeRoof,...coefficientsCpi, ...dinamicPressure}
+
+        services.getRequest('/effort',coefficients)
+                    .then((resp) => {
+                        
+                        view.setEffort(resp)
+
+                    })
+                    
+    },
+    definitionFatorS3() {
+        const idCheked = document.querySelector('input[name="group-FatorS3"]:checked')['id']
+        const group = {'group': Number(idCheked.split("-", 2)[1])}
+
+        services.getRequest('/fators3',group)
+                    .then((resp) => {
+                        
+                        view.setFatorS3(resp)
+
+                    }).then((resp) => {controller.Definition_vk_pressure()})
+                    
+    },
+
+    Definition_vk_pressure(){
+        const pressure = view.getWindFactores()
+
+        services.getRequest('/vk_pressure',pressure)
+                    .then((resp) => {
+                        view.setVk(resp.vk)
+                        view.setDynamicPressure(resp.dynamicPressure)
+                    })
+    },
+
+    definitionFatorS2() {
+        const idCheked = document.querySelector('input[name="category-fatorS2"]:checked')['id']
+        const resultadoEspaco = {'RoughnessTerrain': Number(idCheked.split("-", 2)[1])}
+        const dimensionShed = view.getDimensionsShed()
+        const dimension = {...resultadoEspaco,...dimensionShed}
+
+        services.getRequest('/fators2',dimension)
+                    .then((resp) => {
+                        
+                        view.setFatorS2(resp)
+                    })
+    },
+
+    definitionFatorS1() {
+        const idCheked = document.querySelector('input[name="s1-1"]:checked')['id']
+        const SlopesHills = view.getSlopesHills()
+        
+        const resultadoEspaco = {'valuefator': Number(idCheked.split("-", 2)[1])}
+
+        const dimension = {...resultadoEspaco,...SlopesHills}
+
+        services.getRequest('/fators1',dimension)
+                    .then((resp) => {
+                        
+                        view.setFatorS1(resp)
+                    })
+    },
+    
     cpiCoefficients(){
         const areaWaterproof = view.getAreaWaterproof()
         const CoefficientsWall = view.getCoefficientsWall()
-        console.log(Number(areaWaterproof.D1) +  Number(areaWaterproof.D2))
+
         const dimension_0 = [
             {
                 face: Number(areaWaterproof.A1),
@@ -340,10 +578,118 @@ const controller = {
             },
         ]
 
+        const dimension_90 = [
+            {
+                face: Number(areaWaterproof.A1) + Number(areaWaterproof.A2) + Number(areaWaterproof.A3),
+                cpe: Number(CoefficientsWall.cpe_a),
+            },
+            {
+                face: Number(areaWaterproof.B1) + Number(areaWaterproof.B2) + Number(areaWaterproof.B3),
+                cpe: Number(CoefficientsWall.cpe_b),
+            },
+            {
+                face: Number(areaWaterproof.C1),
+                cpe: Number(CoefficientsWall.cpe_c1),
+            },
+            {
+                face: Number(areaWaterproof.C2),
+                cpe: Number(CoefficientsWall.cpe_c2),
+            },
+            {
+                face: Number(areaWaterproof.D1),
+                cpe: Number(CoefficientsWall.cpe_d1),
+            },
+            {
+                face: Number(areaWaterproof.D2),
+                cpe: Number(CoefficientsWall.cpe_d2),
+            },
+        ]
+
+        const dimension_180 = [
+            {
+                face: Number(areaWaterproof.A3),
+                cpe: Number(CoefficientsWall.cpe_a1),
+            },
+            {
+                face: Number(areaWaterproof.A2),
+                cpe: Number(CoefficientsWall.cpe_a2),
+            },
+            {
+                face: Number(areaWaterproof.A1),
+                cpe: Number(CoefficientsWall.cpe_a3),
+            },
+            {
+                face: Number(areaWaterproof.B3),
+                cpe: Number(CoefficientsWall.cpe_b1),
+            },
+            {
+                face: Number(areaWaterproof.B2),
+                cpe: Number(CoefficientsWall.cpe_b2),
+            },
+            {
+                face: Number(areaWaterproof.B1),
+                cpe: Number(CoefficientsWall.cpe_b3),
+            },
+            {
+                face: Number(areaWaterproof.C1) +  Number(areaWaterproof.C2),
+                cpe: Number(CoefficientsWall.cpe_d),
+            },
+            {
+                face: Number(areaWaterproof.D1) + Number(areaWaterproof.D2),
+                cpe: Number(CoefficientsWall.cpe_c),
+            },
+        ]
+
+        const dimension_270 = [
+            {
+                face: Number(areaWaterproof.A1) + Number(areaWaterproof.A2) + Number(areaWaterproof.A3),
+                cpe: Number(CoefficientsWall.cpe_b),
+            },
+            {
+                face: Number(areaWaterproof.B1) + Number(areaWaterproof.B2) + Number(areaWaterproof.B3),
+                cpe: Number(CoefficientsWall.cpe_a),
+            },
+            {
+                face: Number(areaWaterproof.C1),
+                cpe: Number(CoefficientsWall.cpe_c2),
+            },
+            {
+                face: Number(areaWaterproof.C2),
+                cpe: Number(CoefficientsWall.cpe_c1),
+            },
+            {
+                face: Number(areaWaterproof.D1),
+                cpe: Number(CoefficientsWall.cpe_d2),
+            },
+            {
+                face: Number(areaWaterproof.D2),
+                cpe: Number(CoefficientsWall.cpe_d1),
+            },
+        ]
+
+
         services.getRequest('/cpiCoefficients',dimension_0)
                     .then((resp) => {
-                        console.log(resp)
-                        // view.setCoefficientsRoof(resp)
+                        
+                        view.setCoefficientsCpi_0(resp)
+                    })
+
+        services.getRequest('/cpiCoefficients',dimension_90)
+                    .then((resp) => {
+                        
+                        view.setCoefficientsCpi_90(resp)
+                    })
+
+        services.getRequest('/cpiCoefficients',dimension_180)
+                    .then((resp) => {
+                        
+                        view.setCoefficientsCpi_180(resp)
+                    })
+                    
+        services.getRequest('/cpiCoefficients',dimension_270)
+                    .then((resp) => {
+                        
+                        view.setCoefficientsCpi_270(resp)
                     })
     },
 
@@ -360,7 +706,7 @@ const controller = {
         const dimensionShed = view.getDimensionsShed()
         services.getRequest('/wallCoefficients',dimensionShed)
                     .then((resp) => {
-                        console.log(resp)
+                        
                         view.setCoefficientsWall(resp)
                     })
         
@@ -379,6 +725,7 @@ const controller = {
 
         if(slopeshill == true){
             verification = services.validationFatorS1(SlopesHills)
+            
         }
 
         return verification
@@ -559,17 +906,22 @@ const formStep = {
         if(valuePage==0 && n != -1) {
             validation = controller.ErrorDimension ()
 
+            
         } else if(valuePage==1 && n != -1) {
 
 
         } else if(valuePage==2 && n != -1) {
             validation = controller.ErrorFatorS1()
-
+            if(validation) {
+                controller.definitionFatorS1()
+            }
         } else if(valuePage==3 && n != -1) {
-            
+            controller.definitionFatorS2()
 
         } else if(valuePage==4 && n != -1) {
             controller.wallCoefficients()
+            controller.definitionFatorS3()
+            
 
         } else if(valuePage==5 && n != -1) {
             controller.roofCoefficients()
@@ -578,7 +930,7 @@ const formStep = {
             controller.cpiCoefficients()
 
         } else if(valuePage==7 && n != -1) {
-
+            controller.definitionEffort()
         } else if(valuePage==8 && n != -1) {
 
         } else if(valuePage==9 && n != -1) {

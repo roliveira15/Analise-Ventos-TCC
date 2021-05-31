@@ -275,3 +275,125 @@
     top: -15px;
     left: 10px;
 }
+
+/* -----------------------------Cpi e effort */
+
+/* 
+<tr>
+<td class=""><span id="cpe-e-left">3</span></td>
+<td rowspan="2" colspan="2" class="img-cpi-0"> <img class="cpi-img-0" src="/assets/cpi0.svg"></td> 
+<td class=""><span id="cpe-g-right">1</span></td>
+</tr>
+<tr>
+<td class=""><span id="cpe-a1-left">1</span></td>
+<td class=""><span id="cpe-b1-right">1</span></td>
+</tr>
+<tr>
+<td cla */
+
+.WindDirection-cpi,.WindDirection-effort {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 25px;
+    height: 100%;
+    font-size: 85%;
+}
+
+
+#cpi,.modal-cpi,#effort,.modal-effort {
+    height:100%;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+}
+
+#table-cpi-0,#table-effort-0,#table-effort-90,#table-effort-180,#table-effort-270   {
+    width:50px;
+    text-align: center;
+    width: 300px;
+}
+
+.cpi,.cpi-0-section,.cpi-90-section,.cpi-180-section,.cpi-270-section
+.effort,.effort-0-section,.effort-90-section,.effort-180-section,.effort-270-section{
+    height:100%;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    
+}
+
+.cpi-center {
+    text-align: center;
+    position: relative;
+    left: 160px;
+    top: -75px;
+    
+}
+
+.cpe-roof-left {
+    position: relative;
+    left: 60px;
+    top: -20px
+}
+
+.cpe-roof-right{ 
+    position: relative;
+    left: -60px;
+    top: -20px
+}
+
+.cpe-wall-left {
+    position: relative;
+    left: 30px;
+    top: 10px
+}
+
+.cpe-wall-right{
+    position: relative;
+    left: -30px;
+    top: 10px
+}
+
+
+.WindDirection-effort {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 30px;
+    height: 100%;
+    font-size: 85%;
+}
+
+.effort-wall-left {
+    position: relative;
+    left: -5px;
+    top: -10px
+}
+
+.effort-wall-right{
+    position: relative;
+    left: 5px;
+    top: -10px
+}
+
+.effort-roof-left {
+    position: relative;
+    left: 45px;
+    top: -30px
+}
+
+.effort-roof-right{ 
+    position: relative;
+    left: -45px;
+    top: -30px
+}
+
+.effort-center {
+    text-align: center;
+    position: relative;
+    left: 135px;
+    top: -85px;
+    
+}
+

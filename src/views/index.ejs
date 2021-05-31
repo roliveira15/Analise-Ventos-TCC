@@ -31,7 +31,7 @@
                 <div id="home-container">
 
                     <div id="messageError" class="messageError">
-                        <img id="img-warning" src="/assets/warning.svg"> 
+                        <img id="img-warning" src="/assets/warning.svg" alt="Menssagem de aviso"> 
                         <span id="messageText"></span>
                     </div>
                     
@@ -39,35 +39,78 @@
                         <div class="content-container">
                             
                             <div class="header-container">
-                                <h2 class="tittle">Ventos</h2>
+                                <nav id="value-wind">    
+                                    <ul>
+                                        <li class="style-information">
+                                            Informações
+                                        </li>
+
+                                        <li class="style-header">
+                                            S1:
+                                            <div class="style-text-header"> 
+                                                <span id="fator_s1" class="style-content"></span>
+                                            </div>
+                                            
+                                        </li>
+                                           
+                                        <li class="style-header">
+                                            S2: 
+                                            <div class="style-text-header">
+                                                <span id="fator_s2" class="style-content"></span>
+                                            </div>
+                                        </li>
+
+                                        <li class="style-header">
+                                            S3: 
+                                            <div class="style-text-header">
+                                                <span id="fator_s3" class="style-content"></span>
+                                            </div>
+                                        </li>
+
+                                        <li class="style-header">
+                                            Vk(m/s): 
+                                            <div class="style-text-header">
+                                                <span id="vk-wind" class="style-content"></span>
+                                            </div>
+                                        </li>
+
+                                        <li class="style-header">
+                                            q(N/m²): 
+                                            <div class="style-text-header">
+                                                <span id="pressure-wind" class="style-content"></span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </nav>
                             </div>
 
-                            </hr>
-                                <div class="form-container">
-                                    <form id="form-wind" action="" method="post">
-                                        
-                                        <%- include('parts/wind/dimension') %>
+                            <!-- <hr> -->
 
-                                        <%- include('parts/wind/wind') %>
+                            <div class="form-container">
+                                <form id="form-wind" action="" method="post">
+                                    
+                                    <%- include('parts/wind/dimension') %>
 
-                                        <%- include('parts/wind/s1') %>
+                                    <%- include('parts/wind/wind') %>
 
-                                        <%- include('parts/wind/s2') %>
+                                    <%- include('parts/wind/s1') %>
 
-                                        <%- include('parts/wind/s3') %>
+                                    <%- include('parts/wind/s2') %>
 
-                                        <%- include('parts/wind/cpewall') %>
-                                        
-                                        <%- include('parts/wind/cperoof') %>
+                                    <%- include('parts/wind/s3') %>
 
-                                        <%- include('parts/wind/cpi') %>
+                                    <%- include('parts/wind/cpewall') %>
+                                    
+                                    <%- include('parts/wind/cperoof') %>
 
-                                        <%- include('parts/wind/effort') %>
+                                    <%- include('parts/wind/cpi') %>
 
-                                        <%- include('parts/wind/summary') %>
-                                        
-                                    </form>
-                                </div>
+                                    <%- include('parts/wind/effort') %>
+
+                                    <%- include('parts/wind/summary') %>
+                                    
+                                </form>
+                            </div>
 
                             <div class="btn-container">
                                 <div class="btn-from">
@@ -78,6 +121,7 @@
                         </div>
                         
                     </div>
+
                 </div>  
         </main>
 
