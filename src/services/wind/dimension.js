@@ -229,7 +229,10 @@ const externalCoefficientsWall = {
             //Interpolation(xa,y1,x1,y2,x2)
             const newValueCoefficients = Number(Interpolation((lengthWidthShed),coefficientMin,3/2,coefficientMax,2).toFixed(2))
             coefficientsWallAux.push(Number(newValueCoefficients))
+
+            // console.log(newValueCoefficients)
         }
+
 
         if (Object.keys(valueMax)[0] == 'A1') {
             coefficientsWall = {...coefficientsWall,
@@ -264,7 +267,7 @@ const externalCoefficientsWall = {
         } else {
             coefficientsA3  = Number(Interpolation((lengthWidthShed),-0.2,2,coefficientsWall.A2,1).toFixed(2))
         }
-
+        
         coefficientsWall = {...coefficientsWall,
                             'A3': coefficientsA3, 
                             'B3': coefficientsA3}
@@ -304,6 +307,8 @@ const CoefficientsWall_0 = ((a_lengthShed,b_widthShed,h_heightShed) => {
     let coefficientsWall
     const lengthWidthShed = a_lengthShed / b_widthShed;
     const coefficients = tableCoefficientsExternalWall.coefficients_0
+    
+
     coefficientsWall = externalCoefficientsWall.DefinitionCoefficientsWall(a_lengthShed,b_widthShed,h_heightShed, coefficients)
     coefficientsWall = externalCoefficientsWall.includeA3B3(coefficientsWall,lengthWidthShed)
     return coefficientsWall
@@ -709,13 +714,13 @@ const typeTerrain = ((angle, heightTerrain, heightAboveTerrain) => {
 //flat or slightly hilly terrain: S1 = 1,0;
 //Slopes e hills (Inclui interpolação)
 const FatorS1 = ((valuefator, angle,heightTerrain,heightAboveTerrain) => {
-    console.log(   valuefator, angle,heightTerrain,heightAboveTerrain )
+
     if (valuefator == 1) {
-            return 1
+            return '1.00'
         } else if (valuefator == 2) {
-            return 0.9
+            return '0.90'
         } else {
-            return typeTerrain(angle,heightTerrain,heightAboveTerrain)
+            return typeTerrain(angle,heightTerrain,heightAboveTerrain).toFixed(3)
     }
 
 });
@@ -779,7 +784,8 @@ const typeClassBuilding = ((greaterLengthShed) => {
     }
 });
 
-const FatorS2 = ((RoughnessTerrain,heightAboveTerrain,lengthShed,widthShed) => {
+const FatorS2 = ((heightRoof,RoughnessTerrain,heightAboveTerrain,lengthShed,widthShed) => {
+
     const greaterLengthShed = (lengthShed > widthShed) ? lengthShed: widthShed;
     const classes = typeClassBuilding(greaterLengthShed)
     const parameter = tableParametersMetereological[RoughnessTerrain][0];
@@ -789,10 +795,9 @@ const FatorS2 = ((RoughnessTerrain,heightAboveTerrain,lengthShed,widthShed) => {
 
     const valueFatorS2 = Number(b_parameter) * 
                         Number(f_parameter) *
-                        Math.pow((heightAboveTerrain / 10), (Number(p_parameter)))
-
-    // console.log(f_parameter,b_parameter,p_parameter)
-    return valueFatorS2.toFixed(2)
+                        Math.pow((Number(heightAboveTerrain) + Number(heightRoof))/ 10, (Number(p_parameter)))
+    
+    return valueFatorS2.toFixed(3)
 
 });
 
@@ -801,24 +806,24 @@ const FatorS3 = ((group) => {
     let fatorS3;
 
     switch (group){
-        case 0:
-            fatorS3 = 1.10;
-            break;
-
         case 1:
-            fatorS3 = 1.00;
+            fatorS3 =' 1.10';
             break;
 
         case 2:
-            fatorS3 = 0.95;
+            fatorS3 = '1.00';
             break;
 
         case 3:
-            fatorS3 = 0.88;
+            fatorS3 = '0.95';
+            break;
+
+        case 4:
+            fatorS3 =' 0.88';
             break;
 
         default:
-            fatorS3 = 0.83;
+            fatorS3 = '0.83';
     }
     return fatorS3
 
@@ -911,7 +916,7 @@ module.exports = {
 
     getCpiCoefficients(cpe_waterproof) {
         const cpi = PointReference(cpe_waterproof)
-        console.log(cpi)
+  
         return cpi
     },
 
@@ -922,8 +927,9 @@ module.exports = {
 
     },
     
-    getfatorS2({RoughnessTerrain,height,length,width}) {
-        const fatorS2 = FatorS2(RoughnessTerrain,height,length,width)
+    getfatorS2({heightRoof,RoughnessTerrain,height,length,width}) {
+
+        const fatorS2 = FatorS2(heightRoof,RoughnessTerrain,height,length,width)
 
         return fatorS2
 
@@ -939,9 +945,8 @@ module.exports = {
     getDynamicWindPressure({windSpeed, fatorS1, fatorS2, fatorS3}) {
         
         const VkWind =vkWind(windSpeed, fatorS1, fatorS2, fatorS3)
-        
         const DynamicWindPressure = dynamicWindPressure(VkWind)
-        
+
         return {...VkWind,...DynamicWindPressure}
 
     },
@@ -949,7 +954,7 @@ module.exports = {
     getEffort({cpe_a, cpe_b, cpe_a1, cpe_b1, cpe_e_0, cpe_g_0, cpe_e_90, cpe_g_90, cpi_0, cpi_90, cpi_180, cpi_270,dinamicPressure}) {
 
         const efforts = calculateEffort(cpe_a, cpe_b, cpe_a1, cpe_b1, cpe_e_0, cpe_g_0, cpe_e_90, cpe_g_90, cpi_0, cpi_90, cpi_180, cpi_270,dinamicPressure)
-        
+    
         return efforts
 
     }
