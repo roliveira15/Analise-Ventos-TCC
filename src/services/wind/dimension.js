@@ -1,3 +1,14 @@
+const around = {
+
+    formatNumber (num, decimals) { 
+
+        const value = Number(num).toFixed(decimals)
+        return value
+
+    }
+}
+
+
 const getDimensionWind0 = ((width, length, height) => {
 
     let length_A1
@@ -52,8 +63,10 @@ const Angle_Roof = ((width, heightRoof) => {
 });
 
 
+
 // Coefficients wall (0º e 90º)
 const Interpolation = ((xa,y1,x1,y2,x2) => {
+    // console.log(y1 - ((x1-xa)/(x1-x2)) * (y1-y2))
     return y1 + ((xa-x1)/(x2-x1)) * (y2-y1)
 })
 
@@ -190,6 +203,8 @@ const tableCoefficientsExternalWall = {
     ]    
 }
 
+
+
 const externalCoefficientsWall = {
     // COEFFICIENT 0º
     //#1
@@ -216,23 +231,23 @@ const externalCoefficientsWall = {
         return ((lengthWidthShed >= 2 && lengthWidthShed <= 4 ) ? 1 : 0);
     },
     //#4
-    createdObjectInterpolation(valueMin, valueMax, lengthWidthShed){
+    createdObjectInterpolation(valueMin,valueMax,  lengthWidthShed){
         let coefficientsWall = new Object
         let coefficientsWallAux = new Array
 
         const lenghtTotal = Object.values(valueMax).length
-        
+       
         for(let i = 0; i < lenghtTotal; i++){
             const coefficientMin = Object.values(valueMin)[i]
             const coefficientMax = Object.values(valueMax)[i]
             
             //Interpolation(xa,y1,x1,y2,x2)
-            const newValueCoefficients = Number(Interpolation((lengthWidthShed),coefficientMin,3/2,coefficientMax,2).toFixed(2))
-            coefficientsWallAux.push(Number(newValueCoefficients))
-
-            // console.log(newValueCoefficients)
+            const newValueCoefficients = Number(Interpolation((lengthWidthShed),coefficientMax,2,coefficientMin,3/2).toFixed(2))
+            
+            
+            coefficientsWallAux.push(around.formatNumber(newValueCoefficients,2))
         }
-
+       
 
         if (Object.keys(valueMax)[0] == 'A1') {
             coefficientsWall = {...coefficientsWall,
@@ -247,8 +262,8 @@ const externalCoefficientsWall = {
                                     'A': coefficientsWallAux[0], 
                                     'B': coefficientsWallAux[1],
                                     'C1': coefficientsWallAux[2],
-                                    'C2': coefficientsWallAux[3],
-                                    'D1':  coefficientsWallAux[4],
+                                    'C2': coefficientsWallAux[4],
+                                    'D1':  coefficientsWallAux[3],
                                     'D2':  coefficientsWallAux[5]}
         }
 
@@ -295,7 +310,7 @@ const externalCoefficientsWall = {
         } else { 
             coefficientsWall = coefficients[PositionHightRelative + HightRelativeHB]
         }
-        
+
         return coefficientsWall
         
     },
@@ -436,7 +451,7 @@ const externalCoefficientsRoof = {
     //#2
     includeIJ_0(coefficientsRoof,lengthWidthShed){
         let coefficientsI,coefficientsJ
-    
+        
         if(lengthWidthShed == 1) {
             coefficientsI = coefficientsRoof.F_0
             coefficientsJ = coefficientsRoof.H_0
@@ -446,13 +461,13 @@ const externalCoefficientsRoof = {
             coefficientsJ = -0.2
 
         } else {
-            coefficientsI  = Number(Interpolation((lengthWidthShed),-0.2,2,coefficientsRoof.F_0,1).toFixed(2))
-            coefficientsJ  = Number(Interpolation((lengthWidthShed),-0.2,2,coefficientsRoof.H_0,1).toFixed(2))
+            coefficientsI  = Interpolation((lengthWidthShed),-0.2,2,Number(coefficientsRoof.F_0),1)
+            coefficientsJ  = Interpolation((lengthWidthShed),-0.2,2,Number(coefficientsRoof.H_0),1)
         }
-
+        
         coefficientsRoof = {...coefficientsRoof,
-                            'I_0': coefficientsI, 
-                            'J_0': coefficientsJ}
+                            'I_0': around.formatNumber(coefficientsI,2), 
+                            'J_0': around.formatNumber(coefficientsJ,2)}
 
         return coefficientsRoof
     },
@@ -475,11 +490,18 @@ const externalCoefficientsRoof = {
         const AngleShed = [0,5,10,15,20,30,45,50,60]
         const angle_shed = AngleShed.length
         const HightRelativeHB = externalCoefficientsRoof.hightRelativeHBRoof(heightWidthShed)
-
+       
         for (let i = 0; i < angle_shed;  i++) {
 
             if (angleShed == AngleShed[i]) {
                 coefficientsRoof = coefficients[HightRelativeHB][i]
+                const coefficient = Object.values(coefficientsRoof)
+                coefficientsRoof = {...coefficientsRoof,
+                                        'E_0': around.formatNumber(coefficient[0],2), 
+                                        'F_0': around.formatNumber(coefficient[1],2),
+                                        'G_0': around.formatNumber(coefficient[2],2),
+                                        'H_0': around.formatNumber(coefficient[3],2)}
+
                 break;
 
             } else if(angleShed < AngleShed[i]) {
@@ -493,15 +515,16 @@ const externalCoefficientsRoof = {
                 for(let ii = 0; ii < lenghtTotal; ii++){
                                 const coefficientMin = Object.values(arrayMin)[ii]
                                 const coefficientMax = Object.values(arrayMax)[ii]
-  
+                                // console.log(angleShed,coefficientMin,coefficientMax)
                                 //interpolatorLinear.Interpolation(xa,y1,x1,y2,x2)
                                 const newValueCoefficients = Interpolation(angleShed,
-                                                                                    coefficientMin,
-                                                                                    AngleShed[positionMin],
                                                                                     coefficientMax,
-                                                                                    AngleShed[positionMax]).toFixed(2)
-
-                                coefficientsRoofAux.push(Number(newValueCoefficients))
+                                                                                    AngleShed[positionMax],
+                                                                                    coefficientMin,
+                                                                                    AngleShed[positionMin]
+                                                                                    ).toFixed(2)
+                                
+                                coefficientsRoofAux.push(around.formatNumber(newValueCoefficients,2))
                 }
 
                 coefficientsRoof = {...coefficientsRoof,
@@ -515,7 +538,7 @@ const externalCoefficientsRoof = {
                 
             }
         }
-
+        
         return coefficientsRoof
         
     },
@@ -534,6 +557,14 @@ const externalCoefficientsRoof = {
 
             if (angleShed == AngleShed[i]) {
                 coefficientsRoof = coefficients[HightRelativeHB][i]
+                const coefficient = Object.values(coefficientsRoof)
+                coefficientsRoof = {...coefficientsRoof,
+                                        'E_90': around.formatNumber(coefficient[0],2), 
+                                        'F_90': around.formatNumber(coefficient[1],2),
+                                        'G_90': around.formatNumber(coefficient[2],2),
+                                        'H_90': around.formatNumber(coefficient[3],2)}
+
+
                 break;
 
             } else if(angleShed < AngleShed[i]) {
@@ -555,7 +586,7 @@ const externalCoefficientsRoof = {
                                                                                     coefficientMax,
                                                                                     AngleShed[positionMax]).toFixed(2)
 
-                                coefficientsRoofAux.push(Number(newValueCoefficients))
+                                coefficientsRoofAux.push((around.formatNumber(newValueCoefficients,2)))
                 }
 
                 coefficientsRoof = {...coefficientsRoof,
@@ -576,11 +607,13 @@ const externalCoefficientsRoof = {
 }   
 
 //iNPUT
-const CoefficientsRoof_0 = ((angleShed,a_widthShed, b_lenghtShed,h_heightShed) => {
+const CoefficientsRoof_0 = ((angleShed,a_lenghShed, b_widthShed,h_heightShed) => {
     let coefficientsRoof
-    const lengthWidthShed = a_widthShed / b_lenghtShed;
+    const lengthWidthShed = a_lenghShed / b_widthShed;
+    
     const coefficients = tableCoefficientsExternalRoof.coefficients_0
-    coefficientsRoof = externalCoefficientsRoof.DefinitionCoefficientsRoof_0(angleShed, b_lenghtShed,h_heightShed, coefficients)
+    
+    coefficientsRoof = externalCoefficientsRoof.DefinitionCoefficientsRoof_0(angleShed, b_widthShed,h_heightShed, coefficients)
     coefficientsRoof = externalCoefficientsRoof.includeIJ_0(coefficientsRoof,lengthWidthShed)
     
     return coefficientsRoof
@@ -663,7 +696,7 @@ const PointReference = ((cpe_waterproof)=>{
                         break;
                     }
                 }
-                return Coefficient.toFixed(3)
+                return around.formatNumber (Coefficient, 3) 
         }              
 
         SignalLast = Signal
@@ -671,7 +704,6 @@ const PointReference = ((cpe_waterproof)=>{
     }
 
 } )
-
 
 
 const equationBetween = ((angle, heightAboveTerrain,heightTerrain) => {
@@ -708,7 +740,8 @@ const typeTerrain = ((angle, heightTerrain, heightAboveTerrain) => {
 
     }
     
-    return fatorS1.toFixed(2)
+    
+    return  fatorS1
 });
 
 //flat or slightly hilly terrain: S1 = 1,0;
@@ -720,7 +753,8 @@ const FatorS1 = ((valuefator, angle,heightTerrain,heightAboveTerrain) => {
         } else if (valuefator == 2) {
             return '0.90'
         } else {
-            return typeTerrain(angle,heightTerrain,heightAboveTerrain).toFixed(3)
+
+            return around.formatNumber(typeTerrain(angle,heightTerrain,heightAboveTerrain),2)
     }
 
 });
@@ -832,7 +866,7 @@ const FatorS3 = ((group) => {
 
 const vkWind = ((windSpeed, fatorS1, fatorS2, fatorS3) => {
     const characteristicWindSpeed = windSpeed * fatorS1 * fatorS2 * fatorS3;
-    return {'vk': Number(characteristicWindSpeed.toFixed(2))}
+    return {'vk': around.formatNumber(characteristicWindSpeed,2)}
 })
 
 const dynamicWindPressure =(({vk}) => {
@@ -897,24 +931,26 @@ module.exports = {
     },
 
     getDimensionsShed(width,lenght, height){
-        const Wind_0 = getDimensionWind0(width,lenght, height)
-        const Wind_90 = getDimensionWind90(width,lenght, height)
+        const Wind_0 = getDimensionWind0(width,lenght,  height)
+        const Wind_90 = getDimensionWind90( width,lenght, height)
         return {...Wind_0, ...Wind_90}
     },
 
     getWallCoefficients(width,lenght, height){
-        const Wind_0 = CoefficientsWall_0(width,lenght, height)
-        const Wind_90 = CoefficientsWall_90(width,lenght, height)
+        const Wind_0 = CoefficientsWall_0(lenght, width, height)
+        const Wind_90 = CoefficientsWall_90(lenght, width, height)
         return {...Wind_0, ...Wind_90}
     },
 
-    getRoofCoefficients(angle, width,lenght, height){  
-        const Wind_0 = CoefficientsRoof_0(angle,width,lenght, height)
+    getRoofCoefficients(angle, width, lenght, height){ 
+
+        const Wind_0 = CoefficientsRoof_0(angle,lenght, width, height)
         const Wind_90 = CoefficientsRoof_90(angle, lenght, height)
         return {...Wind_0, ...Wind_90}
     },
 
     getCpiCoefficients(cpe_waterproof) {
+
         const cpi = PointReference(cpe_waterproof)
   
         return cpi

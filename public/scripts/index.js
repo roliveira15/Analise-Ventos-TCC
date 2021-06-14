@@ -227,7 +227,7 @@ const view = {
     getDimensionsShed() {
         return {
             heightRoof: $heightRoof.value,
-            angle: $angleRoof.value,
+            angle: $angleRoof.innerText,
             width: $widthShed.value,
             length: $lenghtShed.value,
             height: $heightShed.value,
@@ -695,6 +695,7 @@ const controller = {
 
     roofCoefficients(){
         const dimensionShed = view.getDimensionsShed()
+        console.log(view.getDimensionsShed())
         services.getRequest('/roofCoefficients',dimensionShed)
                     .then((resp) => {
                         view.setCoefficientsRoof(resp)
