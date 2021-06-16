@@ -278,19 +278,6 @@
 
 /* -----------------------------Cpi e effort */
 
-/* 
-<tr>
-<td class=""><span id="cpe-e-left">3</span></td>
-<td rowspan="2" colspan="2" class="img-cpi-0"> <img class="cpi-img-0" src="/assets/cpi0.svg"></td> 
-<td class=""><span id="cpe-g-right">1</span></td>
-</tr>
-<tr>
-<td class=""><span id="cpe-a1-left">1</span></td>
-<td class=""><span id="cpe-b1-right">1</span></td>
-</tr>
-<tr>
-<td cla */
-
 .WindDirection-cpi,.WindDirection-effort {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -397,62 +384,53 @@
     
 }
 
-/* button form */
-/* box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5),
-            7px 7px 20px 0px rgba(0, 0, 0, .1),
-            4px 4px 5px 0px rgba(0, 0, 0, .1); */
 
-/* #nextBtn,#prevBtn{
-    margin: 20px;
-    width: 110px;
-    height: 30px;
-    color: #fff;
-    border-radius: 5px;
-    padding: 5px 12px;
-    font-weight: 500;
-    background: transparent;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    display: inline-block;
-    outline: none;
-    background-color: #f8f9fa;
-    background-image: linear-gradient(315deg, #f8f9fa 0%, #dee2e6 74%);
-    border: none;
-    z-index: 1;
-    
-} */
+/* -----------------------------Modify Image Cpi internal */
 
-/* .btn-form:after {
-
-    position: absolute;
-    content:"";
-    width: 100%;
-    height: 0;
-    bottom: 0;
-    left: 0;
-    z-index: -1;
-    border-radius: 5px;
-    background-color: #adb5bd;
-    background-image: linear-gradient(315deg, #adb5bd 0%, #6c757d 74%);
-    box-shadow: -7px -7px 20px 0px #fff9,
-                -4px -4px 5px 0px #fff9,
-                7px 7px 20px 0px #0002,
-                4px 4px 5px 0px #0001;
-    transition: all 0.3s ease;
-
-} 
-
- .btn-form { 
-    
-    color: #ffff;
+.cpi-roof-left {
+    transform: rotate(180deg);
+    transform-origin: 38% 35%;
+    fill: red;
+}
+.cpi-roof-right {
+    transform: rotate(180deg);
+    transform-origin: 63% 35%;
+    fill: red;
 }
 
-.btn-form:hover:after {
-    top:0; 
-    height:100%;
+.cpi-wall-left  {
+    transform: translateX(44%);
+    fill: red;
 }
 
-.btn:active{
-    top: 2px;
-} */
+.cpi-wall-right {
+    transform: translateX(-42%);
+    fill: red;
+}
+
+.animation-image-color{
+    fill: blue;
+}
+
+/* -----------------------------Modify Image Cpi external */
+
+.cpe-roof-left-0,.cpe-roof-left-180,.cpe-roof-left-90,.cpe-roof-left-270   {
+    transform: rotate(180deg);
+    transform-origin: 28% 10%;
+    fill: red;
+}
+.cpe-roof-right-0,.cpe-roof-right-180,.cpe-roof-right-90,.cpe-roof-right-270 {
+    transform: rotate(180deg);
+    transform-origin: 72.8% 10.5%;
+    fill: red;
+}
+
+.cpe-wall-left-0,.cpe-wall-left-180,.cpe-wall-left-90,.cpe-wall-left-270   {
+    transform: rotate(180deg) translateX(-15.5%) translateY(-139.6%);
+    fill: red;
+}
+
+.cpe-wall-right-0,.cpe-wall-right-180,.cpe-wall-right-90,.cpe-wall-right-270  {
+    transform: rotate(180deg) translateX(-184.5%) translateY(-139.6%);
+    fill: red;
+}

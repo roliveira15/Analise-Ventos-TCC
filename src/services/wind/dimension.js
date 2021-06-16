@@ -760,7 +760,6 @@ const FatorS1 = ((valuefator, angle,heightTerrain,heightAboveTerrain) => {
 });
 
 
-
 const tableParametersMetereological = [ 
     [
         {

@@ -14,6 +14,10 @@ const $messageText = document.getElementById("messageText");
 
 let $loadSVG = document.getElementById('img-waterproof');
 
+let $loadSVG_0 = document.getElementById('img-cpi-0');
+let $loadSVG_90 = document.getElementById('img-cpi-90');
+let $loadSVG_180 = document.getElementById('img-cpi-180');
+let $loadSVG_270 = document.getElementById('img-cpi-270');
 // Waterproof
 const $a1 = document.getElementById('area-a1');
 const $a2 = document.getElementById('area-a2');
@@ -386,6 +390,147 @@ const view = {
 
 const services = {
 
+    modifyImageCpeWall({A1, B , A}){
+        const class_wall_Left_0  = document.querySelectorAll('.img-cpe_wall_left_0')[0]
+        const class_wall_right_0   = document.querySelectorAll('.img-cpe_wall_right_0')[0]
+        const class_wall_Left_180  = document.querySelectorAll('.img-cpe_wall_left_180')[0]
+        const class_wall_right_180   = document.querySelectorAll('.img-cpe_wall_right_180')[0]
+        
+        const class_wall_Left_90  = document.querySelectorAll('.img-cpe_wall_left_90')[0]
+        const class_wall_right_90   = document.querySelectorAll('.img-cpe_wall_right_90')[0]
+        const class_wall_Left_270  = document.querySelectorAll('.img-cpe_wall_left_270')[0]
+        const class_wall_right_270   = document.querySelectorAll('.img-cpe_wall_right_270')[0]
+
+        if(A1 < 0){
+            class_wall_Left_0.classList.add('cpe-wall-left-0')
+            class_wall_right_0.classList.add('cpe-wall-right-0')
+            class_wall_Left_180.classList.add('cpe-wall-left-180')
+            class_wall_right_180.classList.add('cpe-wall-right-180')
+
+        } else {
+            class_wall_right_0.classList.remove('cpe-wall-right-0');
+            class_wall_Left_0.classList.remove('cpe-wall-left-0');
+            class_wall_right_180.classList.remove('cpe-wall-right-180');
+            class_wall_Left_180.classList.remove('cpe-wall-left-180');
+
+            class_wall_Left_0.classList.add('animation-image-color'); 
+            class_wall_Left_180.classList.add('animation-image-color'); 
+        }
+
+        if(B < 0){
+            class_wall_Left_90.classList.add('cpe-wall-left-90')
+            class_wall_right_270.classList.add('cpe-wall-right-270')
+            
+            
+        } else {
+            class_wall_Left_90.classList.remove('cpe-wall-left-90')
+            class_wall_right_270.classList.remove('cpe-wall-right-270')
+            
+            class_wall_Left_90.classList.add('animation-image-color'); 
+            class_wall_right_270.classList.add('animation-image-color'); 
+        }
+        
+        if(A < 0){
+            class_wall_right_90.classList.add('cpe-wall-right-90')
+            class_wall_Left_270.classList.add('cpe-wall-left-270')
+            
+
+        } else {
+            class_wall_right_90.classList.remove('cpe-wall-right-90')
+            class_wall_Left_270.classList.remove('cpe-wall-left-270')
+
+            class_wall_right_90.classList.add('animation-image-color'); 
+            class_wall_Left_270.classList.add('animation-image-color'); 
+        }
+        return
+    },
+
+    modifyImageCpeRoof({E_0, G_0, E_90, G_90}){
+
+        const class_Roof_Left_0 = document.querySelectorAll('.img-cpe_roof_left_0')[0]
+        const class_Roof_right_0  =  document.querySelectorAll('.img-cpe_roof_right_0')[0]
+        const class_Roof_Left_180 = document.querySelectorAll('.img-cpe_roof_left_180')[0]
+        const class_Roof_right_180  =  document.querySelectorAll('.img-cpe_roof_right_180')[0]
+        
+        const class_Roof_Left_90 = document.querySelectorAll('.img-cpe_roof_left_90')[0]
+        const class_Roof_right_90  =  document.querySelectorAll('.img-cpe_roof_right_90')[0]
+        const class_Roof_Left_270 = document.querySelectorAll('.img-cpe_roof_left_270')[0]
+        const class_Roof_right_270  =  document.querySelectorAll('.img-cpe_roof_right_270')[0]
+
+        if(E_0 < 0){
+            class_Roof_Left_0.classList.add('cpe-roof-left-0')
+            class_Roof_Left_180.classList.add('cpe-roof-left-180')
+        } else {
+            class_Roof_Left_0.classList.remove('cpe-roof-left-0');
+            class_Roof_Left_0.classList.add('animation-image-color'); 
+            class_Roof_Left_180.classList.remove('cpe-roof-left-180');
+            class_Roof_Left_180.classList.add('animation-image-color'); 
+        }
+
+        if(G_0 < 0){
+            class_Roof_right_0.classList.add('cpe-roof-right-0')
+            class_Roof_right_180.classList.add('cpe-roof-right-180')
+        } else {
+            class_Roof_right_0.classList.remove('cpe-roof-right-0');
+            class_Roof_right_0.classList.add('animation-image-color'); 
+            class_Roof_right_180.classList.remove('cpe-roof-right-180');
+            class_Roof_right_180.classList.add('animation-image-color'); 
+        }
+
+        if(E_90 < 0){
+            class_Roof_Left_90.classList.add('cpe-roof-left-90')
+            class_Roof_Left_270.classList.add('cpe-roof-left-270')
+        } else {
+            class_Roof_Left_90.classList.remove('cpe-roof-left-90');
+            class_Roof_Left_90.classList.add('animation-image-color'); 
+            class_Roof_Left_270.classList.remove('cpe-roof-left-270');
+            class_Roof_Left_270.classList.add('animation-image-color'); 
+        }
+
+        if(G_90 < 0){
+            class_Roof_right_90.classList.add('cpe-roof-right-0')
+            class_Roof_right_270.classList.add('cpe-roof-right-270')
+        } else {
+            class_Roof_right_90.classList.remove('cpe-roof-right-70');
+            class_Roof_right_90.classList.add('animation-image-color'); 
+            class_Roof_right_270.classList.remove('cpe-roof-right-270');
+            class_Roof_right_270.classList.add('animation-image-color'); 
+        }
+
+  
+    },
+
+    modifyImageCpi(resp,ang){
+
+        const class_Roof_Left = document.querySelectorAll('.img-cpi_roof_left')[ang]
+        const class_Roof_right  =  document.querySelectorAll('.img-cpi_roof_right')[ang]
+        const class_wall_Left  = document.querySelectorAll('.img-cpi_wall_left')[ang]
+        const class_wall_right   = document.querySelectorAll('.img-cpi_wall_right')[ang]
+
+        if(resp < 0){
+
+            class_Roof_Left.classList.add('cpi-roof-left')
+            class_Roof_right.classList.add('cpi-roof-right')
+            class_wall_Left.classList.add('cpi-wall-left')
+            class_wall_right.classList.add('cpi-wall-right')
+
+        } else {
+
+            class_Roof_Left.classList.remove('cpi-roof-left');
+            class_Roof_right.classList.remove('cpi-roof-right');
+            class_wall_Left.classList.remove('cpi-wall-left');
+            class_wall_right.classList.remove('cpi-wall-right');
+
+            class_Roof_Left.classList.add('animation-image-color'); 
+            class_Roof_right.classList.add('animation-image-color'); 
+            class_wall_Left.classList.add('animation-image-color'); 
+            class_wall_right.classList.add('animation-image-color'); 
+
+        }
+    
+    },
+
+
     async getRequest(route, dimension) {
         
         try {
@@ -672,33 +817,42 @@ const controller = {
                     .then((resp) => {
                         
                         view.setCoefficientsCpi_0(resp)
+                        services.modifyImageCpi(resp,0)
+
                     })
 
         services.getRequest('/cpiCoefficients',dimension_90)
                     .then((resp) => {
                         
                         view.setCoefficientsCpi_90(resp)
+                        services.modifyImageCpi(resp,1)
                     })
 
         services.getRequest('/cpiCoefficients',dimension_180)
                     .then((resp) => {
                         
                         view.setCoefficientsCpi_180(resp)
+                        services.modifyImageCpi(resp,2)
                     })
                     
         services.getRequest('/cpiCoefficients',dimension_270)
                     .then((resp) => {
                         
                         view.setCoefficientsCpi_270(resp)
+                        services.modifyImageCpi(resp,3)
                     })
     },
 
+
+
+
+    
     roofCoefficients(){
         const dimensionShed = view.getDimensionsShed()
-        console.log(view.getDimensionsShed())
         services.getRequest('/roofCoefficients',dimensionShed)
                     .then((resp) => {
                         view.setCoefficientsRoof(resp)
+                        services.modifyImageCpeRoof(resp)
                     })
         
     },
@@ -709,6 +863,7 @@ const controller = {
                     .then((resp) => {
                         
                         view.setCoefficientsWall(resp)
+                        services.modifyImageCpeWall(resp)
                     })
         
     },
@@ -765,7 +920,57 @@ const controller = {
                     const span = document.createElement('span');
                     span.innerHTML = response;
                     const inlineSvg = span.getElementsByTagName('svg')[0];
+                    
                     $loadSVG.parentNode.replaceChild(inlineSvg, $loadSVG);
+                    
+                })            
+        });
+ 
+        window.addEventListener('load', (evt) => {
+            fetch( $loadSVG_0.src)
+                .then((response) => response.text())
+                .then((response) => {
+                    const span = document.createElement('span');
+                    span.innerHTML = response;
+                    const inlineSvg = span.getElementsByTagName('svg')[0];
+                    
+                    $loadSVG_0.parentNode.replaceChild(inlineSvg, $loadSVG_0);
+                    
+                })            
+        });
+        window.addEventListener('load', (evt) => {
+            fetch( $loadSVG_90.src)
+                .then((response) => response.text())
+                .then((response) => {
+                    const span = document.createElement('span');
+                    span.innerHTML = response;
+                    const inlineSvg = span.getElementsByTagName('svg')[0];
+                    
+                    $loadSVG_90.parentNode.replaceChild(inlineSvg, $loadSVG_90);
+                    
+                })            
+        });
+        window.addEventListener('load', (evt) => {
+            fetch( $loadSVG_180.src)
+                .then((response) => response.text())
+                .then((response) => {
+                    const span = document.createElement('span');
+                    span.innerHTML = response;
+                    const inlineSvg = span.getElementsByTagName('svg')[0];
+                    
+                    $loadSVG_180.parentNode.replaceChild(inlineSvg, $loadSVG_180);
+                    
+                })            
+        });
+        window.addEventListener('load', (evt) => {
+            fetch( $loadSVG_270.src)
+                .then((response) => response.text())
+                .then((response) => {
+                    const span = document.createElement('span');
+                    span.innerHTML = response;
+                    const inlineSvg = span.getElementsByTagName('svg')[0];
+                    
+                    $loadSVG_270.parentNode.replaceChild(inlineSvg, $loadSVG_270);
                     
                 })            
         });
@@ -830,7 +1035,7 @@ const controller = {
         const modal = document.getElementById('modal-wrapper');
         const classAtive = (sideProprietary.classList == 'active')
     
-        if(classAtive) {
+        if(classAtive) {s
             modal.style.marginLeft = widhtClose;
             
         } else {
@@ -895,7 +1100,9 @@ const controller = {
             const ValueZero = $d2.value > 0 ? classAdd.classList.add('wall-active') : classAdd.classList.remove('wall-active');
 
         });
-    }
+    },
+
+   
 }
 
 const formStep = {
@@ -929,6 +1136,7 @@ const formStep = {
 
         } else if(valuePage==6 && n != -1) {
             controller.cpiCoefficients()
+
 
         } else if(valuePage==7 && n != -1) {
             controller.definitionEffort()
