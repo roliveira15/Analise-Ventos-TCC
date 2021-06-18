@@ -337,13 +337,13 @@ const view = {
         $cpe_i_90.innerText = I_90;
         $cpe_j_90.innerText = J_90;
         
-        $cpe_e_left_0.innerText = E_90;
-        $cpe_g_right_0.innerText = G_90;
+        $cpe_e_left_0.innerText = E_0;
+        $cpe_g_right_0.innerText = G_0;
         $cpe_e_left_90.innerText = E_90;
         $cpe_g_right_90.innerText = G_90;
 
-        $cpe_e_left_180.innerText = E_90;
-        $cpe_g_right_180.innerText = G_90;
+        $cpe_e_left_180.innerText = E_0;
+        $cpe_g_right_180.innerText = G_0;
         $cpe_e_left_270.innerText = E_90;
         $cpe_g_right_270.innerText = G_90;
         
@@ -406,21 +406,29 @@ const services = {
             class_wall_right_0.classList.add('cpe-wall-right-0')
             class_wall_Left_180.classList.add('cpe-wall-left-180')
             class_wall_right_180.classList.add('cpe-wall-right-180')
-
+            
+            class_wall_Left_0.classList.remove('animation-image-color'); 
+            class_wall_Left_180.classList.remove('animation-image-color'); 
+            class_wall_right_0.classList.remove('animation-image-color') ;
+            class_wall_right_180.classList.remove('animation-image-color');
         } else {
-            class_wall_right_0.classList.remove('cpe-wall-right-0');
-            class_wall_Left_0.classList.remove('cpe-wall-left-0');
-            class_wall_right_180.classList.remove('cpe-wall-right-180');
-            class_wall_Left_180.classList.remove('cpe-wall-left-180');
+            class_wall_Left_0.classList.remove('cpe-wall-left-0')
+            class_wall_right_0.classList.remove('cpe-wall-right-0')
+            class_wall_Left_180.classList.remove('cpe-wall-left-180')
+            class_wall_right_180.classList.remove('cpe-wall-right-180')
 
             class_wall_Left_0.classList.add('animation-image-color'); 
-            class_wall_Left_180.classList.add('animation-image-color'); 
+            class_wall_Left_180.classList.add('animation-image-color');
+            class_wall_right_0.classList.add('animation-image-color') ;
+            class_wall_right_180.classList.add('animation-image-color');
         }
 
-        if(B < 0){
+        if(B > 0){
             class_wall_Left_90.classList.add('cpe-wall-left-90')
             class_wall_right_270.classList.add('cpe-wall-right-270')
             
+            class_wall_Left_90.classList.remove('animation-image-color'); 
+            class_wall_right_270.classList.remove('animation-image-color'); 
             
         } else {
             class_wall_Left_90.classList.remove('cpe-wall-left-90')
@@ -429,12 +437,13 @@ const services = {
             class_wall_Left_90.classList.add('animation-image-color'); 
             class_wall_right_270.classList.add('animation-image-color'); 
         }
-        
-        if(A < 0){
+       
+        if(A > 0){
             class_wall_right_90.classList.add('cpe-wall-right-90')
             class_wall_Left_270.classList.add('cpe-wall-left-270')
             
-
+            class_wall_right_90.classList.remove('animation-image-color'); 
+            class_wall_Left_270.classList.remove('animation-image-color');
         } else {
             class_wall_right_90.classList.remove('cpe-wall-right-90')
             class_wall_Left_270.classList.remove('cpe-wall-left-270')
@@ -460,6 +469,8 @@ const services = {
         if(E_0 < 0){
             class_Roof_Left_0.classList.add('cpe-roof-left-0')
             class_Roof_Left_180.classList.add('cpe-roof-left-180')
+            class_Roof_Left_0.classList.remove('animation-image-color'); 
+            class_Roof_Left_180.classList.remove('animation-image-color');
         } else {
             class_Roof_Left_0.classList.remove('cpe-roof-left-0');
             class_Roof_Left_0.classList.add('animation-image-color'); 
@@ -470,6 +481,8 @@ const services = {
         if(G_0 < 0){
             class_Roof_right_0.classList.add('cpe-roof-right-0')
             class_Roof_right_180.classList.add('cpe-roof-right-180')
+            class_Roof_right_0.classList.remove('animation-image-color'); 
+            class_Roof_right_180.classList.remove('animation-image-color'); 
         } else {
             class_Roof_right_0.classList.remove('cpe-roof-right-0');
             class_Roof_right_0.classList.add('animation-image-color'); 
@@ -480,6 +493,8 @@ const services = {
         if(E_90 < 0){
             class_Roof_Left_90.classList.add('cpe-roof-left-90')
             class_Roof_Left_270.classList.add('cpe-roof-left-270')
+            class_Roof_Left_90.classList.remove('animation-image-color'); 
+            class_Roof_Left_270.classList.remove('animation-image-color'); 
         } else {
             class_Roof_Left_90.classList.remove('cpe-roof-left-90');
             class_Roof_Left_90.classList.add('animation-image-color'); 
@@ -490,6 +505,8 @@ const services = {
         if(G_90 < 0){
             class_Roof_right_90.classList.add('cpe-roof-right-0')
             class_Roof_right_270.classList.add('cpe-roof-right-270')
+            class_Roof_right_90.classList.remove('animation-image-color'); 
+            class_Roof_right_270.classList.remove('animation-image-color'); 
         } else {
             class_Roof_right_90.classList.remove('cpe-roof-right-70');
             class_Roof_right_90.classList.add('animation-image-color'); 
@@ -509,11 +526,17 @@ const services = {
 
         if(resp < 0){
 
+            class_Roof_Left.classList.remove('animation-image-color'); 
+            class_Roof_right.classList.remove('animation-image-color'); 
+            class_wall_Left.classList.remove('animation-image-color'); 
+            class_wall_right.classList.remove('animation-image-color'); 
+
             class_Roof_Left.classList.add('cpi-roof-left')
             class_Roof_right.classList.add('cpi-roof-right')
             class_wall_Left.classList.add('cpi-wall-left')
             class_wall_right.classList.add('cpi-wall-right')
 
+            
         } else {
 
             class_Roof_Left.classList.remove('cpi-roof-left');
