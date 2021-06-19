@@ -138,6 +138,8 @@ const $effort_90  = document.getElementById('effort-90')
 const $effort_180  = document.getElementById('effort-180')
 const $effort_270  = document.getElementById('effort-270')
 
+const $effect_loading = document.getElementById('effect-loading')
+
 
 var currentTab = 0
 
@@ -283,22 +285,22 @@ const view = {
 
     setCoefficientsCpi_0(cpi){
         $cpi_0.innerText = cpi
-        $effort_0.innerText = 'Cpi: ' + cpi
+        // $effort_0.innerText = 'Cpi: ' + cpi
     },
 
     setCoefficientsCpi_90(cpi){
         $cpi_90.innerText = cpi
-        $effort_90.innerText ='Cpi: ' +  cpi
+        // $effort_90.innerText ='Cpi: ' +  cpi
     },
 
     setCoefficientsCpi_180(cpi){
         $cpi_180.innerText = cpi
-        $effort_180.innerText ='Cpi: ' +  cpi
+        // $effort_180.innerText ='Cpi: ' +  cpi
     },
 
     setCoefficientsCpi_270(cpi){
         $cpi_270.innerText = cpi
-        $effort_270.innerText ='Cpi: ' +  cpi
+        // $effort_270.innerText ='Cpi: ' +  cpi
     },
 
     setCoefficientsWall({A1, A2, A3, C, D, A, B , D1, D2}){
@@ -1369,13 +1371,9 @@ const formStep = {
     validateForm(valuePage,n) {
 
         let validation = true
-
         if(valuePage==0 && n != -1) {
             validation = controller.ErrorDimension ()
-
-            
         } else if(valuePage==1 && n != -1) {
-
 
         } else if(valuePage==2 && n != -1) {
             validation = controller.ErrorFatorS1()
@@ -1384,19 +1382,13 @@ const formStep = {
             }
         } else if(valuePage==3 && n != -1) {
             controller.definitionFatorS2()
-
         } else if(valuePage==4 && n != -1) {
             controller.wallCoefficients()
             controller.definitionFatorS3()
-            
-
         } else if(valuePage==5 && n != -1) {
             controller.roofCoefficients()
-
         } else if(valuePage==6 && n != -1) {
             controller.cpiCoefficients()
-
-
         } else if(valuePage==7 && n != -1) {
             controller.definitionEffort()
         } else if(valuePage==8 && n != -1) {
@@ -1404,29 +1396,31 @@ const formStep = {
         } else if(valuePage==9 && n != -1) {
 
         }
-        
+        // return validation
         return validation
+        // return 
     },
 
     showTab(n) {
 
+    
         let tab = document.getElementsByClassName("tab");
         tab[n].style.display = "block";
-
+        
         if (n == 0) {
             document.getElementById("prevBtn").style.display = "none";
         } else {
             document.getElementById("prevBtn").style.display = "inline";
         }
-
+        
         if (n == (tab.length - 1)) {
             document.getElementById("nextBtn").innerHTML = "Submit";
         } else {
             document.getElementById("nextBtn").innerHTML = "Avançar";
         }
-
-        this.fixStepIndicator(n)
         
+        this.fixStepIndicator(n)
+    
     },
 
     nextPrev(n) {
@@ -1463,4 +1457,11 @@ const formStep = {
 }
 
 controller.initialize()
-formStep.showTab(currentTab); 
+
+// const initializeForm = 
+// $effect_loading.classList.toggle('lds-ring');
+// let loading = setTimeout(function stepValidation() {
+    formStep.showTab(currentTab)
+    // $effect_loading .classList.toggle('lds-ring');
+    // $effect_loading .classList.toggle('lds-ring');
+// },2000)
