@@ -18,6 +18,11 @@ let $loadSVG_0 = document.getElementById('img-cpi-0');
 let $loadSVG_90 = document.getElementById('img-cpi-90');
 let $loadSVG_180 = document.getElementById('img-cpi-180');
 let $loadSVG_270 = document.getElementById('img-cpi-270');
+
+let $loadEffort_0 = document.getElementById('effort-img-0');
+let $loadEffort_90 = document.getElementById('effort-img-90');
+let $loadEffort_180 = document.getElementById('effort-img-180');
+let $loadEffort_270 = document.getElementById('effort-img-270');
 // Waterproof
 const $a1 = document.getElementById('area-a1');
 const $a2 = document.getElementById('area-a2');
@@ -389,6 +394,194 @@ const view = {
 }
 
 const services = {
+    addColorBlueImages(classSVG){
+
+        const g = classSVG[0]
+        const arrows_effort = g.querySelectorAll('.arrows-img')
+        
+        for(let i = 0; i < arrows_effort.length; i++) {
+            const aux_arrow = arrows_effort[i]
+            aux_arrow.classList.add('arrows-img-color')
+        }
+        
+        return
+    },
+
+    removeColorBlueImages(classSVG){
+
+        const g = classSVG[0]
+        const arrows_effort = g.querySelectorAll('.arrows-img')
+
+        for(let i = 0; i < arrows_effort.length; i++) {
+            const aux_arrow = arrows_effort[i]
+            aux_arrow.classList.remove('arrows-img-color')
+        }
+        
+        return
+    },
+
+    modifyImageEffort({effort_e_0, effort_g_0,effort_a1_0,effort_b1_0,effort_e_90,effort_g_90,
+        effort_a_90,effort_b_90,effort_e_180,effort_g_180,effort_a1_180,effort_b1_180,
+        effort_e_270,effort_g_270,effort_a_270,effort_b_270}){
+        
+        const effort_roof_Left_0  = document.querySelectorAll('.effort-left-roof-0')
+        const effort_roof_right_0   = document.querySelectorAll('.effort-right-roof-0')
+        const effort_wall_Left_0  = document.querySelectorAll('.effort-left-wall-0')
+        const effort_wall_right_0   = document.querySelectorAll('.effort-right-wall-0')
+ 
+        const effort_roof_Left_90  = document.querySelectorAll('.effort-left-roof-90')
+        const effort_roof_right_90   = document.querySelectorAll('.effort-right-roof-90')
+        const effort_wall_Left_90  = document.querySelectorAll('.effort-left-wall-90')
+        const effort_wall_right_90   = document.querySelectorAll('.effort-right-wall-90')
+
+        const effort_roof_Left_180  = document.querySelectorAll('.effort-left-roof-180')
+        const effort_roof_right_180   = document.querySelectorAll('.effort-right-roof-180')
+        const effort_wall_Left_180  = document.querySelectorAll('.effort-left-wall-180')
+        const effort_wall_right_180   = document.querySelectorAll('.effort-right-wall-180')
+
+        const effort_roof_Left_270  = document.querySelectorAll('.effort-left-roof-270')
+        const effort_roof_right_270   = document.querySelectorAll('.effort-right-roof-270')
+        const effort_wall_Left_270  = document.querySelectorAll('.effort-left-wall-270')
+        const effort_wall_right_270   = document.querySelectorAll('.effort-right-wall-270')
+
+        if(effort_e_0 > 0){
+            effort_roof_Left_0[0].classList.add('arrow-img-left-roof-0')
+            this.addColorBlueImages(effort_roof_Left_0)
+        } else {
+
+            effort_roof_Left_0[0].classList.remove('arrow-img-left-roof-0')
+            this.removeColorBlueImages(effort_roof_Left_0)
+        }
+
+        if(effort_g_0 > 0){
+            effort_roof_right_0[0].classList.add('arrow-img-right-roof-0')
+            this.addColorBlueImages(effort_roof_right_0)
+        } else {
+            effort_roof_right_0[0].classList.remove('arrow-img-right-roof-0')
+            this.removeColorBlueImages(effort_roof_right_0)
+        }
+
+        if(effort_a1_0 > 0){
+            effort_wall_Left_0[0].classList.add('arrow-img-right-wall-0')
+            this.addColorBlueImages(effort_wall_Left_0)
+        } else {
+            effort_wall_Left_0[0].classList.remove('arrow-img-right-wall-0')
+            this.removeColorBlueImages(effort_wall_Left_0)
+        }
+
+        if(effort_b1_0 > 0){
+            effort_wall_right_0 [0].classList.add('arrow-img-left-wall-0')
+            this.addColorBlueImages(effort_wall_right_0 )
+        } else {
+            effort_wall_right_0 [0].classList.remove('arrow-img-left-wall-0')
+            this.removeColorBlueImages(effort_wall_right_0 )
+        }
+        if(effort_e_90 > 0){
+            effort_roof_Left_90[0].classList.add('arrow-img-left-roof-90')
+            this.addColorBlueImages(effort_roof_Left_90)
+        } else {
+
+            effort_roof_Left_90[0].classList.remove('arrow-img-left-roof-90')
+            this.removeColorBlueImages(effort_roof_Left_90)
+        }
+
+        if(effort_g_90 > 0){
+            effort_roof_right_90[0].classList.add('arrow-img-right-roof-90')
+            this.addColorBlueImages(effort_roof_right_90)
+        } else {
+            effort_roof_right_90[0].classList.remove('arrow-img-right-roof-90')
+            this.removeColorBlueImages(effort_roof_right_90)
+        }
+
+        if(effort_a_90 > 0){
+            effort_wall_Left_90[0].classList.add('arrow-img-right-wall-90')
+            this.addColorBlueImages(effort_wall_Left_90)
+        } else {
+            effort_wall_Left_90[0].classList.remove('arrow-img-right-wall-90')
+            this.removeColorBlueImages(effort_wall_Left_90)
+        }
+
+        if(effort_b_90 > 0){
+            effort_wall_right_90 [0].classList.add('arrow-img-left-wall-90')
+            this.addColorBlueImages(effort_wall_right_90 )
+        } else {
+            effort_wall_right_90 [0].classList.remove('arrow-img-left-wall-90')
+            this.removeColorBlueImages(effort_wall_right_90 )
+        }
+
+        if(effort_e_180 > 0){
+            effort_roof_Left_180[0].classList.add('arrow-img-left-roof-180')
+            this.addColorBlueImages(effort_roof_Left_180)
+        } else {
+
+            effort_roof_Left_180[0].classList.remove('arrow-img-left-roof-180')
+            this.removeColorBlueImages(effort_roof_Left_180)
+        }
+
+        if(effort_g_180 > 0){
+            effort_roof_right_180[0].classList.add('arrow-img-right-roof-180')
+            this.addColorBlueImages(effort_roof_right_180)
+        } else {
+            effort_roof_right_180[0].classList.remove('arrow-img-right-roof-180')
+            this.removeColorBlueImages(effort_roof_right_180)
+        }
+
+        if(effort_a1_180 > 0){
+            effort_wall_Left_180[0].classList.add('arrow-img-right-wall-180')
+            this.addColorBlueImages(effort_wall_Left_180)
+        } else {
+            effort_wall_Left_180[0].classList.remove('arrow-img-right-wall-180')
+            this.removeColorBlueImages(effort_wall_Left_180)
+        }
+
+        if(effort_b1_180 > 0){
+            effort_wall_right_180 [0].classList.add('arrow-img-left-wall-180')
+            this.addColorBlueImages(effort_wall_right_180 )
+        } else {
+            effort_wall_right_180 [0].classList.remove('arrow-img-left-wall-180')
+            this.removeColorBlueImages(effort_wall_right_180 )
+        }
+
+        if(effort_e_270 > 0){
+            effort_roof_Left_270[0].classList.add('arrow-img-left-roof-270')
+            this.addColorBlueImages(effort_roof_Left_270)
+        } else {
+
+            effort_roof_Left_270[0].classList.remove('arrow-img-left-roof-270')
+            this.removeColorBlueImages(effort_roof_Left_270)
+        }
+
+        if(effort_g_270 > 0){
+            effort_roof_right_270[0].classList.add('arrow-img-right-roof-270')
+            this.addColorBlueImages(effort_roof_right_270)
+        } else {
+            effort_roof_right_270[0].classList.remove('arrow-img-right-roof-270')
+            this.removeColorBlueImages(effort_roof_right_270)
+        }
+
+        if(effort_a_270 > 0){
+            effort_wall_Left_270[0].classList.add('arrow-img-right-wall-270')
+            this.addColorBlueImages(effort_wall_Left_270)
+        } else {
+            effort_wall_Left_270[0].classList.remove('arrow-img-right-wall-270')
+            this.removeColorBlueImages(effort_wall_Left_270)
+        }
+
+        if(effort_b_270 > 0){
+            effort_wall_right_270 [0].classList.add('arrow-img-left-wall-270')
+            this.addColorBlueImages(effort_wall_right_270 )
+        } else {
+            effort_wall_right_270 [0].classList.remove('arrow-img-left-wall-270')
+            this.removeColorBlueImages(effort_wall_right_270 )
+        }
+
+
+
+
+
+
+
+       },
 
     modifyImageCpeWall({A1, B , A}){
         const class_wall_Left_0  = document.querySelectorAll('.img-cpe_wall_left_0')[0]
@@ -553,7 +746,6 @@ const services = {
     
     },
 
-
     async getRequest(route, dimension) {
         
         try {
@@ -652,6 +844,7 @@ const controller = {
                     .then((resp) => {
                         
                         view.setEffort(resp)
+                        services.modifyImageEffort(resp)
 
                     })
                     
@@ -865,10 +1058,6 @@ const controller = {
                         services.modifyImageCpi(resp,3)
                     })
     },
-
-
-
-
     
     roofCoefficients(){
         const dimensionShed = view.getDimensionsShed()
@@ -997,7 +1186,54 @@ const controller = {
                     
                 })            
         });
-
+        window.addEventListener('load', (evt) => {
+            fetch( $loadEffort_0.src)
+                .then((response) => response.text())
+                .then((response) => {
+                    const span = document.createElement('span');
+                    span.innerHTML = response;
+                    const inlineSvg = span.getElementsByTagName('svg')[0];
+                    
+                    $loadEffort_0.parentNode.replaceChild(inlineSvg, $loadEffort_0);
+                    
+                })            
+        });
+        window.addEventListener('load', (evt) => {
+            fetch( $loadEffort_90.src)
+                .then((response) => response.text())
+                .then((response) => {
+                    const span = document.createElement('span');
+                    span.innerHTML = response;
+                    const inlineSvg = span.getElementsByTagName('svg')[0];
+                    
+                    $loadEffort_90.parentNode.replaceChild(inlineSvg, $loadEffort_90);
+                    
+                })            
+        });
+        window.addEventListener('load', (evt) => {
+            fetch( $loadEffort_180.src)
+                .then((response) => response.text())
+                .then((response) => {
+                    const span = document.createElement('span');
+                    span.innerHTML = response;
+                    const inlineSvg = span.getElementsByTagName('svg')[0];
+                    
+                    $loadEffort_180.parentNode.replaceChild(inlineSvg, $loadEffort_180);
+                    
+                })            
+        });
+        window.addEventListener('load', (evt) => {
+            fetch( $loadEffort_270.src)
+                .then((response) => response.text())
+                .then((response) => {
+                    const span = document.createElement('span');
+                    span.innerHTML = response;
+                    const inlineSvg = span.getElementsByTagName('svg')[0];
+                    
+                    $loadEffort_270.parentNode.replaceChild(inlineSvg, $loadEffort_270);
+                    
+                })            
+        });
         $btnCalc_Dim.addEventListener('click', (evt) => {
 
             const dimensionRoof = view.getDimensionsShed()

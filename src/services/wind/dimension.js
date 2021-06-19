@@ -874,7 +874,7 @@ const dynamicWindPressure =(({vk}) => {
     return {'dynamicPressure': Number(Effort.toFixed(2))}
 })
 
-const calculateEffort = ((cpe_a, cpe_b, cpe_a1, cpe_b1, cpe_e_0, cpe_g_0, cpe_e_90, cpe_g_90, cpi_0, cpi_90, cpi_180, cpi_270, dinamicPressure) => {
+const calculateEffort = (({cpe_a, cpe_b, cpe_a1, cpe_b1, cpe_e_0, cpe_g_0, cpe_e_90, cpe_g_90, cpi_0, cpi_90, cpi_180, cpi_270, dinamicPressure}) => {
     
     const eff_e_0 = ((cpe_e_0 - cpi_0) * dinamicPressure).toFixed(2)
     const eff_g_0 = ((cpe_g_0 - cpi_0) * dinamicPressure).toFixed(2)
@@ -896,8 +896,6 @@ const calculateEffort = ((cpe_a, cpe_b, cpe_a1, cpe_b1, cpe_e_0, cpe_g_0, cpe_e_
     const eff_a_270 = ((cpe_a - cpi_270) * dinamicPressure).toFixed(2)
     const eff_b_270 = ((cpe_b - cpi_270) * dinamicPressure).toFixed(2)
 
-
-
     return {
 
         'effort_e_0':eff_e_0,
@@ -915,10 +913,10 @@ const calculateEffort = ((cpe_a, cpe_b, cpe_a1, cpe_b1, cpe_e_0, cpe_g_0, cpe_e_
         'effort_a1_180':eff_a1_180,
         'effort_b1_180':eff_b1_180,
 
-        'effort_e_270':eff_e_270,
-        'effort_g_270':eff_g_270,
-        'effort_a_270':eff_a_270,
-        'effort_b_270':eff_b_270,
+        'effort_e_270':eff_g_270,
+        'effort_g_270':eff_e_270,
+        'effort_a_270':eff_b_270,
+        'effort_b_270':eff_a_270,
     }
 
     
@@ -986,10 +984,9 @@ module.exports = {
 
     },
 
-    getEffort({cpe_a, cpe_b, cpe_a1, cpe_b1, cpe_e_0, cpe_g_0, cpe_e_90, cpe_g_90, cpi_0, cpi_90, cpi_180, cpi_270,dinamicPressure}) {
+    getEffort(combination) {
 
-        const efforts = calculateEffort(cpe_a, cpe_b, cpe_a1, cpe_b1, cpe_e_0, cpe_g_0, cpe_e_90, cpe_g_90, cpi_0, cpi_90, cpi_180, cpi_270,dinamicPressure)
-    
+        const efforts = calculateEffort(combination)
         return efforts
 
     }

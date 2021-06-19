@@ -434,3 +434,105 @@
     transform: rotate(180deg) translateX(-184.5%) translateY(-139.6%);
     fill: red;
 }
+
+/* -----------------------------Modify Image Cpi external */
+.arrow-img-left-roof-0 ,.arrow-img-left-roof-90 ,.arrow-img-left-roof-180,.arrow-img-left-roof-270{
+    transform: rotate(180deg);
+    transform-origin: 27.5% 21.5%;
+}
+
+.arrow-img-right-roof-0,.arrow-img-right-roof-90,.arrow-img-right-roof-180,.arrow-img-right-roof-270 {
+    transform: rotate(180deg);
+    transform-origin: 72.5% 21.5%;
+}
+
+.arrow-img-left-wall-0 ,.arrow-img-left-wall-90 ,.arrow-img-left-wall-180,.arrow-img-left-wall-270{
+    transform: rotate(180deg) translateX(-39%) translateY(-101.5%);
+    transform-origin: 72.5% 21.5%;
+}
+
+.arrow-img-right-wall-0,.arrow-img-right-wall-90,.arrow-img-right-wall-180 ,.arrow-img-right-wall-270 {
+    transform: rotate(180deg) translateX(-15.5%) translateY(-144.6%);
+}
+
+.arrows-img-color {
+    fill: blue;
+}
+
+
+/* ----- bottões */
+
+.box-1,.container-calculate{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+
+.btn-dimension-wind{
+    width: 150px;
+    height:30px;
+    font-size: 90%;
+}
+.btn-prev,.btn-close{
+    padding: 2px 5px 2px 5px;
+    font-size: 90%;
+}
+
+.btn-prev,.btn-close {
+	color: rgb(2, 2, 2);
+	transition: all 0.5s;
+	position: relative;
+}
+.btn-close:hover {
+	color: rgb(255, 0, 0);
+}
+
+.btn-prev:hover{
+	color: #6c757d;
+}
+
+.btn-prev::before,.btn-close::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+    border-radius: 5px;
+	background-color: #ced4da;
+    opacity: 0.2;
+	transition: all 0.3s;
+}
+.btn-prev:hover::before,.btn-close:hover::before  {
+	opacity: 0 ;
+	transform: scale(0.5,0.5);
+}
+.btn-prev::after,.btn-close::after  {
+    content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	opacity: 0;
+	transition: all 0.3s;
+    border-radius: 5px;
+	border: 1px solid rgba(0, 0, 0, 0.5);
+	transform: scale(1.2,1.2);
+}
+
+.btn-prev::after  {
+	border: 1px solid rgba(0, 0, 0, 0.5);
+}
+.btn-close::after  {
+	border: 1px solid rgba(255, 0, 0, 0.5);
+}
+
+.btn-prev:hover::after,.btn-close:hover::after {
+	opacity: 1;
+	transform: scale(1,1);
+}
+
