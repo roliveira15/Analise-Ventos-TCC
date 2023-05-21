@@ -1,0 +1,183 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyPdcPPinsMnKdX03Kqf0Vyc",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/roliveira15/Analise-Ventos-TCC/blob/main/Modelo%20Preditivo%20de%20Vendas\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Carregando as bibliotecas"
+      ],
+      "metadata": {
+        "id": "MD-yMG9Vbb8c"
+      }
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 67,
+      "metadata": {
+        "id": "BXje9iPpaWF2"
+      },
+      "outputs": [],
+      "source": [
+        "import pandas as pd\n",
+        "import numpy as np\n",
+        "import matplotlib.pyplot as plt"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Importando o dataFrame"
+      ],
+      "metadata": {
+        "id": "9yDTTO0UbXIa"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import pandas as pd\n",
+        "import numpy as np\n",
+        "import matplotlib.pyplot as plt"
+      ],
+      "metadata": {
+        "id": "c5ZcWYkubnQD"
+      },
+      "execution_count": 68,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Importando Dataframe"
+      ],
+      "metadata": {
+        "id": "B6gs0Sp_eO--"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from google.colab import data_table\n",
+        "data_table.enable_dataframe_formatter()\n",
+        "df = pd.read_csv('/content/drive/MyDrive/Data Science/MBA/TCC/Base/base.csv', sep = ';')\n",
+        "df.dtypes"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "jkotm9KXeRrh",
+        "outputId": "dc28381c-e506-417a-a611-aacc7c614f96"
+      },
+      "execution_count": 97,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "tipo_frete                      object\n",
+              "peso                            object\n",
+              "valor_total_pedido              object\n",
+              "data                            object\n",
+              "abreviatura_uf                  object\n",
+              "regiao                          object\n",
+              "grupo_gerencial_produto         object\n",
+              "conta_numero_pedido_vendedor     int64\n",
+              "dtype: object"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 97
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Converter o peso e o valor em float\n",
+        "\n",
+        "\n",
+        "```\n",
+        "# Por padrão todas as variáveis do tipo string são armazenadas como object por esse motivo toda vez que tentamos modifcar de object para str, quando geramos o dtypes, as variáveis permanecem object. https://statisticsglobe.com/convert-object-data-type-string-pandas-dataframe-column-python\n",
+        "```\n",
+        "\n",
+        "\n"
+      ],
+      "metadata": {
+        "id": "3l_iBgojg5nA"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "df['peso'] = df['peso'].str.replace(',','.').astype(float)\n",
+        "df['valor_total_pedido'] = df['valor_total_pedido'].str.replace(',','.').astype(float)\n",
+        "\n",
+        "df.dtypes\n",
+        "\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "B-FtmkB2g8pY",
+        "outputId": "cba72d3d-0adc-42e6-aefa-34b60d33616d"
+      },
+      "execution_count": 98,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "tipo_frete                       object\n",
+              "peso                            float64\n",
+              "valor_total_pedido              float64\n",
+              "data                             object\n",
+              "abreviatura_uf                   object\n",
+              "regiao                           object\n",
+              "grupo_gerencial_produto          object\n",
+              "conta_numero_pedido_vendedor      int64\n",
+              "dtype: object"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 98
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Separando todos os tipos de estruturas que faremos a análise "
+      ],
+      "metadata": {
+        "id": "FLRD4Fokl3GQ"
+      }
+    }
+  ]
+}
